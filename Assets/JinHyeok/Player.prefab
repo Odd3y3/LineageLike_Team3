@@ -888,7 +888,7 @@ Transform:
   - {fileID: 9221818448628994323}
   - {fileID: 4422505590765773599}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4479097170195014854
 Animator:
@@ -903,7 +903,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: e27f78a1d0712e143a56da55fe2973c3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

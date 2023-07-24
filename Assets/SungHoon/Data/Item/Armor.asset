@@ -9,9 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 119cd619e674e76408baad9f4d0fd232, type: 3}
-  m_Name: Item
+  m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
+  m_Name: Armor
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: 7bb3906ed9a063e4fb8fdc06760296f9, type: 2}
-  - {fileID: 11400000, guid: 3511c486d01013c44a9b1c7ac0740866, type: 2}
+  EquipmentType: 2
+  ItemType: 0
+  _name: Armor
+  _statPoint: 100
+  _img: {fileID: 21300000, guid: da02227a46346804ba590932f9ebf5af, type: 3}

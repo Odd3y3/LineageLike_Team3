@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MoveMent : CharProperty
 {
@@ -18,13 +19,18 @@ public class MoveMent : CharProperty
         
     }
 
-    public void MoveToPos(Vector3 pos)
+    public void MoveToPos(Vector3 Pos)
     {
-        StopAllCoroutines();
-        StartCoroutine(MovingToPos(pos));
+        MoveToPos(Pos, null);
     }
 
-    IEnumerator MovingToPos(Vector3 pos)
+    public void MoveToPos(Vector3 pos, UnityAction done)
+    {
+        StopAllCoroutines();
+        StartCoroutine(MovingToPos(pos, done));
+    }
+
+    protected IEnumerator MovingToPos(Vector3 pos, UnityAction done)
     {
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
@@ -39,6 +45,7 @@ public class MoveMent : CharProperty
             transform.Translate(dir * delta,Space.World);
             yield return null;
         }
+        done?.Invoke();
     }
 
     IEnumerator Rotating(Vector3 dir)

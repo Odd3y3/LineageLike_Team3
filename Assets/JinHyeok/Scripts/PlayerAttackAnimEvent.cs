@@ -7,6 +7,7 @@ public class PlayerAttackAnimEvent : MonoBehaviour
 {
     public UnityEvent ComboCheckStartAction;
     public UnityEvent ComboCheckEndAction;
+    public UnityEvent Skill1EffectStartAction;
 
     public void OnComboCheckStart()
     {
@@ -16,5 +17,8 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     {
         ComboCheckEndAction?.Invoke();
     }
-
+    public void OnSkillEffectStart1()
+    {
+        Skill1EffectStartAction?.Invoke();
+    }
 }

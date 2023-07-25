@@ -14,10 +14,14 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        //기본 공격
-        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+        // (Test)이동 애니메이션
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            myAnim.SetBool("BaseAttack", true);
+            myAnim.SetBool("IsMove", true);
+        }
+        if(Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            myAnim.SetBool("IsMove", false);
         }
 
         //대쉬 Space bar
@@ -26,7 +30,17 @@ public class PlayerAttack : MonoBehaviour
             myAnim.SetTrigger("Dash");
         }
 
-        //스킬
+        //기본 공격
+        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetBool("BaseAttack", true);
+        }
+
+        //스킬 애니메이션
+        if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill1");
+        }
 
     }
 

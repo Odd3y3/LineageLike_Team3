@@ -13,6 +13,7 @@ public class RootMotion : MonoBehaviour
 
     private void OnAnimatorMove()
     {
-        transform.parent.Translate(myAnim.deltaPosition, Space.World);
+        if(myAnim.GetBool("IsAttack"))
+            transform.parent.Translate(myAnim.deltaPosition, Space.World);
     }
 }

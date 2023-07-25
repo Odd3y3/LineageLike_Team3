@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-
+    
     public ItemManager ItemManager;
     void Start()
     {
@@ -15,4 +15,6 @@ public class GameManager : Singleton<GameManager>
     {
         
     }
+
+
 }

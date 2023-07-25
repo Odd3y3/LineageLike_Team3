@@ -11,6 +11,7 @@ public class Player : BattleSystem
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
         path = new NavMeshPath();
     }
 
@@ -20,22 +21,25 @@ public class Player : BattleSystem
         
     }
 
+    public void OnEquipItem(Item myItem)
+    {
+        if(myItem != null)
+        {
+            if (myItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
+            {
+                curAttackPoint += myItem.StatPoint;
+            }
+            else
+            {
+                curDefensePoint += myItem.StatPoint;
+            }
+        }
+    }
+
     public void MovePos(Vector3 pos)
     {
         if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path))
         {
-            switch (path.status)
-            {
-                case NavMeshPathStatus.PathInvalid://알수 없음
-                    Debug.Log("갈수 없음");
-                    break;
-                case NavMeshPathStatus.PathPartial://막혀 있음
-                    Debug.Log("막혀 있음");
-                    break;
-                case NavMeshPathStatus.PathComplete://갈수 있음
-                    Debug.Log("갈수 있음");
-                    break;
-            }
             StopAllCoroutines();
 
             StartCoroutine(MoningByPath(path.corners));

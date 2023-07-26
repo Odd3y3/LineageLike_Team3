@@ -49,6 +49,10 @@ public class Player : BattleSystem
         {
             myAnim.SetTrigger("Skill1");
         }
+        if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill2");
+        }
     }
 
     public void OnComboCheckStart()

@@ -43,30 +43,4 @@ public class PlayerAttack : MonoBehaviour
         }
 
     }
-
-    public void OnComboCheckStart()
-    {
-        comboCheckCoroutine = StartCoroutine(ComboChecking());
-    }
-
-    IEnumerator ComboChecking()
-    {
-        myAnim.SetBool("BaseAttack", false);
-
-        while (true)
-        {
-            if(Input.GetMouseButton(0))
-            {
-                myAnim.SetBool("BaseAttack", true);
-            }
-            yield return null;
-        }
-
-    }
-
-    public void OnComboCheckEnd()
-    {
-        StopCoroutine(comboCheckCoroutine);
-    }
-
 }

@@ -8,6 +8,7 @@ public class Player : BattleSystem
 {
     NavMeshPath path = null;
     public Item PickUpItem = null;
+    Coroutine comboCheckCoroutine;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +19,61 @@ public class Player : BattleSystem
     // Update is called once per frame
     void Update()
     {
-        
+        //스킬 사용 도중에 이동 막기
+        //데미지
+        //이펙트?
+
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            myAnim.SetBool("IsMove", true);
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            myAnim.SetBool("IsMove", false);
+        }
+
+        //대쉬 Space bar
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            myAnim.SetTrigger("Dash");
+        }
+
+        //기본 공격
+        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetBool("BaseAttack", true);
+        }
+
+        //스킬 애니메이션
+        if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill1");
+        }
+    }
+
+    public void OnComboCheckStart()
+    {
+        comboCheckCoroutine = StartCoroutine(ComboChecking());
+    }
+
+    IEnumerator ComboChecking()
+    {
+        myAnim.SetBool("BaseAttack", false);
+
+        while (true)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                myAnim.SetBool("BaseAttack", true);
+            }
+            yield return null;
+        }
+
+    }
+
+    public void OnComboCheckEnd()
+    {
+        StopCoroutine(comboCheckCoroutine);
     }
 
     public void OnEquipItem(Item myItem)

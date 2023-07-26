@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootMotion : MonoBehaviour
+public class RootMotion : CharProperty
 {
-    Animator myAnim;
 
     private void Awake()
     {
-        myAnim = GetComponent<Animator>();
+
     }
 
     private void OnAnimatorMove()

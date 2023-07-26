@@ -24888,7 +24888,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2236122809682136613}
   - {fileID: 7719521414210835286}
@@ -24908,7 +24908,7 @@ Transform:
   - {fileID: 4960628314578071265}
   - {fileID: 7051592149919835477}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &3589917509659670919
 ParticleSystem:
@@ -24919,7 +24919,7 @@ ParticleSystem:
   m_GameObject: {fileID: 4441087621284828029}
   serializedVersion: 8
   lengthInSec: 2
-  simulationSpeed: 1
+  simulationSpeed: 5
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0

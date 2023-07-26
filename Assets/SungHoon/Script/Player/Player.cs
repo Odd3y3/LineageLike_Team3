@@ -8,7 +8,10 @@ public class Player : BattleSystem
 {
     NavMeshPath path = null;
     public Item PickUpItem = null;
+    public Transform myWeaponPos = null;
+    public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,9 +22,8 @@ public class Player : BattleSystem
     // Update is called once per frame
     void Update()
     {
-        //스킬 사용 도중에 이동 막기
         //데미지
-        //이펙트?
+        //이펙트
 
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -47,9 +49,43 @@ public class Player : BattleSystem
         //스킬 애니메이션
         if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
         {
+            SetSkillInfo(mySkills.Q);
             myAnim.SetTrigger("Skill1");
         }
     }
+
+    public void OnSkillEffect(GameObject Effect)
+    {
+        GameObject obj = Instantiate(Effect);
+        obj.transform.position = transform.position;
+        obj.transform.localRotation = transform.localRotation;
+    }
+    IEnumerator Durating(float t,GameObject obj)
+    {
+        yield return new WaitForSeconds(t);
+        Destroy(obj);
+    }
+
+    public void OnAttak()
+    {
+        Collider[] myCols = Physics.OverlapSphere(myWeaponPos.position, 1.0f, enemyMask);
+        foreach(Collider col in myCols)
+        {
+            IDamage damage = col.GetComponent<IDamage>();
+            if (damage != null) damage.OnDamage(curAttackPoint);
+        }
+    }
+
+    public void OnSkill()
+    {
+        Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
+        foreach (Collider col in myCols)
+        {
+            IDamage damage = col.GetComponent<IDamage>();
+            if (damage != null) damage.OnDamage(curAttackPoint+skillDamage);
+        }
+    }
+
 
     public void OnComboCheckStart()
     {
@@ -75,6 +111,7 @@ public class Player : BattleSystem
     {
         StopCoroutine(comboCheckCoroutine);
     }
+
 
     public void OnEquipItem(Item myItem)
     {
@@ -106,7 +143,6 @@ public class Player : BattleSystem
         int i = 0;
         while (i < list.Length - 1)
         {
-
             yield return StartCoroutine(MovingToPos(list[i + 1], () => ++i));
         }
     }

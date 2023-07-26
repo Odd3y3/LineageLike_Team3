@@ -778,7 +778,12 @@ MonoBehaviour:
   moveSpeed: 5
   rotSpeed: 360
   myItem: []
+  mySkills: {fileID: 11400000, guid: 2f858033189240941be41eee0058b08e, type: 2}
   PickUpItem: {fileID: 0}
+  myWeaponPos: {fileID: 5130768066106314964}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!4 &1712626660
 Transform:
   m_ObjectHideFlags: 0
@@ -811,14 +816,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
+  m_Radius: 0.25
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &1712626662
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -952,12 +957,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Skill1EffectStartAction:
+  SkillEffectStartAction:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3731290710869764636}
-        m_TargetAssemblyTypeName: SkillEffect, Assembly-CSharp
-        m_MethodName: OnSkillEffectStart
+      - m_Target: {fileID: 1712626659}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnAttak
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -967,6 +975,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  AttackAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712626659}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  DeadAction:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &174400879468088144
 Transform:
   m_ObjectHideFlags: 0
@@ -2081,7 +2107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2122629346115927808
 GameObject:
   m_ObjectHideFlags: 0
@@ -2204,6 +2230,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350f3c6e0fd819b41ac09b7fb1e1b124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleStat:
+    LV: 0
+    MaxHP: 0
+    MaxMP: 0
+    DefaultAttackPoint: 0
+    DefaultDefensePoint: 0
 --- !u!1 &2420053352818803356
 GameObject:
   m_ObjectHideFlags: 0
@@ -4665,7 +4697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3222601024993433838}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.09000076}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

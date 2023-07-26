@@ -18,6 +18,7 @@ public class MoveMent : CharProperty
     {
         
     }
+    
 
     public void MoveToPos(Vector3 Pos)
     {
@@ -32,6 +33,7 @@ public class MoveMent : CharProperty
 
     protected IEnumerator MovingToPos(Vector3 pos, UnityAction done)
     {
+        myAnim.SetBool("IsMove", true);
         Vector3 dir = pos - transform.position;
         float dist = dir.magnitude;
         dir.Normalize();
@@ -45,6 +47,7 @@ public class MoveMent : CharProperty
             transform.Translate(dir * delta,Space.World);
             yield return null;
         }
+        myAnim.SetBool("IsMove", false);
         done?.Invoke();
     }
 

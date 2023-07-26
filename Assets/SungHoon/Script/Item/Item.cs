@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Item", menuName = "Item", order = int.MaxValue)]
+[CreateAssetMenu(fileName = "Item", menuName = "ItemObject/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
 {
    public enum EQUIPMENTTYPE

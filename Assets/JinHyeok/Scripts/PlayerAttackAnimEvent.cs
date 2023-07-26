@@ -7,7 +7,12 @@ public class PlayerAttackAnimEvent : MonoBehaviour
 {
     public UnityEvent ComboCheckStartAction;
     public UnityEvent ComboCheckEndAction;
-    public UnityEvent Skill1EffectStartAction;
+    public UnityEvent<GameObject> SkillEffectStartAction;
+    public UnityEvent SkillAction;
+    public UnityEvent AttackAction;
+    public UnityEvent DeadAction;
+
+    public Transform Player = null;
 
     public void OnComboCheckStart()
     {
@@ -17,8 +22,20 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     {
         ComboCheckEndAction?.Invoke();
     }
-    public void OnSkillEffectStart1()
+    public void OnSkillEffectStart()
     {
-        Skill1EffectStartAction?.Invoke();
+        SkillEffectStartAction?.Invoke(Player.GetComponent<Player>().mySkill.Effect);
+    }
+    public void OnAttack()
+    {
+        AttackAction?.Invoke();
+    }
+    public void OnSkill()
+    {
+        SkillAction?.Invoke();
+    }
+    public void OnDead()
+    {
+        DeadAction?.Invoke();
     }
 }

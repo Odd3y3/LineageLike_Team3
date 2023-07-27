@@ -59,13 +59,14 @@ public class Player : BattleSystem
         }
     }
 
-    public void OnSkillEffect(GameObject Effect)
-    {
-            GameObject obj = Instantiate(Effect);
-            obj.transform.position = transform.position;
-            obj.transform.localRotation = transform.localRotation;
-            StartCoroutine(Durating(mySkill.Duration, obj));
-    }
+    //public void OnSkillEffect(GameObject Effect)
+    //{
+    //    GameObject obj = Instantiate(Effect);
+    //    obj.transform.position = transform.position;
+    //    obj.transform.localRotation = transform.localRotation;
+    //    StartCoroutine(Durating(mySkill.Duration, obj));
+    //}
+
     IEnumerator Durating(float t,GameObject obj)
     {
         yield return new WaitForSeconds(t);

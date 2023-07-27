@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SkillEffect))]
+[CustomEditor(typeof(EffectColorChange))]
 public class EffectColorChangeButton : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        SkillEffect effect = (SkillEffect)target;
-        if(GUILayout.Button("Color Change"))
+        EffectColorChange effect = (EffectColorChange)target;
+        if(GUILayout.Button("Change Color and Save"))
         {
             effect.ChangeColor();
         }

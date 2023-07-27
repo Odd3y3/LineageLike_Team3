@@ -15,3 +15,4 @@ MonoBehaviour:
   Effect: {fileID: 4441087621284828029, guid: c086a6fa731e4f9428b587d0aa25bbdc, type: 3}
   Damage: 30
   Range: 4
+  Duration: 2

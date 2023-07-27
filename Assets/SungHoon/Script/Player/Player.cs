@@ -12,6 +12,11 @@ public class Player : BattleSystem
     public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
 
+    private void Awake()
+    {
+        GameManager.Inst.myPlayer = this;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +61,10 @@ public class Player : BattleSystem
 
     public void OnSkillEffect(GameObject Effect)
     {
-        GameObject obj = Instantiate(Effect);
-        obj.transform.position = transform.position;
-        obj.transform.localRotation = transform.localRotation;
+            GameObject obj = Instantiate(Effect);
+            obj.transform.position = transform.position;
+            obj.transform.localRotation = transform.localRotation;
+            StartCoroutine(Durating(mySkill.Duration, obj));
     }
     IEnumerator Durating(float t,GameObject obj)
     {
@@ -78,11 +84,12 @@ public class Player : BattleSystem
 
     public void OnSkill()
     {
-        Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
+
+            Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
         foreach (Collider col in myCols)
         {
             IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint+skillDamage);
+            if (damage != null) damage.OnDamage(curAttackPoint + skillDamage);
         }
     }
 
@@ -130,7 +137,7 @@ public class Player : BattleSystem
 
     public void MovePos(Vector3 pos)
     {
-        if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path))
+        if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
         {
             StopAllCoroutines();
 

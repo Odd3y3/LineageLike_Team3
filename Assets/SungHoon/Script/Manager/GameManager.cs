@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    
     public ItemManager ItemManager;
+    public Player myPlayer;
     void Start()
     {
         

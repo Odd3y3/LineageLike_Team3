@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Moingitemmeun : MonoBehaviour, IPointerDownHandler, IDragHandler
+public class MoveMenu : MonoBehaviour, IPointerDownHandler, IDragHandler
 {
     [SerializeField]
-    private Transform _targetTr; 
+    private Transform _targetTr;
     private Vector2 _beginPoint;
     private Vector2 _moveBegin;
 

@@ -72,4 +72,63 @@ public class MoveMent : CharProperty
             yield return null;
         }
     }
+
+    protected void AttackTarget(Transform target)
+    {
+        StopAllCoroutines();
+        StartCoroutine(Attacking(target));
+    }
+
+
+
+    IEnumerator Attacking(Transform target)
+    {
+        ILive live = target.GetComponent<ILive>();
+        while (target != null)
+        {
+            if (live != null && !live.IsLive) break;
+            playTime += Time.deltaTime;
+            Vector3 dir = target.position - transform.position;
+            float dist = dir.magnitude - BattleStat.AttackRange;
+            if (dist < 0.01f) dist = 0.0f;
+            dir.Normalize();
+
+            float delta = moveSpeed * Time.deltaTime;
+            if (!Mathf.Approximately(dist, 0.0f))
+            {
+                myAnim.SetBool("IsMove", true);
+
+                if (delta > dist) delta = dist;
+                if (!myAnim.GetBool("IsAttacking"))
+                {
+                    transform.Translate(dir * delta, Space.World);
+                }
+            }
+            else
+            {
+                myAnim.SetBool("IsMove", false);
+                if (playTime >= BattleStat.AttackDelay)
+                {
+                    playTime = 0.0f;
+                    myAnim.SetTrigger("Attack");
+                }
+
+            }
+            float angle = Vector3.Angle(dir, transform.forward);
+            float rotDir = 1.0f;
+            if (Vector3.Dot(dir, transform.right) < 0.0f)
+            {
+                rotDir = -1.0f;
+            }
+            delta = rotSpeed * Time.deltaTime;
+
+            if (!Mathf.Approximately(angle, 0.0f))
+            {
+                if (delta > angle) delta = angle;
+                transform.Rotate(Vector3.up * delta * rotDir);
+            }
+
+            yield return null;
+        }
+    }
 }

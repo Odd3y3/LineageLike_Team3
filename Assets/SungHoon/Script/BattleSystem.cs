@@ -10,6 +10,8 @@ public struct BattleStat
     public float MaxMP;
     public float DefaultAttackPoint;
     public float DefaultDefensePoint;
+    public float AttackRange;
+    public float AttackDelay;
 }
 
 public interface IDamage
@@ -31,6 +33,8 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
     protected float skillRadius = 0.0f;
     protected float skillDamage = 0.0f;
+
+    protected Transform myTarget = null;
 
     protected void SetSkillInfo(Skill skill)
     {

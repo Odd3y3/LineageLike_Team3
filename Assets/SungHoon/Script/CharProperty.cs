@@ -65,5 +65,6 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    protected float playTime = 0.0f;
     public BattleStat BattleStat;
 }

@@ -54,7 +54,7 @@ public class Player : BattleSystem
         //스킬 애니메이션
         if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
         {
-            SetSkillInfo(mySkills.Q);
+            //SetSkillInfo(mySkills.Q);
             myAnim.SetTrigger("Skill1");
         }
         if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))

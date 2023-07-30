@@ -7,16 +7,13 @@ public class PlayerAttackAnimEvent : MonoBehaviour
 {
     public UnityEvent ComboCheckStartAction;
     public UnityEvent ComboCheckEndAction;
-<<<<<<< HEAD
     public UnityEvent<GameObject> SkillEffectStartAction;
     public UnityEvent SkillAction;
     public UnityEvent AttackAction;
     public UnityEvent DeadAction;
 
     public Transform Player = null;
-=======
     public UnityEvent<Transform, int> Skill1EffectStartAction;
->>>>>>> JinHyeok
 
     public void OnComboCheckStart()
     {
@@ -26,11 +23,7 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     {
         ComboCheckEndAction?.Invoke();
     }
-<<<<<<< HEAD
-    public void OnSkillEffectStart()
-    {
-        SkillEffectStartAction?.Invoke(Player.GetComponent<Player>().mySkill.Effect);
-    }
+    
     public void OnAttack()
     {
         AttackAction?.Invoke();
@@ -42,10 +35,14 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     public void OnDead()
     {
         DeadAction?.Invoke();
-=======
+    }
+
+    //public void OnSkillEffectStart()
+    //{
+    //    SkillEffectStartAction?.Invoke(Player.GetComponent<Player>().mySkill.Effect);
+    //}
     public void OnSkillEffectStart(int skillNum)
     {
         Skill1EffectStartAction?.Invoke(transform.parent, skillNum);
->>>>>>> JinHyeok
     }
 }

@@ -428,6 +428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemManager: {fileID: 110074513}
+  myPlayer: {fileID: 0}
 --- !u!1 &1545649783
 GameObject:
   m_ObjectHideFlags: 0
@@ -775,10 +776,18 @@ MonoBehaviour:
     MaxMP: 100
     DefaultAttackPoint: 10
     DefaultDefensePoint: 10
+    AttackRange: 0
+    AttackDelay: 0
   moveSpeed: 5
   rotSpeed: 360
   myItem: []
+  mySkills: {fileID: 0}
+  mySkill: {fileID: 0}
   PickUpItem: {fileID: 0}
+  myWeaponPos: {fileID: 0}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &1712626660
 Transform:
   m_ObjectHideFlags: 0
@@ -952,6 +961,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  SkillEffectStartAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712626659}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSkill
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  SkillAction:
+    m_PersistentCalls:
+      m_Calls: []
+  AttackAction:
+    m_PersistentCalls:
+      m_Calls: []
+  DeadAction:
+    m_PersistentCalls:
+      m_Calls: []
+  Player: {fileID: 0}
   Skill1EffectStartAction:
     m_PersistentCalls:
       m_Calls:
@@ -2190,6 +2224,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350f3c6e0fd819b41ac09b7fb1e1b124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BattleStat:
+    LV: 0
+    MaxHP: 0
+    MaxMP: 0
+    DefaultAttackPoint: 0
+    DefaultDefensePoint: 0
+    AttackRange: 0
+    AttackDelay: 0
 --- !u!1 &2420053352818803356
 GameObject:
   m_ObjectHideFlags: 0

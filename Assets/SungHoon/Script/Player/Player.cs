@@ -57,6 +57,14 @@ public class Player : BattleSystem
             SetSkillInfo(mySkills.Q);
             myAnim.SetTrigger("Skill1");
         }
+        if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill2");
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill3");
+        }
     }
 
     //public void OnSkillEffect(GameObject Effect)

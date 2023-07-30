@@ -12,7 +12,7 @@ public class RootMotion : CharProperty
 
     private void OnAnimatorMove()
     {
-        if(myAnim.GetBool("IsAttack"))
+        if (myAnim.GetBool("IsAttack"))
             transform.parent.Translate(myAnim.deltaPosition, Space.World);
     }
 }

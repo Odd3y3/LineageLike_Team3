@@ -1,36 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SkillEffect : MonoBehaviour
 {
-    public GameObject[] effectPrefabs;
-    public float effectDuration = 2.0f;
+    [SerializeField]
+    private float effectDuration = 1f;
 
-    List<GameObject> playingEffects;
 
-    private void Awake()
+    private void OnEnable()
     {
-        playingEffects = new List<GameObject>();
+        StartCoroutine(EffectDestroy(effectDuration));
     }
 
-    public void OnSkillEffectStart()
+    IEnumerator EffectDestroy(float time)
     {
-        StartCoroutine(SkillEffectOn(effectDuration));
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 
-    IEnumerator SkillEffectOn(float duration)
-    {
-        foreach(GameObject effect in effectPrefabs)
-        {
-            playingEffects.Add(Instantiate(effect, transform));
-        }
-
-        yield return new WaitForSeconds(duration);
-
-        foreach(GameObject effect in playingEffects)
-        {
-            Destroy(effect);
-        }
-    }
 }

@@ -123,67 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 62ba5ffe74957bc42befb52d9e2f9a0b, type: 2}
---- !u!1001 &78850872
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1802202330807574, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_Name
-      value: SwordAOE
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.4000635
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4215790966687360, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9dec8624e3a0a47479378e72336142c0, type: 3}
 --- !u!1 &110074511
 GameObject:
   m_ObjectHideFlags: 0
@@ -5079,6 +5018,7 @@ MonoBehaviour:
   playerSkillEffectPrefabs:
   - {fileID: 355429707437331680, guid: ba42b46a24d8b154c9084128f5f1fe67, type: 3}
   - {fileID: 6648261387767779639, guid: 8442ae1b93ddc8249aa4177f5ffeca89, type: 3}
+  - {fileID: 1802202330807574, guid: c8f336f990f0ba94eb735fd9e88ee746, type: 3}
 --- !u!137 &6086845053041389636
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0

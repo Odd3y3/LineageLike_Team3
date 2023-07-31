@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
-    public Item item; //»πµÊ«— æ∆¿Ã≈€
+    public InventoryItem item; //»πµÊ«— æ∆¿Ã≈€
     public int itemCount; //»πµÊ«— æ∆¿Ã≈€ ∞≥ºˆ
     public Image itemImage;
 
@@ -25,13 +25,13 @@ public class Slot : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IDra
 
     //¿Œ∫•≈‰∏Æ ªı∑ŒøÓ æ∆¿Ã≈€ ΩΩ∑‘ √ﬂ∞°
 
-    public void AddItem(Item _item, int _count = 1)
+    public void AddItem(InventoryItem _item, int _count = 1)
     {
         item = _item;
         itemCount = _count;
         itemImage.sprite = item.itemImage;
 
-        if (item.itemType != Item.ItemType.Equipment)
+        if (item.itemType != InventoryItem.ItemType.Equipment)
         {
             go_CountImage.SetActive(true);
             text_Count.text = itemCount.ToString();

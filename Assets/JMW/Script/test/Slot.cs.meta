@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/SungHoon/Script/ItemList.cs.meta
-guid: 2c4b2235744cf9e42a3d8ca215d9d86c
-========
-guid: 1f848bd754837b641a3d1b1ce6ef72b1
->>>>>>>> JMW:Assets/SungHoon/Script/DragSlot.cs.meta
+guid: d858a7674b3912640b2b0ce8111a8fbc
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

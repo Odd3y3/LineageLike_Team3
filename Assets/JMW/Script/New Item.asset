@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-<<<<<<<< HEAD:Assets/SungHoon/Data/Item/Item.asset
-  m_Script: {fileID: 11500000, guid: 119cd619e674e76408baad9f4d0fd232, type: 3}
-  m_Name: Item
-  m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: 7bb3906ed9a063e4fb8fdc06760296f9, type: 2}
-========
   m_Script: {fileID: 11500000, guid: f614386cdbdd8dd40a8244a6e94379eb, type: 3}
   m_Name: New Item
   m_EditorClassIdentifier: 
@@ -24,4 +17,3 @@ MonoBehaviour:
   itemImage: {fileID: 21300000, guid: 6a20f4dbf06be284e860c0bf6799923a, type: 3}
   itemPrefab: {fileID: 4656256610755441834, guid: 37f1976e61484f746af78e9866074f3d, type: 3}
   weaponType: 
->>>>>>>> JMW:Assets/JMW/Script/New Item.asset

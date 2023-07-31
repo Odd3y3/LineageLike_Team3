@@ -46,9 +46,9 @@ public class Inventory : MonoBehaviour
         go_InventoryBase.SetActive(false);
     }
 
-    public void AcquireItem(Item _item, int _count = 1)
+    public void AcquireItem(InventoryItem _item, int _count = 1)
     {
-        if (Item.ItemType.Equipment != _item.itemType)
+        if (InventoryItem.ItemType.Equipment != _item.itemType)
         {
             for (int i = 0; i < slots.Length; i++)
             {

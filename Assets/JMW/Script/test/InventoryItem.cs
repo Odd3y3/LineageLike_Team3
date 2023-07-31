@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Item", menuName = "New Item/item")]
-public class Item : ScriptableObject
+public class InventoryItem : ScriptableObject
 {
     public enum ItemType
     {

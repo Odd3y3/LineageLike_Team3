@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/SungHoon/Script/CharProperty.cs.meta
-guid: c7c54f38f22fd1849864a99bdb8afe5e
-========
-guid: ecf88d75fa70b5b42a1df0c69d85bfa1
->>>>>>>> JMW:Assets/SungHoon/Script/Inventory.cs.meta
+guid: 2521561a6cba61c4f9f8a9f5c2c2a90d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -5413,7 +5413,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   go_InventoryBase: {fileID: 661800578}
-  slots: []
+  slots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1401210084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5426,7 +5446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bbe60d7634ce994d93eefa73d621fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTr: {fileID: 661800579}
+  _targetTr: {fileID: 1401210080}
 --- !u!1 &1435945767
 GameObject:
   m_ObjectHideFlags: 0
@@ -6457,7 +6477,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1725602824}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baf570e2d9c6cff40b2ab28c1f8c82ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b1403c18da4654f9b1009e586253de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   go_ststeBase: {fileID: 1738019234}

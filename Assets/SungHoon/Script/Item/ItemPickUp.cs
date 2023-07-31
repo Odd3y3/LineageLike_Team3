@@ -9,7 +9,7 @@ public class ItemPickUp : MonoBehaviour
     Item myItem = null;
     void Start()
     {
-        myItem = GameManager.Inst.ItemManager.ItemList.Items[Random.Range(0,GameManager.Inst.ItemManager.ItemList.Items.Count)];
+        //myItem = GameManager.Inst.ItemManager.ItemList.Items[Random.Range(0,GameManager.Inst.ItemManager.ItemList.Items.Count)];
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class ItemPickUp : MonoBehaviour
     }
     public void ChangeItem()
     {
-        myItem= GameManager.Inst.ItemManager.ItemList.Items[Random.Range(0, GameManager.Inst.ItemManager.ItemList.Items.Count)];
+        //myItem= GameManager.Inst.ItemManager.ItemList.Items[Random.Range(0, GameManager.Inst.ItemManager.ItemList.Items.Count)];
     }
 
     private void OnTriggerEnter(Collider other)

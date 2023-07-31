@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory : UIProperty
 {
     public static bool invectoryActivated = false;
 
@@ -56,7 +56,6 @@ public class Inventory : MonoBehaviour
                 {
                     if (slots[i].item.itemName == _item.itemName)
                     {
-                        slots[i].SetSlotCount(_count);
                         return;
                     }
                 }
@@ -67,7 +66,7 @@ public class Inventory : MonoBehaviour
         {
             if (slots[i].item == null)
             {
-                slots[i].AddItem(_item, _count);
+                slots[i].AddItem(_item);
                 return;
             }
         }

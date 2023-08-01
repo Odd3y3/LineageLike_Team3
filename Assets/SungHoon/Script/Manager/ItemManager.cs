@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public List<Item> Items = null;
     public ItemList ItemList = null;
     // Start is called before the first frame update
     private void Awake()

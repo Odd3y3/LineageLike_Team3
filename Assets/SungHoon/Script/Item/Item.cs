@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Item", menuName = "ItemObject/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
@@ -9,12 +10,12 @@ public class Item : ScriptableObject
    {
         None, Weapon, Armor, Boots, Helmet, Etc
    }
+    public enum ITEMTYPE
+    {
+        Equipment, Potion, Etc
+    }
     [SerializeField]
     public EQUIPMENTTYPE EquipmentType;
-    public enum ITEMTYPE
-   {
-        Equipment,Potion,Etc
-   }
     [SerializeField]
     public ITEMTYPE ItemType;
     [SerializeField]
@@ -30,9 +31,13 @@ public class Item : ScriptableObject
         get{ return _statPoint;}
     }
     [SerializeField]
-    public Sprite _img;
-    public Sprite Img
+    private Sprite _sprite;
+    public Sprite Sprite
     {
-        get { return _img; }
+        get { return _sprite; }
     }
+
+
+    [SerializeField]
+    public GameObject itemPrefab;
 }

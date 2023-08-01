@@ -9,12 +9,13 @@ public class Inventory : UIProperty
     [SerializeField]
     private GameObject go_InventoryBase;
     [SerializeField]
-
-    private Slot[] slots;
+    private GameObject go_SlotsParent;
+    [SerializeField]
+    public Slot[] slots;
 
     void Start()
     {
-
+        slots = myAllSlots;
     }
 
     void Update()
@@ -46,22 +47,21 @@ public class Inventory : UIProperty
         go_InventoryBase.SetActive(false);
     }
 
-    public void AcquireItem(InventoryItem _item, int _count = 1)
+    public void AcquireItem(Item _item)
     {
-        if (InventoryItem.ItemType.Equipment != _item.itemType)
+        if (Item.ITEMTYPE.Equipment != _item.ItemType)
         {
             for (int i = 0; i < slots.Length; i++)
             {
                 if (slots[i].item != null)
                 {
-                    if (slots[i].item.itemName == _item.itemName)
+                    if (slots[i].item.Name == _item.Name)
                     {
                         return;
                     }
                 }
             }
         }
-
         for (int i = 0; i < slots.Length; i++)
         {
             if (slots[i].item == null)

@@ -128,6 +128,10 @@ public class Player : BattleSystem
         StopCoroutine(comboCheckCoroutine);
     }
 
+    public void OnAcquisition(Item acquisitionItem) 
+    {
+        GameManager.Inst.UiManager.myInventory.AcquireItem(acquisitionItem);
+    }
 
     public void OnEquipItem(Item myItem)
     {

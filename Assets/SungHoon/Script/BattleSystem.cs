@@ -58,6 +58,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
     protected void Initialize()
     {
+        curLv = BattleStat.LV;
         curHP = BattleStat.MaxHP;
         curMP = BattleStat.MaxMP;
         curAttackPoint = BattleStat.DefaultAttackPoint;

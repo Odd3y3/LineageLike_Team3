@@ -7,7 +7,6 @@ public class DragSlot : UIObject
 {
     static public DragSlot instance;
     public InventorySlot dragInventorySlot;
-    public EquipmentSlot dragEquipmentSlot;
 
     [SerializeField]
     private Image imageItem;

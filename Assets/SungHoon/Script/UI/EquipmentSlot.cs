@@ -5,17 +5,19 @@ using UnityEngine.EventSystems;
 
 public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
 {
-    public Item Equipment;
+    public Item myEquipment;
 
     [SerializeField]
     public Item.EQUIPMENTTYPE myEquipmentType = Item.EQUIPMENTTYPE.None;
+
 
     Color orgCol = Color.black;
 
     public void AddEquipment(Item _item)
     {
-        Equipment = _item;
-        myImage.sprite = Equipment.Sprite;
+        myEquipment = _item;
+        myImage.sprite = myEquipment.Sprite;
+        GameManager.Inst.myPlayer.OnEquipItem(_item);
         SetColor(1,Color.white);
     }
 
@@ -29,21 +31,19 @@ public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
 
     private void Unmount()
     {
-        GameManager.Inst.UiManager.myInventory.AcquireItem(Equipment);
-        Equipment = null;
+        GameManager.Inst.UiManager.myInventory.AcquireItem(myEquipment);
+        GameManager.Inst.myPlayer.OnUnmountITem(myEquipment);
+        myEquipment = null;
         myImage.sprite = null;
+        
         SetColor(1,orgCol);
     }
-    // Start is called before the first frame update
-    void Start()
+    
+    public void ChangeItem(Item ChangeItem)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        DragSlot.instance.dragInventorySlot.ClearSlot();
+        Unmount();
+        AddEquipment(ChangeItem);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -59,15 +59,37 @@ public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        Item Equipment = DragSlot.instance.dragInventorySlot.item;
-        if(Equipment.EquipmentType == myEquipmentType)
+        if (DragSlot.instance.dragInventorySlot != null)
         {
-            GameManager.Inst.UiManager.myEquipment.EquipmentItem(Equipment);
+            Item EquipmentItem = DragSlot.instance.dragInventorySlot.item;
+            if (EquipmentItem.EquipmentType == myEquipmentType && myEquipment == null)
+            {
+                GameManager.Inst.UiManager.myEquipment.EquipmentItem(EquipmentItem);
+                DragSlot.instance.dragInventorySlot.ClearSlot();
+            }
+            else
+            {
+                if(EquipmentItem.EquipmentType != myEquipmentType)
+                {
+                    Debug.Log("잘못된 위치 입니다");
+                }
+                else
+                {
+                    ChangeItem(EquipmentItem);
+                }
+            }
         }
-        else
-        {
-            Debug.Log("잘못된 위치 입니다");
-        }
-        
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
     }
 }

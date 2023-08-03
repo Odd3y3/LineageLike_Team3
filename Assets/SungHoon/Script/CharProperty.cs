@@ -21,6 +21,17 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    int _lv =1;
+
+    protected int curLv
+    {
+        get => _lv;
+        set
+        {
+            _lv = value;
+        }
+    }
+
     float _hp = 0.0f;
 
     protected float curHP

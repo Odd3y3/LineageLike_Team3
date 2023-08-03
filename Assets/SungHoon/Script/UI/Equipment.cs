@@ -10,6 +10,8 @@ public class Equipment :UIProperty
     private GameObject go_ststeBase;
     [SerializeField]
     public EquipmentSlot[] slots;
+    [SerializeField]
+    public TMPro.TMP_Text[] myStatusList = null;
     void Start()
     {
         slots = myAllEquipmentSlots;
@@ -18,6 +20,7 @@ public class Equipment :UIProperty
     void Update()
     {
         TryOpenState();
+        GameManager.Inst.myPlayer.SetStatus(myStatusList);
     }
 
     private void TryOpenState()
@@ -43,9 +46,6 @@ public class Equipment :UIProperty
         go_ststeBase.SetActive(false);
     }
 
-   
-
-
 
     public void EquipmentItem(Item _item)
     {
@@ -53,9 +53,9 @@ public class Equipment :UIProperty
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].Equipment != null)
+                if (slots[i].myEquipment != null)
                 {
-                    if (slots[i].Equipment.Name == _item.Name)
+                    if (slots[i].myEquipment.Name == _item.Name)
                     {
                         return;
                     }
@@ -64,7 +64,7 @@ public class Equipment :UIProperty
         }
         for (int i = 0; i < slots.Length; i++)
         {
-            if (slots[i].Equipment == null)
+            if (slots[i].myEquipment == null)
             {
                 if (slots[i].myEquipmentType == _item.EquipmentType)
                 {

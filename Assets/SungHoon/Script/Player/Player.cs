@@ -133,17 +133,31 @@ public class Player : BattleSystem
         GameManager.Inst.UiManager.myInventory.AcquireItem(acquisitionItem);
     }
 
-    public void OnEquipItem(Item myItem)
+    public void OnEquipItem(Item EquipmentItem)
     {
-        if(myItem != null)
+        if(EquipmentItem != null)
         {
-            if (myItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
+            if (EquipmentItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
             {
-                curAttackPoint += myItem.StatPoint;
+                curAttackPoint += EquipmentItem.StatPoint;
             }
             else
             {
-                curDefensePoint += myItem.StatPoint;
+                curDefensePoint += EquipmentItem.StatPoint;
+            }
+        }
+    }
+    public void OnUnmountITem(Item EquipmentItem)
+    {
+        if (EquipmentItem != null)
+        {
+            if (EquipmentItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
+            {
+                curAttackPoint -= EquipmentItem.StatPoint;
+            }
+            else
+            {
+                curDefensePoint -= EquipmentItem.StatPoint;
             }
         }
     }
@@ -165,5 +179,14 @@ public class Player : BattleSystem
         {
             yield return StartCoroutine(MovingToPos(list[i + 1], () => ++i));
         }
+    }
+
+    public void SetStatus(TMPro.TMP_Text[] statList)
+    {
+        statList[0].text = curLv.ToString();
+        statList[1].text = curHP.ToString();
+        statList[2].text = curMP.ToString();
+        statList[3].text = curAttackPoint.ToString();
+        statList[4].text = curDefensePoint.ToString();
     }
 }

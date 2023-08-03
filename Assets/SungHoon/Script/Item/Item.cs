@@ -14,10 +14,16 @@ public class Item : ScriptableObject
     {
         Equipment, Potion, Etc
     }
+    public enum ITEMGRADE
+    {
+        Normal,Rare,Unique,Eqic,Legendary,Mythology
+    }
     [SerializeField]
     public EQUIPMENTTYPE EquipmentType;
     [SerializeField]
     public ITEMTYPE ItemType;
+    [SerializeField]
+    public ITEMGRADE ItemGrade;
     [SerializeField]
     private string _name;
     public string Name
@@ -29,6 +35,10 @@ public class Item : ScriptableObject
     public float StatPoint
     {
         get{ return _statPoint;}
+        set
+        {
+            _statPoint = value;
+        }
     }
     [SerializeField]
     private Sprite _sprite;

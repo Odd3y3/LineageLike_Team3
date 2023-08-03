@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : UIObject, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class InventorySlot : UIObject, IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
 
     //아이템 장착시 아이템 삭제 구현하기
@@ -29,12 +29,23 @@ public class InventorySlot : UIObject, IBeginDragHandler, IDragHandler, IEndDrag
         SetColor(0);
     }
 
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (eventData.button == PointerEventData.InputButton.Middle)
+        {
+            if (eventData.clickCount == 2)
+            {
+                ClearSlot();
+            }
+        }
+    }
+
     //아이템 드래그 앤 드롭
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (item != null)
         {
-            
+            SetColor(0);
             DragSlot.instance.dragInventorySlot = this;
             DragSlot.instance.DragSetImage(item.Sprite);
             DragSlot.instance.transform.position = eventData.position;
@@ -83,6 +94,6 @@ public class InventorySlot : UIObject, IBeginDragHandler, IDragHandler, IEndDrag
 
     void Update()
     {
-
+       
     }
 }

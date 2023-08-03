@@ -11,11 +11,11 @@ public class Inventory : UIProperty
     [SerializeField]
     private GameObject go_SlotsParent;
     [SerializeField]
-    public Slot[] slots;
+    public InventorySlot[] slots;
 
     void Start()
     {
-        slots = myAllSlots;
+        slots = myAllInventorySlots;
     }
 
     void Update()

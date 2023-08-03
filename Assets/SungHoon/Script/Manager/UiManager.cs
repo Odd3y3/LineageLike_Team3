@@ -5,5 +5,5 @@ using UnityEngine;
 public class UiManager : MonoBehaviour
 {
     public Inventory myInventory;
-    public StateUI myState;
+    public Equipment myEquipment;
 }

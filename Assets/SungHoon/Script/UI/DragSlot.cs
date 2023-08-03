@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DragSlot : MonoBehaviour
+public class DragSlot : UIObject
 {
     static public DragSlot instance;
-    public Slot dragSlot;
+    public InventorySlot dragInventorySlot;
+    public EquipmentSlot dragEquipmentSlot;
 
     [SerializeField]
     private Image imageItem;
@@ -20,12 +21,5 @@ public class DragSlot : MonoBehaviour
     {
         imageItem.sprite = _itemImage;
         SetColor(1);
-    }
-
-    public void SetColor(float _alpha)
-    {
-        Color color = imageItem.color;
-        color.a = _alpha;
-        imageItem.color = color;
     }
 }

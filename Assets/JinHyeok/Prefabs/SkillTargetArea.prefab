@@ -5024,7 +5024,7 @@ GameObject:
   - component: {fileID: 1884737061884821308}
   - component: {fileID: 5483858919975272537}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: SkillTargetArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

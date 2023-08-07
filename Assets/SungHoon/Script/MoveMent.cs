@@ -7,18 +7,9 @@ public class MoveMent : CharProperty
 {
     public float moveSpeed = 2.0f;
     public float rotSpeed = 360.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public LayerMask skillClickMask;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
+    protected List<Coroutine> moveCoroutineList;
 
     public void MoveToPos(Vector3 Pos)
     {
@@ -51,8 +42,9 @@ public class MoveMent : CharProperty
         done?.Invoke();
     }
 
-    IEnumerator Rotating(Vector3 dir)
+    protected IEnumerator Rotating(Vector3 dir)
     {
+        dir.y = 0;
         float angle = Vector3.Angle(dir, transform.forward);
         float rotDir = 1.0f;
         if (Vector3.Dot(dir, transform.right) < 0)
@@ -129,6 +121,48 @@ public class MoveMent : CharProperty
             }
 
             yield return null;
+        }
+    }
+
+    protected void StopMoveAndRotate()
+    {
+        StopMove();
+
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, skillClickMask))
+        {
+            Vector3 vec = hit.point - transform.position;
+            moveCoroutineList.Add(StartCoroutine(Rotating(vec)));
+        }
+    }
+
+    protected void StopMove()
+    {
+        foreach (Coroutine co in moveCoroutineList)
+        {
+            if (co != null)
+            {
+                StopCoroutine(co);
+            }
+        }
+        moveCoroutineList.Clear();
+    }
+
+    protected void ImmediateRotate()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, skillClickMask))
+        {
+            Vector3 vec = hit.point - transform.position;
+            vec.y = 0;
+
+            float angle = Vector3.Angle(vec, transform.forward);
+            float rotDir = 1.0f;
+            if (Vector3.Dot(vec, transform.right) < 0)
+            {
+                rotDir = -1.0f;
+            }//왼쪽 클릭 했는지 확인
+            transform.Rotate(Vector3.up * angle * rotDir);
         }
     }
 }

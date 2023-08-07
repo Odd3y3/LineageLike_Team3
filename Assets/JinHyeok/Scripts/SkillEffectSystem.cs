@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//[사용 안함]
 public class SkillEffectSystem : MonoBehaviour
 {
     public GameObject[] playerSkillEffectPrefabs;

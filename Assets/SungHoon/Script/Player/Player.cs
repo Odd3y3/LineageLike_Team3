@@ -3,69 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEditor.Timeline.Actions;
 
-public class Player : BattleSystem
+public class Player : PlayerBattleSystem
 {
     NavMeshPath path = null;
     public Item PickUpItem = null;
     public Transform myWeaponPos = null;
     public LayerMask enemyMask;
+
+
     Coroutine comboCheckCoroutine;
 
-    private void Awake()
+    void Awake()
     {
         GameManager.Inst.myPlayer = this;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         Initialize();
         path = new NavMeshPath();
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         //데미지
         //이펙트
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            myAnim.SetBool("IsMove", true);
-        }
-        if (Input.GetKeyUp(KeyCode.UpArrow))
-        {
-            myAnim.SetBool("IsMove", false);
-        }
-
         //대쉬 Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            StopMove();
+            ImmediateRotate();
             myAnim.SetTrigger("Dash");
         }
 
-        //기본 공격
-        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+        if (!IsSkillAreaSelecting)
         {
-            myAnim.SetBool("BaseAttack", true);
+            //기본 공격
+            if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+            {
+                StopMoveAndRotate();
+                myAnim.SetBool("BaseAttack", true);
+            }
+
+            //스킬 애니메이션
+            if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+            {
+                UseSkill(SkillKey.QSkill);
+            }
+            else if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+            {
+                UseSkill(SkillKey.WSkill);
+            }
+            else if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+            {
+                UseSkill(SkillKey.ESkill);
+            }
         }
 
-        //스킬 애니메이션
-        if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
-        {
-            //SetSkillInfo(mySkills.Q);
-            myAnim.SetTrigger("Skill1");
-        }
-        if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
-        {
-            myAnim.SetTrigger("Skill2");
-        }
-        if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
-        {
-            myAnim.SetTrigger("Skill3");
-        }
     }
+
+    
 
     //public void OnSkillEffect(GameObject Effect)
     //{
@@ -148,18 +148,20 @@ public class Player : BattleSystem
     {
         if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
         {
-            StopAllCoroutines();
+            StopMove();
 
-            StartCoroutine(MoningByPath(path.corners));
+            moveCoroutineList.Add(StartCoroutine(MovingByPath(path.corners)));
         }
     }
 
-    IEnumerator MoningByPath(Vector3[] list)
+    IEnumerator MovingByPath(Vector3[] list)
     {
         int i = 0;
         while (i < list.Length - 1)
         {
-            yield return StartCoroutine(MovingToPos(list[i + 1], () => ++i));
+            Coroutine co = StartCoroutine(MovingToPos(list[i + 1], () => ++i));
+            moveCoroutineList.Add(co);
+            yield return co;
         }
     }
 }

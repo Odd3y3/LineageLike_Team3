@@ -36,7 +36,8 @@ public class Player : PlayerBattleSystem
         {
             StopMove();
             ImmediateRotate();
-            myAnim.SetTrigger("Dash");
+            //myAnim.SetTrigger("Dash");
+            UseSkill(SkillKey.Dash);
         }
 
         if (!IsSkillAreaSelecting)

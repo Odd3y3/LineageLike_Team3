@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d843ffb05e06b5e4e954ea4567f2f467, type: 3}
-  m_Name: WarriorSkill_3
+  m_Name: WarriorDash
   m_EditorClassIdentifier: 
   Icon: {fileID: 0}
-  AnimationClip: {fileID: 7400000, guid: 108bcbaed93c881419558a71c1c28586, type: 2}
-  EffectPrefab: {fileID: 1802202330807574, guid: c8f336f990f0ba94eb735fd9e88ee746, type: 3}
-  IsAreaSelect: 1
-  AreaPrefab: {fileID: 462506874625469812, guid: acfc35d90490b9d409588a9d9b3b596e, type: 3}
-  MultiDamage: 1
+  AnimationClip: {fileID: 7400000, guid: 05294fbecbbbd1a40b5b40fb2c33e147, type: 2}
+  EffectPrefab: {fileID: 0}
+  IsAreaSelect: 0
+  AreaPrefab: {fileID: 0}
+  MultiDamage: 2
   AddDamage: 0
-  CoolTime: 8
+  CoolTime: 3
   Range: 1
   Duration: 0

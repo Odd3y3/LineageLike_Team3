@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharProperty : MonoBehaviour
 {
@@ -40,6 +41,7 @@ public class CharProperty : MonoBehaviour
         set
         {
             _hp = Mathf.Clamp(value, 0.0f, BattleStat.MaxHP);
+            if (myHpBar != null) myHpBar.value = _hp / BattleStat.MaxHP;
         }
     }
 
@@ -76,6 +78,9 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+
+    public Slider myHpBar = null;
     protected float playTime = 0.0f;
     public BattleStat BattleStat;
+
 }

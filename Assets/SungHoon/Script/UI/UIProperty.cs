@@ -82,4 +82,36 @@ public class UIProperty : MonoBehaviour
             return _allequipmentslots;
         }
     }
+
+    ConsumptionItemSlot _consumptionslot = null;
+    protected ConsumptionItemSlot myConsumptionSlot
+    {
+        get
+        {
+            if (_consumptionslot == null)
+            {
+                _consumptionslot = GetComponent<ConsumptionItemSlot>();
+                if (_consumptionslot == null)
+                {
+                    _consumptionslot = GetComponentInChildren<ConsumptionItemSlot>();
+                }
+            }
+            return _consumptionslot;
+        }
+    }
+
+    ConsumptionItemSlot[] _allconsumptionslots = null;
+    protected ConsumptionItemSlot[] myAllConsumptionSlots
+    {
+        get
+        {
+            if (_allconsumptionslots == null)
+            {
+                _allconsumptionslots = GetComponentsInChildren<ConsumptionItemSlot>();
+            }
+            return _allconsumptionslots;
+        }
+    }
+
+    
 }

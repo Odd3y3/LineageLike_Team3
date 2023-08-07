@@ -65,6 +65,16 @@ public class Player : BattleSystem
         {
             myAnim.SetTrigger("Skill3");
         }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnDamage(10);
+        }
+    }
+
+    public new void OnDamage(float dmg)
+    {
+        curHP -= dmg;
     }
 
     //public void OnSkillEffect(GameObject Effect)
@@ -162,6 +172,21 @@ public class Player : BattleSystem
         }
     }
 
+    public void OnUsePotion(Item Item)
+    {
+        if(Item != null)
+        {
+            if (Item.PotionType == Item.POTIONTYPE.Hp)
+            {
+                curHP += Item.StatPoint;
+            }
+            else
+            {
+                curMP += Item.StatPoint;
+            }
+        }
+    }
+
     public void MovePos(Vector3 pos)
     {
         if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
@@ -184,9 +209,11 @@ public class Player : BattleSystem
     public void SetStatus(TMPro.TMP_Text[] statList)
     {
         statList[0].text = curLv.ToString();
-        statList[1].text = curHP.ToString();
-        statList[2].text = curMP.ToString();
+        statList[1].text = BattleStat.MaxHP.ToString();
+        statList[2].text = BattleStat.MaxMP.ToString();
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
+
+    
 }

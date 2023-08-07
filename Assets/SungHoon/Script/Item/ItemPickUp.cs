@@ -7,7 +7,7 @@ public class ItemPickUp : MonoBehaviour
 {
     // Start is called before the first frame update
     public Item myItem = null;
-    public Item.ITEMGRADE curItemGrade;
+    public Item.EQUIPMENGRADE curItemGrade;
     void Start()
     {
         myItem = GameManager.Inst.ItemManager.ItemList.Items[Random.Range(0,GameManager.Inst.ItemManager.ItemList.Items.Count)];

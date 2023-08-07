@@ -6,24 +6,30 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "ItemObject/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
 {
-   public enum EQUIPMENTTYPE
-   {
-        None, Weapon, Armor, Boots, Helmet, Etc
-   }
     public enum ITEMTYPE
     {
-        Equipment, Potion, Etc
+        None, Equipment, Potion, BattlePotion, Etc
     }
-    public enum ITEMGRADE
+    public enum POTIONTYPE
     {
-        Normal,Rare,Unique,Eqic,Legendary,Mythology
+        None,Hp,Mp,Etc
     }
-    [SerializeField]
-    public EQUIPMENTTYPE EquipmentType;
+    public enum EQUIPMENTTYPE
+    {
+        None,Weapon, Armor, Boots, Helmet, Etc
+    }
+    public enum EQUIPMENGRADE
+    {
+        None,Normal,Rare,Unique,Eqic,Legendary,Mythology
+    }
     [SerializeField]
     public ITEMTYPE ItemType;
     [SerializeField]
-    public ITEMGRADE ItemGrade;
+    public POTIONTYPE PotionType;
+    [SerializeField]
+    public EQUIPMENTTYPE EquipmentType;
+    [SerializeField]
+    public EQUIPMENGRADE ItemGrade;
     [SerializeField]
     private string _name;
     public string Name
@@ -50,4 +56,5 @@ public class Item : ScriptableObject
 
     [SerializeField]
     public GameObject itemPrefab;
+
 }

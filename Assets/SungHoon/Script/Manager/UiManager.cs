@@ -6,4 +6,5 @@ public class UiManager : MonoBehaviour
 {
     public Inventory myInventory;
     public Equipment myEquipment;
+    public ConsumptionItem myConsumptionItem;
 }

@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d843ffb05e06b5e4e954ea4567f2f467, type: 3}
+  m_Name: WarriorSkill_3
+  m_EditorClassIdentifier: 
+  Icon: {fileID: 0}
+  AnimationClip: {fileID: 7400000, guid: 108bcbaed93c881419558a71c1c28586, type: 2}
+  EffectPrefab: {fileID: 1802202330807574, guid: c8f336f990f0ba94eb735fd9e88ee746, type: 3}
+  IsAreaSelect: 1
+  AreaPrefab: {fileID: 462506874625469812, guid: acfc35d90490b9d409588a9d9b3b596e, type: 3}
+  MultiDamage: 1
+  AddDamage: 0
+  Range: 1
+  Duration: 0

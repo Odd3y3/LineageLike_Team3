@@ -28,24 +28,11 @@ public class BattleSystem : MoveMent , IDamage, ILive
 {
     public List<Item> myItem;
 
-    public Skills mySkills = null;
-    public Skill mySkill = null;
-
-    protected float skillRadius = 0.0f;
-    protected float skillDamage = 0.0f;
-
     protected Transform myTarget = null;
-
-    protected void SetSkillInfo(Skill skill)
-    {
-        mySkill = skill;
-        skillRadius = skill.Range;
-        skillDamage = skill.Damage;
-    }
 
     public void OnDamage(float dmg)
     {
-        curHP -= dmg-curDefensePoint;
+        curHP -= dmg - curDefensePoint;
     }
 
     public bool IsLive
@@ -56,7 +43,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
         }
     }
 
-    protected void Initialize()
+    protected virtual void Initialize()
     {
         curLv = BattleStat.LV;
         curHP = BattleStat.MaxHP;

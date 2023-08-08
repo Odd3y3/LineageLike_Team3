@@ -8,13 +8,11 @@ public class PlayerBattleSystem : BattleSystem
 {
     protected enum SkillKey
     {
-        Dash,
         QSkill,
         WSkill,
         ESkill
     }
 
-    public Skill Dash = null;
     public Skill QSkill = null;
     public Skill WSkill = null;
     public Skill ESkill = null;
@@ -41,9 +39,6 @@ public class PlayerBattleSystem : BattleSystem
     {
         switch (skillkey)
         {
-            case SkillKey.Dash:
-                UseSkill(Dash);
-                break;
             case SkillKey.QSkill:
                 UseSkill(QSkill);
                 break;
@@ -97,10 +92,9 @@ public class PlayerBattleSystem : BattleSystem
             //키 입력
             if (Input.GetMouseButtonDown(0))    //선택
             {
-                Vector3 areaPos = area.transform.position;
                 Destroy(area);
                 IsSkillAreaSelecting = false;
-                AnimateSkill(skill, areaPos);
+                AnimateSkill(skill, hit.point);
                 break;
             }
             else if (Input.anyKeyDown)          //취소
@@ -128,9 +122,7 @@ public class PlayerBattleSystem : BattleSystem
         Vector3 pos = usingSkillPos;
         if (!usingSkill.IsAreaSelect)
             pos = transform.position;
-
-        if(usingSkill.EffectPrefab != null)
-            Instantiate(usingSkill.EffectPrefab, pos, transform.rotation);
+        Instantiate(usingSkill.EffectPrefab, pos, transform.rotation);
     }
 
 }

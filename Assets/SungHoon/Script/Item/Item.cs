@@ -1,22 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Item", menuName = "ItemObject/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
 {
-   public enum EQUIPMENTTYPE
-   {
-        None, Weapon, Armor, Boots, Helmet, Etc
-   }
-    [SerializeField]
-    public EQUIPMENTTYPE EquipmentType;
     public enum ITEMTYPE
-   {
-        Equipment,Potion,Etc
-   }
+    {
+        None, Equipment, Potion, BattlePotion, Etc
+    }
+    public enum POTIONTYPE
+    {
+        None,Hp,Mp,Etc
+    }
+    public enum EQUIPMENTTYPE
+    {
+        None,Weapon, Armor, Boots, Helmet, Etc
+    }
+    public enum EQUIPMENGRADE
+    {
+        None,Normal,Rare,Unique,Eqic,Legendary,Mythology
+    }
     [SerializeField]
     public ITEMTYPE ItemType;
+    [SerializeField]
+    public POTIONTYPE PotionType;
+    [SerializeField]
+    public EQUIPMENTTYPE EquipmentType;
+    [SerializeField]
+    public EQUIPMENGRADE ItemGrade;
     [SerializeField]
     private string _name;
     public string Name
@@ -28,11 +41,20 @@ public class Item : ScriptableObject
     public float StatPoint
     {
         get{ return _statPoint;}
+        set
+        {
+            _statPoint = value;
+        }
     }
     [SerializeField]
-    public Sprite _img;
-    public Sprite Img
+    private Sprite _sprite;
+    public Sprite Sprite
     {
-        get { return _img; }
+        get { return _sprite; }
     }
+
+
+    [SerializeField]
+    public GameObject itemPrefab;
+
 }

@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class Monster : AImovement
 {
+
     public enum State
     {
-        Create, Normal, Battle, Roaming, Dead
+        Create, Normal, Roaming, Battle, Dead
     }
-    public State myState = State.Create;
-    
-    Vector3 startPos = Vector3.zero;
-    
 
+    public State myState = State.Create;
+
+    Vector3 startPos = Vector3.zero;
+
+    public Transform barPoint = null;
+    public Transform uiHpBars = null;
+
+    MonsterStatBar myStatUI = null;
+
+    protected Transform myTarget = null;
 
     void ChangeState(State s)
     {
@@ -58,6 +65,14 @@ public class Monster : AImovement
     // Start is called before the first frame update
     void Start()
     {
+        Initialize();
+
+       
+        //myStatUI = Instantiate(Resources.Load("UI\\HpBar") as GameObject,
+        //    SceneData.Inst.HpBars).GetComponent<MonsterStatBar>();
+        //myStatUI.Initialize(barPoint);
+        //myHpBar = myStatUI.mySlider;
+
         startPos = transform.position;
         ChangeState(State.Normal);
     }
@@ -74,9 +89,20 @@ public class Monster : AImovement
         myTarget = myPerception.myTarget;
         ChangeState(State.Battle);
     }
+
+    //protected override void OnDead()
+    //{
+    //    ChangeState(State.Dead);
+    //}
+   
+    public void DisAppear()
+    {
+        StartCoroutine(DisAppearing(0.5f, 2.0f));
+    }
     IEnumerator DisAppearing(float speed, float t)
     {
         yield return new WaitForSeconds(t);
+        Destroy(myStatUI.gameObject);
 
         float dist = 1.0f;
         while (dist > 0.0f)

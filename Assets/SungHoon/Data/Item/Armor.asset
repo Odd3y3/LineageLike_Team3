@@ -12,8 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
   m_Name: Armor
   m_EditorClassIdentifier: 
+  ItemType: 1
+  PotionType: 0
   EquipmentType: 2
-  ItemType: 0
+  ItemGrade: 4
   _name: Armor
-  _statPoint: 100
-  _img: {fileID: 21300000, guid: da02227a46346804ba590932f9ebf5af, type: 3}
+  _statPoint: 40
+  _sprite: {fileID: 21300000, guid: 40f2d97515d2434418f9dcdd11d438a2, type: 3}
+  itemPrefab: {fileID: 0}

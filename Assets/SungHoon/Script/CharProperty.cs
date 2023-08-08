@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharProperty : MonoBehaviour
 {
@@ -21,6 +22,17 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    int _lv =1;
+
+    protected int curLv
+    {
+        get => _lv;
+        set
+        {
+            _lv = value;
+        }
+    }
+
     float _hp = 0.0f;
 
     protected float curHP
@@ -29,6 +41,7 @@ public class CharProperty : MonoBehaviour
         set
         {
             _hp = Mathf.Clamp(value, 0.0f, BattleStat.MaxHP);
+            if (myHpBar != null) myHpBar.value = _hp / BattleStat.MaxHP;
         }
     }
 
@@ -65,6 +78,9 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+
+    public Slider myHpBar = null;
     protected float playTime = 0.0f;
     public BattleStat BattleStat;
+
 }

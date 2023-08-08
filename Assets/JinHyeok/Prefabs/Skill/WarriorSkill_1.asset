@@ -19,6 +19,5 @@ MonoBehaviour:
   AreaPrefab: {fileID: 0}
   MultiDamage: 2
   AddDamage: 0
-  CoolTime: 3
   Range: 1
   Duration: 0

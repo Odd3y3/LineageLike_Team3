@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Events;
-using UnityEngine.UIElements;
 
 public class MoveMent : CharProperty
 {
     public float moveSpeed = 2.0f;
     public float rotSpeed = 360.0f;
     public LayerMask skillClickMask;
-    public LayerMask virtualGroundMask;
 
     protected List<Coroutine> moveCoroutineList;
 
@@ -29,23 +26,16 @@ public class MoveMent : CharProperty
     {
         myAnim.SetBool("IsMove", true);
         Vector3 dir = pos - transform.position;
-        //dir.y = 0.0f;
         float dist = dir.magnitude;
         dir.Normalize();
 
-        moveCoroutineList.Add(StartCoroutine(Rotating(dir)));
+        StartCoroutine(Rotating(dir));
         while (dist > 0.0f)
         {
             float delta = Time.deltaTime * moveSpeed;
             if (delta > dist) delta = dist;
             dist -= delta;
-
-            transform.Translate(dir * delta, Space.World);
-
-            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
-            {
-                transform.position = hit.position;
-            }
+            transform.Translate(dir * delta,Space.World);
             yield return null;
         }
         myAnim.SetBool("IsMove", false);
@@ -139,9 +129,7 @@ public class MoveMent : CharProperty
         StopMove();
 
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, skillClickMask) ||
-            Physics.Raycast(ray, out hit, Mathf.Infinity, virtualGroundMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, skillClickMask))
         {
             Vector3 vec = hit.point - transform.position;
             moveCoroutineList.Add(StartCoroutine(Rotating(vec)));
@@ -163,8 +151,7 @@ public class MoveMent : CharProperty
     protected void ImmediateRotate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, skillClickMask) ||
-            Physics.Raycast(ray, out hit, Mathf.Infinity, virtualGroundMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, skillClickMask))
         {
             Vector3 vec = hit.point - transform.position;
             vec.y = 0;

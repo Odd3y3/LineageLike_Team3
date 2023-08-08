@@ -3,70 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
-using UnityEditor.Timeline.Actions;
 
-public class Player : PlayerBattleSystem
+public class Player : BattleSystem
 {
     NavMeshPath path = null;
     public Item PickUpItem = null;
     public Transform myWeaponPos = null;
     public LayerMask enemyMask;
-
-
     Coroutine comboCheckCoroutine;
 
-    void Awake()
+    private void Awake()
     {
         GameManager.Inst.myPlayer = this;
     }
 
+    // Start is called before the first frame update
     void Start()
     {
         Initialize();
         path = new NavMeshPath();
     }
-    
+
+    // Update is called once per frame
     void Update()
     {
         //데미지
         //이펙트
 
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            myAnim.SetBool("IsMove", true);
+        }
+        if (Input.GetKeyUp(KeyCode.UpArrow))
+        {
+            myAnim.SetBool("IsMove", false);
+        }
+
         //대쉬 Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopMove();
-            ImmediateRotate();
-            //myAnim.SetTrigger("Dash");
-            UseSkill(SkillKey.Dash);
+            myAnim.SetTrigger("Dash");
         }
 
-        if (!IsSkillAreaSelecting)
+        //기본 공격
+        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
         {
-            //기본 공격
-            if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
-            {
-                StopMoveAndRotate();
-                myAnim.SetBool("BaseAttack", true);
-            }
-
-            //스킬 애니메이션
-            if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.QSkill);
-            }
-            else if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.WSkill);
-            }
-            else if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.ESkill);
-            }
+            myAnim.SetBool("BaseAttack", true);
         }
 
+        //스킬 애니메이션
+        if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+        {
+            //SetSkillInfo(mySkills.Q);
+            myAnim.SetTrigger("Skill1");
+        }
+        if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill2");
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+        {
+            myAnim.SetTrigger("Skill3");
+        }
+
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            OnDamage(10);
+        }
     }
 
-    
+    public new void OnDamage(float dmg)
+    {
+        curHP -= dmg;
+    }
 
     //public void OnSkillEffect(GameObject Effect)
     //{
@@ -129,18 +138,51 @@ public class Player : PlayerBattleSystem
         StopCoroutine(comboCheckCoroutine);
     }
 
-
-    public void OnEquipItem(Item myItem)
+    public void OnAcquisition(Item acquisitionItem) 
     {
-        if(myItem != null)
+        GameManager.Inst.UiManager.myInventory.AcquireItem(acquisitionItem);
+    }
+
+    public void OnEquipItem(Item EquipmentItem)
+    {
+        if(EquipmentItem != null)
         {
-            if (myItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
+            if (EquipmentItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
             {
-                curAttackPoint += myItem.StatPoint;
+                curAttackPoint += EquipmentItem.StatPoint;
             }
             else
             {
-                curDefensePoint += myItem.StatPoint;
+                curDefensePoint += EquipmentItem.StatPoint;
+            }
+        }
+    }
+    public void OnUnmountITem(Item EquipmentItem)
+    {
+        if (EquipmentItem != null)
+        {
+            if (EquipmentItem.EquipmentType == Item.EQUIPMENTTYPE.Weapon)
+            {
+                curAttackPoint -= EquipmentItem.StatPoint;
+            }
+            else
+            {
+                curDefensePoint -= EquipmentItem.StatPoint;
+            }
+        }
+    }
+
+    public void OnUsePotion(Item Item)
+    {
+        if(Item != null)
+        {
+            if (Item.PotionType == Item.POTIONTYPE.Hp)
+            {
+                curHP += Item.StatPoint;
+            }
+            else
+            {
+                curMP += Item.StatPoint;
             }
         }
     }
@@ -149,20 +191,29 @@ public class Player : PlayerBattleSystem
     {
         if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
         {
-            StopMove();
+            StopAllCoroutines();
 
-            moveCoroutineList.Add(StartCoroutine(MovingByPath(path.corners)));
+            StartCoroutine(MoningByPath(path.corners));
         }
     }
 
-    IEnumerator MovingByPath(Vector3[] list)
+    IEnumerator MoningByPath(Vector3[] list)
     {
         int i = 0;
         while (i < list.Length - 1)
         {
-            Coroutine co = StartCoroutine(MovingToPos(list[i + 1], () => ++i));
-            moveCoroutineList.Add(co);
-            yield return co;
+            yield return StartCoroutine(MovingToPos(list[i + 1], () => ++i));
         }
     }
+
+    public void SetStatus(TMPro.TMP_Text[] statList)
+    {
+        statList[0].text = curLv.ToString();
+        statList[1].text = BattleStat.MaxHP.ToString();
+        statList[2].text = BattleStat.MaxMP.ToString();
+        statList[3].text = curAttackPoint.ToString();
+        statList[4].text = curDefensePoint.ToString();
+    }
+
+    
 }

@@ -11,7 +11,7 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     public UnityEvent AttackAction;
     public UnityEvent DeadAction;
 
-    //public Transform Player = null;
+    public Transform Player = null;
     public UnityEvent SkillEffectStartAction;
 
     public void OnComboCheckStart()

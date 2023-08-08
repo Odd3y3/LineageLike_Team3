@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public ItemManager ItemManager;
     public Player myPlayer;
+    public ItemManager ItemManager;
+    public UiManager UiManager;
     void Start()
     {
         

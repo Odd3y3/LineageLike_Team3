@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class AIPerception : MonoBehaviour
 {
     public LayerMask enemyMask;
@@ -24,7 +25,6 @@ public class AIPerception : MonoBehaviour
     {
 
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if ((enemyMask & 1 << other.gameObject.layer) != 0)
@@ -40,7 +40,6 @@ public class AIPerception : MonoBehaviour
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if ((enemyMask & 1 << other.gameObject.layer) != 0)

@@ -1,0 +1,112 @@
+diff a/Assets/SungHoon/Script/Player/Player.cs b/Assets/SungHoon/Script/Player/Player.cs	(rejected hunks)
+@@ -3,70 +3,79 @@
+ using UnityEngine;
+ using UnityEngine.Events;
+ using UnityEngine.AI;
+-using UnityEditor.Timeline.Actions;
+ 
+-public class Player : PlayerBattleSystem
++public class Player : BattleSystem
+ {
+     NavMeshPath path = null;
+     public Item PickUpItem = null;
+     public Transform myWeaponPos = null;
+     public LayerMask enemyMask;
+-
+-
+     Coroutine comboCheckCoroutine;
+ 
+-    void Awake()
++    private void Awake()
+     {
+         GameManager.Inst.myPlayer = this;
+     }
+ 
++    // Start is called before the first frame update
+     void Start()
+     {
+         Initialize();
+         path = new NavMeshPath();
+     }
+-    
++
++    // Update is called once per frame
+     void Update()
+     {
+         //������
+         //����Ʈ
+ 
++        if (Input.GetKeyDown(KeyCode.UpArrow))
++        {
++            myAnim.SetBool("IsMove", true);
++        }
++        if (Input.GetKeyUp(KeyCode.UpArrow))
++        {
++            myAnim.SetBool("IsMove", false);
++        }
++
+         //�뽬 Space bar
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
+-            StopMove();
+-            ImmediateRotate();
+-            //myAnim.SetTrigger("Dash");
+-            UseSkill(SkillKey.Dash);
++            myAnim.SetTrigger("Dash");
+         }
+ 
+-        if (!IsSkillAreaSelecting)
++        //�⺻ ����
++        if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+         {
+-            //�⺻ ����
+-            if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+-            {
+-                StopMoveAndRotate();
+-                myAnim.SetBool("BaseAttack", true);
+-            }
++            myAnim.SetBool("BaseAttack", true);
++        }
+ 
+-            //��ų �ִϸ��̼�
+-            if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+-            {
+-                UseSkill(SkillKey.QSkill);
+-            }
+-            else if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+-            {
+-                UseSkill(SkillKey.WSkill);
+-            }
+-            else if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+-            {
+-                UseSkill(SkillKey.ESkill);
+-            }
++        //��ų �ִϸ��̼�
++        if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
++        {
++            //SetSkillInfo(mySkills.Q);
++            myAnim.SetTrigger("Skill1");
++        }
++        if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
++        {
++            myAnim.SetTrigger("Skill2");
++        }
++        if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
++        {
++            myAnim.SetTrigger("Skill3");
+         }
+ 
++        if (Input.GetKeyDown(KeyCode.D))
++        {
++            OnDamage(10);
++        }
+     }
+ 
+-    
++    public new void OnDamage(float dmg)
++    {
++        curHP -= dmg;
++    }
+ 
+     //public void OnSkillEffect(GameObject Effect)
+     //{

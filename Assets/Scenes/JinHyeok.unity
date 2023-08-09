@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -167,10 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f840b8b9c5cfc654ab8278a13b968e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items:
-  - {fileID: 11400000, guid: 7bb3906ed9a063e4fb8fdc06760296f9, type: 2}
-  - {fileID: 11400000, guid: 3511c486d01013c44a9b1c7ac0740866, type: 2}
-  ItemList: {fileID: 11400000, guid: a7429da6b504c6542a9d7a417e161cbd, type: 2}
+  ItemList: {fileID: 0}
 --- !u!1 &115159961
 GameObject:
   m_ObjectHideFlags: 0
@@ -183,7 +180,7 @@ GameObject:
   - component: {fileID: 115159964}
   - component: {fileID: 115159963}
   - component: {fileID: 115159962}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,11 +480,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483588625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70866ab1616a0bb4ca68c79731f05c21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myItem: {fileID: 0}
+  curItemGrade: 0
 --- !u!1 &1292529459
 GameObject:
   m_ObjectHideFlags: 0
@@ -532,8 +531,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94dc84032bc0c24bb3cbbf0bf8512f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ItemManager: {fileID: 110074513}
   myPlayer: {fileID: 0}
+  ItemManager: {fileID: 110074513}
+  UiManager: {fileID: 0}
 --- !u!1 &1545649783
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ GameObject:
   - component: {fileID: 1573984891}
   - component: {fileID: 1573984890}
   - component: {fileID: 1573984889}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -847,7 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clickMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
   clickAction:
     m_PersistentCalls:
       m_Calls:
@@ -875,6 +875,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d752a7fffae3d94ba2ff3c7ab86673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myHpBar: {fileID: 0}
   BattleStat:
     LV: 1
     MaxHP: 100
@@ -887,8 +888,12 @@ MonoBehaviour:
   rotSpeed: 720
   skillClickMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 256
+  virtualGroundMask:
+    serializedVersion: 2
+    m_Bits: 8192
   myItem: []
+  Dash: {fileID: 11400000, guid: f22006a4153f590469abef4a7e11005f, type: 2}
   QSkill: {fileID: 11400000, guid: f21da3acb1ce78e4e8be94d26af6e448, type: 2}
   WSkill: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
   ESkill: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
@@ -964,6 +969,73 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1873743302
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1873743303}
+  - component: {fileID: 1873743304}
+  - component: {fileID: 1873743305}
+  m_Layer: 13
+  m_Name: VirtualGround
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1873743303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873743302}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -9.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1873743304
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873743302}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 200, y: 1, z: 200}
+  m_Center: {x: 0, y: -0.5, z: 0}
+--- !u!114 &1873743305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873743302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50f665617eb4e1240a0f6eed595a1039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1712626660}
 --- !u!1 &88858896110751789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,14 +2373,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350f3c6e0fd819b41ac09b7fb1e1b124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleStat:
-    LV: 0
-    MaxHP: 0
-    MaxMP: 0
-    DefaultAttackPoint: 0
-    DefaultDefensePoint: 0
-    AttackRange: 0
-    AttackDelay: 0
 --- !u!1 &2420053352818803356
 GameObject:
   m_ObjectHideFlags: 0

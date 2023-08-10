@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c4b2235744cf9e42a3d8ca215d9d86c, type: 3}
-  m_Name: Items
+  m_Name: Potins
   m_EditorClassIdentifier: 
   Items:
-  - {fileID: 11400000, guid: 7f6d2e56494d53d44b697ef30bee2a75, type: 2}
-  - {fileID: 11400000, guid: 3511c486d01013c44a9b1c7ac0740866, type: 2}
-  - {fileID: 11400000, guid: 0ce8384427219eb4a9eb3634de33a2cd, type: 2}
-  - {fileID: 11400000, guid: a286ac14e5936e44483f4caee5535436, type: 2}
   - {fileID: 11400000, guid: 9eff39a137a6f0b4592bdb75c32ae06a, type: 2}

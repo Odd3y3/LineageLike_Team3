@@ -12,9 +12,15 @@ public class Equipment :UIProperty
     public EquipmentSlot[] slots;
     [SerializeField]
     public TMPro.TMP_Text[] myStatusList = null;
-    void Start()
+    private void Awake()
     {
         slots = myAllEquipmentSlots;
+        CloseStare();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()

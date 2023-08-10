@@ -1,11 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-public class PlayerBattleSystem : BattleSystem
+[Serializable]
+public struct Skills
 {
+    public Skill Dash;
+    public Skill QSkill;
+    public Skill WSkill;
+    public Skill ESkill;
+
+    public void ResetCoolTime()
+    {
+        Dash.currentCoolTime = 0.0f;
+        QSkill.currentCoolTime = 0.0f;
+        WSkill.currentCoolTime = 0.0f;
+        ESkill.currentCoolTime = 0.0f;
+    }
+}
+public class PlayerBattleSystem : BattleSystem
+{   
     protected enum SkillKey
     {
         Dash,
@@ -13,18 +28,14 @@ public class PlayerBattleSystem : BattleSystem
         WSkill,
         ESkill
     }
-
-    public Skill Dash = null;
-    public Skill QSkill = null;
-    public Skill WSkill = null;
-    public Skill ESkill = null;
+    
+    public Skills equippedSkills;
 
     protected float skillRadius = 0.0f;
     protected float skillDamage = 0.0f;
 
     protected bool IsSkillAreaSelecting { get; private set; } = false;
 
-    
 
     Skill usingSkill = null;
     Vector3 usingSkillPos = Vector3.zero;
@@ -35,6 +46,9 @@ public class PlayerBattleSystem : BattleSystem
 
         moveCoroutineList = new List<Coroutine>();
         usingSkillPos = transform.position;
+
+        //쿨타임 초기화
+        equippedSkills.ResetCoolTime();
     }
 
     protected void UseSkill(SkillKey skillkey)
@@ -42,18 +56,18 @@ public class PlayerBattleSystem : BattleSystem
         switch (skillkey)
         {
             case SkillKey.Dash:
-                UseSkill(Dash);
+                UseSkill(equippedSkills.Dash);
                 break;
             case SkillKey.QSkill:
-                UseSkill(QSkill);
+                UseSkill(equippedSkills.QSkill);
                 break;
 
             case SkillKey.WSkill:
-                UseSkill(WSkill);
+                UseSkill(equippedSkills.WSkill);
                 break;
 
             case SkillKey.ESkill:
-                UseSkill(ESkill);
+                UseSkill(equippedSkills.ESkill);
                 break;
         }
     }
@@ -63,6 +77,11 @@ public class PlayerBattleSystem : BattleSystem
         if(skill == null)
         {
             Debug.Log("해당 스킬이 없습니다.");
+            return;
+        }
+        if(skill.currentCoolTime > 0.0f)
+        {
+            Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skill.currentCoolTime}");
             return;
         }
 
@@ -116,11 +135,29 @@ public class PlayerBattleSystem : BattleSystem
 
     void AnimateSkill(Skill skill, Vector3 effectPos)
     {
+        //쿨타임
+        StartCoroutine(CoolingSkill(skill));
+
+        //대쉬일 경우, 즉시 회전
+        if (skill.IsDash)
+            ImmediateRotate();
+
         StopMoveAndRotate();
 
         usingSkill = skill;
         usingSkillPos = effectPos;
         myAnim.SetTrigger(skill.AnimationClip.name);
+    }
+
+    IEnumerator CoolingSkill(Skill skill)
+    {
+        skill.currentCoolTime = skill.CoolTime;
+
+        while (skill.currentCoolTime >= 0.0f)
+        {
+            skill.currentCoolTime -= Time.deltaTime;
+            yield return null;
+        }
     }
 
     public void OnSkillEffectStart()

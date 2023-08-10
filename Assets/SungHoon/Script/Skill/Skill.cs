@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class Skill : ScriptableObject
 
     public bool IsAreaSelect = false;
     public GameObject AreaPrefab = null;
+    public bool IsDash = false;
 
 
     //데미지 관련해서는 MultiDamage * 플레이어공격력 + AddDamage 로 계산하여 데미지를 줄 예정
@@ -33,6 +35,7 @@ public class Skill : ScriptableObject
 
 
     public float CoolTime = 0.0f;
+    public float currentCoolTime = 0.0f;
 
     //일단 사용하지 않음.
     [SerializeField]

@@ -49269,7 +49269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   effectDuration: 3
-  colorHue: 0
 --- !u!1 &7998859610708623171
 GameObject:
   m_ObjectHideFlags: 0
@@ -49282,7 +49281,7 @@ GameObject:
   - component: {fileID: 7053354387734430670}
   - component: {fileID: 2888412130362517478}
   - component: {fileID: 1907898137893557117}
-  - component: {fileID: 5237593615323688418}
+  - component: {fileID: 9068082125783805393}
   m_Layer: 0
   m_Name: Energy buff
   m_TagString: Untagged
@@ -54314,7 +54313,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5237593615323688418
+--- !u!114 &9068082125783805393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54323,15 +54322,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7998859610708623171}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79ba5bb0b3780b4a98ce45e779b6441, type: 3}
+  m_Script: {fileID: 11500000, guid: 349a206128b70974daf769f6b576c1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Repeating: 1
-  RepeatTime: 3
-  StartTime: 0
-  RandomVolume: 0
-  minVolume: 0.4
-  maxVolume: 1
 --- !u!1 &8310911328450652692
 GameObject:
   m_ObjectHideFlags: 0

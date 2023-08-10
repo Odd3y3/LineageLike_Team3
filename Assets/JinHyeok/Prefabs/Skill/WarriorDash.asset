@@ -17,8 +17,10 @@ MonoBehaviour:
   EffectPrefab: {fileID: 0}
   IsAreaSelect: 0
   AreaPrefab: {fileID: 0}
+  IsDash: 1
   MultiDamage: 2
   AddDamage: 0
   CoolTime: 3
+  currentCoolTime: -0.00036381464
   Range: 1
   Duration: 0

@@ -32,9 +32,8 @@ public class Player : PlayerBattleSystem
         //´ë½¬ Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopMove();
-            ImmediateRotate();
-            //myAnim.SetTrigger("Dash");
+            //StopMove();
+            //ImmediateRotate();
             UseSkill(SkillKey.Dash);
         }
 

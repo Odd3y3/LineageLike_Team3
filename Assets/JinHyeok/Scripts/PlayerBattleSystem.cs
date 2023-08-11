@@ -10,15 +10,20 @@ public struct Skills
     public Skill QSkill;
     public Skill WSkill;
     public Skill ESkill;
+}
 
-    public void ResetCoolTime()
+public class SkillInfo
+{
+    public Skill skill;
+    public float curSkillCool;
+
+    public SkillInfo(Skill skill = null)
     {
-        Dash.currentCoolTime = 0.0f;
-        QSkill.currentCoolTime = 0.0f;
-        WSkill.currentCoolTime = 0.0f;
-        ESkill.currentCoolTime = 0.0f;
+        this.skill = skill;
+        curSkillCool = 0.0f;
     }
 }
+
 public class PlayerBattleSystem : BattleSystem
 {   
     protected enum SkillKey
@@ -28,11 +33,23 @@ public class PlayerBattleSystem : BattleSystem
         WSkill,
         ESkill
     }
-    
-    public Skills equippedSkills;
 
-    protected float skillRadius = 0.0f;
-    protected float skillDamage = 0.0f;
+    [SerializeField]
+    Skills equippedSkills;
+
+    SkillInfo DashInfo;
+    SkillInfo QSkillInfo;
+    SkillInfo WSkillInfo;
+    SkillInfo ESkillInfo;
+
+    public float RemainDashCool { get => DashInfo.curSkillCool; }
+    public float RemainQSkillCool { get => QSkillInfo.curSkillCool; }
+    public float RemainWSkillCool { get => WSkillInfo.curSkillCool; }
+    public float RemainESkillCool { get => ESkillInfo.curSkillCool; }
+
+
+    //protected float skillRadius = 0.0f;
+    //protected float skillDamage = 0.0f;
 
     protected bool IsSkillAreaSelecting { get; private set; } = false;
 
@@ -47,8 +64,16 @@ public class PlayerBattleSystem : BattleSystem
         moveCoroutineList = new List<Coroutine>();
         usingSkillPos = transform.position;
 
-        //쿨타임 초기화
-        equippedSkills.ResetCoolTime();
+        //스킬 초기화
+        InitSkill();
+    }
+
+    void InitSkill()
+    {
+        DashInfo = new SkillInfo(equippedSkills.Dash);
+        QSkillInfo = new SkillInfo(equippedSkills.QSkill);
+        WSkillInfo = new SkillInfo(equippedSkills.WSkill);
+        ESkillInfo = new SkillInfo(equippedSkills.ESkill);
     }
 
     protected void UseSkill(SkillKey skillkey)
@@ -56,51 +81,51 @@ public class PlayerBattleSystem : BattleSystem
         switch (skillkey)
         {
             case SkillKey.Dash:
-                UseSkill(equippedSkills.Dash);
+                UseSkill(DashInfo);
                 break;
             case SkillKey.QSkill:
-                UseSkill(equippedSkills.QSkill);
+                UseSkill(QSkillInfo);
                 break;
 
             case SkillKey.WSkill:
-                UseSkill(equippedSkills.WSkill);
+                UseSkill(WSkillInfo);
                 break;
 
             case SkillKey.ESkill:
-                UseSkill(equippedSkills.ESkill);
+                UseSkill(ESkillInfo);
                 break;
         }
     }
 
-    private void UseSkill(Skill skill)
+    private void UseSkill(SkillInfo skillInfo)
     {
-        if(skill == null)
+        if(skillInfo.skill == null)
         {
             Debug.Log("해당 스킬이 없습니다.");
             return;
         }
-        if(skill.currentCoolTime > 0.0f)
+        if(skillInfo.curSkillCool > 0.0f)
         {
-            Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skill.currentCoolTime}");
+            Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skillInfo.curSkillCool}");
             return;
         }
 
 
-        if(skill.IsAreaSelect)
+        if(skillInfo.skill.IsAreaSelect)
         {
             //skill.AreaPrefab 생성
-            StartCoroutine(AreaSelecting(skill));
+            StartCoroutine(AreaSelecting(skillInfo));
         }
         else
         {
-            AnimateSkill(skill, transform.position);
+            AnimateSkill(skillInfo, transform.position);
         }
     }
-    IEnumerator AreaSelecting(Skill skill)
+    IEnumerator AreaSelecting(SkillInfo skillInfo)
     {
         yield return null;
 
-        GameObject areaPrefab = skill.AreaPrefab;
+        GameObject areaPrefab = skillInfo.skill.AreaPrefab;
 
         IsSkillAreaSelecting = true;
         GameObject area = Instantiate(areaPrefab, transform.position, Quaternion.identity);
@@ -119,7 +144,7 @@ public class PlayerBattleSystem : BattleSystem
                 Vector3 areaPos = area.transform.position;
                 Destroy(area);
                 IsSkillAreaSelecting = false;
-                AnimateSkill(skill, areaPos);
+                AnimateSkill(skillInfo, areaPos);
                 break;
             }
             else if (Input.anyKeyDown)          //취소
@@ -133,29 +158,29 @@ public class PlayerBattleSystem : BattleSystem
         }
     }
 
-    void AnimateSkill(Skill skill, Vector3 effectPos)
+    void AnimateSkill(SkillInfo skillInfo, Vector3 effectPos)
     {
         //쿨타임
-        StartCoroutine(CoolingSkill(skill));
+        StartCoroutine(CoolingSkill(skillInfo));
 
         //대쉬일 경우, 즉시 회전
-        if (skill.IsDash)
+        if (skillInfo.skill.IsDash)
             ImmediateRotate();
 
         StopMoveAndRotate();
 
-        usingSkill = skill;
+        usingSkill = skillInfo.skill;
         usingSkillPos = effectPos;
-        myAnim.SetTrigger(skill.AnimationClip.name);
+        myAnim.SetTrigger(skillInfo.skill.AnimationClip.name);
     }
 
-    IEnumerator CoolingSkill(Skill skill)
+    IEnumerator CoolingSkill(SkillInfo skillInfo)
     {
-        skill.currentCoolTime = skill.CoolTime;
+        skillInfo.curSkillCool = skillInfo.skill.CoolTime;
 
-        while (skill.currentCoolTime >= 0.0f)
+        while (skillInfo.curSkillCool >= 0.0f)
         {
-            skill.currentCoolTime -= Time.deltaTime;
+            skillInfo.curSkillCool -= Time.deltaTime;
             yield return null;
         }
     }

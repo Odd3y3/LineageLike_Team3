@@ -35,7 +35,6 @@ public class Skill : ScriptableObject
 
 
     public float CoolTime = 0.0f;
-    public float currentCoolTime = 0.0f;
 
     //일단 사용하지 않음.
     [SerializeField]

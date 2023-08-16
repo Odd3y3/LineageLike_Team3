@@ -61,7 +61,6 @@ public class PlayerBattleSystem : BattleSystem
     {
         base.Initialize();
 
-        moveCoroutineList = new List<Coroutine>();
         usingSkillPos = transform.position;
 
         //스킬 초기화

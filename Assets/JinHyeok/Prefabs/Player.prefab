@@ -2094,7 +2094,7 @@ GameObject:
   - component: {fileID: 5708617087908238128}
   - component: {fileID: 1753082009408421962}
   - component: {fileID: 4553140212751230}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2108,7 +2108,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3843384524216191899}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -9.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2148,10 +2148,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   myItem: []
-  Dash: {fileID: 11400000, guid: f22006a4153f590469abef4a7e11005f, type: 2}
-  QSkill: {fileID: 11400000, guid: f21da3acb1ce78e4e8be94d26af6e448, type: 2}
-  WSkill: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
-  ESkill: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
+  equippedSkills:
+    Dash: {fileID: 11400000, guid: f22006a4153f590469abef4a7e11005f, type: 2}
+    QSkill: {fileID: 11400000, guid: f21da3acb1ce78e4e8be94d26af6e448, type: 2}
+    WSkill: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
+    ESkill: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
   PickUpItem: {fileID: 0}
   myWeaponPos: {fileID: 0}
   enemyMask:
@@ -2176,8 +2177,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 7092515626693074312}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: MovePos
+        m_TargetAssemblyTypeName: MoveMent, Assembly-CSharp
+        m_MethodName: MovePosByPath
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

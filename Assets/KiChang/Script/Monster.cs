@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Monster : AImovement
 {
-
     public enum State
     {
         Create, Normal, Roaming, Battle, Dead
@@ -19,7 +18,7 @@ public class Monster : AImovement
 
     MonsterStatBar myStatUI = null;
 
-    protected Transform myTarget = null;
+    //protected Transform myTarget = null;
 
     void ChangeState(State s)
     {
@@ -38,7 +37,7 @@ public class Monster : AImovement
                 ChangeState(State.Roaming);
                 break;
             case State.Battle:
-                AttackTarget(myPerception.myTarget);
+                AttackTarget(myTarget);
                 break;
             case State.Dead:
                 GetComponent<Collider>().enabled = false;

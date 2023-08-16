@@ -43,8 +43,10 @@ public class BattleSystem : MoveMent , IDamage, ILive
         }
     }
 
-    protected virtual void Initialize()
+    protected override void Initialize()
     {
+        base.Initialize();
+
         curLv = BattleStat.LV;
         curHP = BattleStat.MaxHP;
         curMP = BattleStat.MaxMP;

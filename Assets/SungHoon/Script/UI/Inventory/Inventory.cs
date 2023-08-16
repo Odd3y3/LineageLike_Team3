@@ -13,9 +13,15 @@ public class Inventory : UIProperty
     [SerializeField]
     public InventorySlot[] slots;
 
-    void Start()
+    private void Awake()
     {
         slots = myAllInventorySlots;
+        CloseInventory();
+    }
+
+    void Start()
+    {
+        
     }
 
     void Update()
@@ -30,16 +36,33 @@ public class Inventory : UIProperty
             invectoryActivated = !invectoryActivated;
 
             if (invectoryActivated)
+            {
                 OpenInventory();
+            }
             else
+            {
                 CloseInventory();
+            } 
+        }
+        
+    }
 
+
+    private void SetSlotUpdate(int a)
+    {
+        foreach (InventorySlot slot in slots)
+        {
+            if (slot.item != null)
+            {
+                slot.SetColor(1);
+            }
         }
     }
 
     private void OpenInventory()
     {
         go_InventoryBase.SetActive(true);
+        
     }
 
     private void CloseInventory()
@@ -47,18 +70,16 @@ public class Inventory : UIProperty
         go_InventoryBase.SetActive(false);
     }
 
-    public void AcquireItem(Item _item)
+    public void AcquireItem(Item _item, int _count = 1)
     {
-        if (Item.ITEMTYPE.Equipment != _item.ItemType)
+        if (Item.ITEMTYPE.Equipment != _item.ItemType )
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                if (slots[i].item != null)
+                if (slots[i].item != null&&slots[i].itemCount<slots[i].item.Stack)
                 {
-                    if (slots[i].item.Name == _item.Name)
-                    {
-                        return;
-                    }
+                      slots[i].SetSlotCount(_count);
+                      return;
                 }
             }
         }
@@ -66,7 +87,7 @@ public class Inventory : UIProperty
         {
             if (slots[i].item == null)
             {
-                slots[i].AddItem(_item);
+                slots[i].AddItem(_item,_count);
                 return;
             }
         }

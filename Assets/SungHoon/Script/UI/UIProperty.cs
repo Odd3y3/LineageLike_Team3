@@ -40,6 +40,23 @@ public class UIProperty : MonoBehaviour
         }
     }
 
+    TMPro.TMP_Text _text = null;
+    protected TMPro.TMP_Text myText
+    {
+        get
+        {
+            if (_text == null)
+            {
+                _text = GetComponent<TMPro.TMP_Text>();
+                if (_text == null)
+                {
+                    _text = GetComponentInChildren<TMPro.TMP_Text>();
+                }
+            }
+            return _text;
+        }
+    }
+
     InventorySlot[] _allInvenoryslots = null;
     protected InventorySlot[] myAllInventorySlots
     {

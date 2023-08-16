@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemManager : MonoBehaviour
+public class ItemManager : Singleton<ItemManager>
 {
     public ItemList ItemList = null;
     // Start is called before the first frame update
+
+    
 
     public void OnRandomSetItemGrade(Item newItem)
     {
@@ -41,7 +43,7 @@ public class ItemManager : MonoBehaviour
     }
     private void Awake()
     {
-        
+        Initialized();
     }
     void Start()
     {

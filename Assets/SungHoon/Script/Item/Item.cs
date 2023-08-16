@@ -53,8 +53,21 @@ public class Item : ScriptableObject
         get { return _sprite; }
     }
 
+    [SerializeField]
+    private int _stack = 1;
+    public int Stack
+    {
+        get
+        {
+            return _stack;
+        }
+        set
+        {
+            _stack = value;
+        }
+    }
 
     [SerializeField]
-    public GameObject itemPrefab;
+    public GameObject Effect;
 
 }

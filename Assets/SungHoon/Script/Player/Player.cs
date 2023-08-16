@@ -32,9 +32,8 @@ public class Player : PlayerBattleSystem
         //´ë½¬ Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            StopMove();
-            ImmediateRotate();
-            //myAnim.SetTrigger("Dash");
+            //StopMove();
+            //ImmediateRotate();
             UseSkill(SkillKey.Dash);
         }
 
@@ -97,16 +96,16 @@ public class Player : PlayerBattleSystem
         }
     }
 
-    public void OnSkill()
-    {
+    //public void OnSkill()
+    //{
 
-            Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
-        foreach (Collider col in myCols)
-        {
-            IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint + skillDamage);
-        }
-    }
+    //        Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
+    //    foreach (Collider col in myCols)
+    //    {
+    //        IDamage damage = col.GetComponent<IDamage>();
+    //        if (damage != null) damage.OnDamage(curAttackPoint + skillDamage);
+    //    }
+    //}
 
 
     public void OnComboCheckStart()

@@ -46,6 +46,13 @@ public class MoveMent : CharProperty
             StopCoroutine(moveTargetCoroutine);
         moveTargetCoroutine = null;
     }
+    protected bool IsMoveToTarget
+    {
+        get
+        {
+            return moveTargetCoroutine != null;
+        }
+    }
 
     /// <summary>
     /// pos값으로 Navmesh 따라서 이동하는 함수.

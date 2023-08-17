@@ -35,27 +35,29 @@ public class AImovement : BattleSystem
 
         while (true)
         {
-            playTime += Time.deltaTime;
+            if(playTime > 0)
+                playTime -= Time.deltaTime;
 
             Vector3 dir = target.position - transform.position;
             dir.y = 0f;
             float dist = dir.magnitude;
-            if(dist < BattleStat.AttackRange)
+            if(dist < BattleStat.AttackRange && !myAnim.GetBool("IsAttack"))
             {
                 //АјАн
                 StopMove();
+                StopMoveTarget();
 
                 myAnim.SetBool("IsMove", false);
-                if (playTime >= BattleStat.AttackDelay)
+                if (playTime <= 0)
                 {
-                    playTime = 0.0f;
+                    StartCoroutine(Rotating(dir));
+                    playTime = BattleStat.AttackDelay;
                     myAnim.SetTrigger("Attack");
                 }
-
-                while (myAnim.GetBool("IsAttacking"))
-                {
-                    yield return null;
-                }
+            }
+            else if (!IsMoveToTarget)
+            {
+                MoveTargetByPath(target);
             }
 
             yield return null;

@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class Player : PlayerBattleSystem
 {
     public Item PickUpItem = null;
-    public Transform myWeaponPos = null;
+    public Transform myAttackArea = null;
     public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
 
@@ -84,13 +84,15 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    public void OnAttak()
+    public void OnBaseAttack()
     {
-        Collider[] myCols = Physics.OverlapSphere(myWeaponPos.position, 1.0f, enemyMask);
+        BattleManager.AttackCircle(myAttackArea.position, 1.0f, enemyMask);
+        Collider[] myCols = Physics.OverlapSphere(myAttackArea.position, 1.0f, enemyMask);
         foreach(Collider col in myCols)
         {
-            IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint);
+            Debug.Log("Attack Hit !");
+            //IDamage damage = col.GetComponent<IDamage>();
+            //if (damage != null) damage.OnDamage(curAttackPoint);
         }
     }
 

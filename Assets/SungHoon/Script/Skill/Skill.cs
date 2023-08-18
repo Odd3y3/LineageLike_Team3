@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "Skill", menuName = "SkillObject/Skill", order = int.MaxValue)]
 public class Skill : ScriptableObject
 {
     [SerializeField]
-    public GameObject Icon = null;
+    public Sprite Icon = null;
     [SerializeField]
     public AnimationClip AnimationClip = null;
     [SerializeField]

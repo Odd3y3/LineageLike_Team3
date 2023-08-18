@@ -7,9 +7,10 @@ public class UiManager : Singleton<UiManager>
     public Inventory myInventory;
     public Equipment myEquipment;
     public ConsumptionItem myConsumptionItem;
+    public SkillUI mySkillUI;
 
     private void Awake()
     {
-        Initialized();
+       base.Initialize();
     }
 }

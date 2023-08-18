@@ -78,6 +78,16 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    float _exp = 0.0f;
+
+    protected float curExp
+    {
+        get => _exp;
+        set
+        {
+            _exp = value;
+        }
+    }
 
     public Slider myHpBar = null;
     protected float playTime = 0.0f;

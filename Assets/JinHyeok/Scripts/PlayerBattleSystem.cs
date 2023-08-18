@@ -63,6 +63,10 @@ public class PlayerBattleSystem : BattleSystem
 
         usingSkillPos = transform.position;
 
+        //쿨타임 초기화
+        GameManager.Inst.UiManager.mySkillUI.SetSkillUI(equippedSkills);
+        //equippedSkills.ResetCoolTime();
+
         //스킬 초기화
         InitSkill();
     }
@@ -105,6 +109,7 @@ public class PlayerBattleSystem : BattleSystem
         }
         if(skillInfo.curSkillCool > 0.0f)
         {
+
             Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skillInfo.curSkillCool}");
             return;
         }
@@ -176,6 +181,8 @@ public class PlayerBattleSystem : BattleSystem
     IEnumerator CoolingSkill(SkillInfo skillInfo)
     {
         skillInfo.curSkillCool = skillInfo.skill.CoolTime;
+
+        GameManager.Inst.UiManager.mySkillUI.CoolTimeSkill(skillInfo);
 
         while (skillInfo.curSkillCool >= 0.0f)
         {

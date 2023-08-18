@@ -63,12 +63,15 @@ public class PlayerBattleSystem : BattleSystem
 
         usingSkillPos = transform.position;
 
-        //쿨타임 초기화
-        GameManager.Inst.UiManager.mySkillUI.SetSkillUI(equippedSkills);
-        //equippedSkills.ResetCoolTime();
+        GameManager.Inst.UiManager?.mySkillUI.SetSkillUI(equippedSkills);
 
         //스킬 초기화
         InitSkill();
+    }
+
+    public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
+    {
+        curHP -= dmg - curDefensePoint;
     }
 
     void InitSkill()

@@ -7,8 +7,6 @@ using UnityEngine.AI;
 public class Player : PlayerBattleSystem
 {
     public Item PickUpItem = null;
-    public Transform myAttackArea = null;
-    public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
 
     private void Awake()
@@ -68,7 +66,7 @@ public class Player : PlayerBattleSystem
         }
     }
 
-    public new void OnDamage(float dmg)
+    public void OnDamage(float dmg)
     {
         curHP -= dmg;
     }
@@ -87,11 +85,7 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    public void OnBaseAttack()
-    {
-        BattleManager.AttackCircle(myAttackArea.position, 1.0f, enemyMask);
-        
-    }
+    
 
     //public void OnSkill()
     //{

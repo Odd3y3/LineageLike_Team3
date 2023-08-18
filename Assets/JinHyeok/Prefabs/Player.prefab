@@ -2136,8 +2136,9 @@ MonoBehaviour:
     LV: 1
     MaxHP: 100
     MaxMP: 100
-    DefaultAttackPoint: 10
-    DefaultDefensePoint: 10
+    MaxExp: 0
+    DefaultAttackPoint: 30
+    DefaultDefensePoint: 0
     AttackRange: 0
     AttackDelay: 0
   moveSpeed: 5
@@ -2149,16 +2150,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8192
   myItem: []
+  myAttackArea: {fileID: 6315405553349077609}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
   equippedSkills:
     Dash: {fileID: 11400000, guid: f22006a4153f590469abef4a7e11005f, type: 2}
     QSkill: {fileID: 11400000, guid: f21da3acb1ce78e4e8be94d26af6e448, type: 2}
     WSkill: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
     ESkill: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
   PickUpItem: {fileID: 0}
-  myAttackArea: {fileID: 6315405553349077609}
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &5708617087908238128
 MonoBehaviour:
   m_ObjectHideFlags: 0

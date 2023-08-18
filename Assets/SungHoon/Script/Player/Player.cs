@@ -14,7 +14,10 @@ public class Player : PlayerBattleSystem
 
     private void Awake()
     {
-        GameManager.Inst.myPlayer = this;
+        if (GameManager.Inst.myPlayer == null)
+        {
+            GameManager.Inst.myPlayer = this;
+        }
     }
 
     void Start()
@@ -212,6 +215,5 @@ public class Player : PlayerBattleSystem
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
-
     
 }

@@ -23,6 +23,19 @@ public class UIProperty : MonoBehaviour
         }
     }
 
+    Image[] _allimg = null;
+    protected Image[] myAllImage
+    {
+        get
+        {
+            if (_allimg == null)
+            {
+                _allimg = GetComponentsInChildren<Image>();
+            }
+            return _allimg;
+        }
+    }
+
     InventorySlot _inventoryslot = null;
     protected InventorySlot myInventorySlot
     {
@@ -130,5 +143,35 @@ public class UIProperty : MonoBehaviour
         }
     }
 
-    
+
+    SkillUISlot _skillslot = null;
+    protected SkillUISlot mySkillSlot
+    {
+        get
+        {
+            if (_skillslot == null)
+            {
+                _skillslot = GetComponent<SkillUISlot>();
+                if (_skillslot == null)
+                {
+                    _skillslot = GetComponentInChildren<SkillUISlot>();
+                }
+            }
+            return _skillslot;
+        }
+    }
+
+    SkillUISlot[] _allskillslots = null;
+    protected SkillUISlot[] myAllSkillSlots
+    {
+        get
+        {
+            if (_allskillslots == null)
+            {
+                _allskillslots = GetComponentsInChildren<SkillUISlot>();
+            }
+            return _allskillslots;
+        }
+    }
+
 }

@@ -48,6 +48,7 @@ public class PlayerBattleSystem : BattleSystem
         usingSkillPos = transform.position;
 
         //쿨타임 초기화
+        GameManager.Inst.UiManager.mySkillUI.SetSkillUI(equippedSkills);
         equippedSkills.ResetCoolTime();
     }
 
@@ -74,6 +75,7 @@ public class PlayerBattleSystem : BattleSystem
 
     private void UseSkill(Skill skill)
     {
+
         if(skill == null)
         {
             Debug.Log("해당 스킬이 없습니다.");
@@ -81,10 +83,10 @@ public class PlayerBattleSystem : BattleSystem
         }
         if(skill.currentCoolTime > 0.0f)
         {
+            
             Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skill.currentCoolTime}");
             return;
         }
-
 
         if(skill.IsAreaSelect)
         {
@@ -153,6 +155,7 @@ public class PlayerBattleSystem : BattleSystem
     {
         skill.currentCoolTime = skill.CoolTime;
 
+        GameManager.Inst.UiManager.mySkillUI.CoolTimeSkill(skill);
         while (skill.currentCoolTime >= 0.0f)
         {
             skill.currentCoolTime -= Time.deltaTime;

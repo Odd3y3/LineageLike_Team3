@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -804,26 +804,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
-      propertyPath: skills.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
-      propertyPath: equippedSkills.Dash
-      value: 
-      objectReference: {fileID: 11400000, guid: f22006a4153f590469abef4a7e11005f, type: 2}
-    - target: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
-      propertyPath: equippedSkills.ESkill
-      value: 
-      objectReference: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
-    - target: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
-      propertyPath: equippedSkills.QSkill
-      value: 
-      objectReference: {fileID: 11400000, guid: f21da3acb1ce78e4e8be94d26af6e448, type: 2}
-    - target: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
-      propertyPath: equippedSkills.WSkill
-      value: 
-      objectReference: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
     - target: {fileID: 9147814794650244043, guid: 22935087282d3424193abac8ec595a3c, type: 3}
       propertyPath: m_RootOrder
       value: 2

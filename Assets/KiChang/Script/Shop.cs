@@ -12,8 +12,9 @@ public class Shop : MonoBehaviour
     //public Transform
 
     Player enterPlayer;
+    public LayerMask playerMask;
     // Start is called before the first frame update
-    void Entert(Player player)
+    void Enter(Player player)
     {
         enterPlayer = player;
         uiGroup.anchoredPosition = Vector3.zero;
@@ -25,13 +26,18 @@ public class Shop : MonoBehaviour
         uiGroup.anchoredPosition = Vector3.down * 1000;
         
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if((1 << other.gameObject.layer & playerMask) != 0)
+        {
+            Enter(other.GetComponent<Player>());
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Shop")
+        if ((1 << other.gameObject.layer & playerMask) != 0)
         {
-            Shop shop = GetComponent<Shop>();
-            shop.Exit();
-            
+            Exit();
         }
     }
     public void Buy(int index)

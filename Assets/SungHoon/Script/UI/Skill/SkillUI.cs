@@ -23,13 +23,13 @@ public class SkillUI : UIProperty
         
     }
 
-    public void CoolTimeSkill(Skill skill)
+    public void CoolTimeSkill(SkillInfo skill)
     {
         foreach(SkillUISlot slots in slots)
         {
-            if (slots.mySkill == skill)
+            if (slots.mySkill == skill.skill)
             {
-                StartCoroutine(slots.Cooling(skill.currentCoolTime));
+                StartCoroutine(slots.Cooling(skill.curSkillCool));
             }
         }
         

@@ -63,11 +63,10 @@ public class PlayerBattleSystem : BattleSystem
 
         usingSkillPos = transform.position;
 
-<<<<<<< HEAD
         //쿨타임 초기화
         GameManager.Inst.UiManager.mySkillUI.SetSkillUI(equippedSkills);
-        equippedSkills.ResetCoolTime();
-=======
+        //equippedSkills.ResetCoolTime();
+
         //스킬 초기화
         InitSkill();
     }
@@ -78,7 +77,6 @@ public class PlayerBattleSystem : BattleSystem
         QSkillInfo = new SkillInfo(equippedSkills.QSkill);
         WSkillInfo = new SkillInfo(equippedSkills.WSkill);
         ESkillInfo = new SkillInfo(equippedSkills.ESkill);
->>>>>>> 65b6d458ca01479e689b6c2690f24d894ac8c349
     }
 
     protected void UseSkill(SkillKey skillkey)
@@ -104,33 +102,20 @@ public class PlayerBattleSystem : BattleSystem
 
     private void UseSkill(SkillInfo skillInfo)
     {
-<<<<<<< HEAD
-
-        if(skill == null)
-=======
         if(skillInfo.skill == null)
->>>>>>> 65b6d458ca01479e689b6c2690f24d894ac8c349
         {
             Debug.Log("해당 스킬이 없습니다.");
             return;
         }
         if(skillInfo.curSkillCool > 0.0f)
         {
-<<<<<<< HEAD
-            
-            Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skill.currentCoolTime}");
-            return;
-        }
 
-        if(skill.IsAreaSelect)
-=======
             Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skillInfo.curSkillCool}");
             return;
         }
 
 
         if(skillInfo.skill.IsAreaSelect)
->>>>>>> 65b6d458ca01479e689b6c2690f24d894ac8c349
         {
             //skill.AreaPrefab 생성
             StartCoroutine(AreaSelecting(skillInfo));
@@ -197,12 +182,9 @@ public class PlayerBattleSystem : BattleSystem
     {
         skillInfo.curSkillCool = skillInfo.skill.CoolTime;
 
-<<<<<<< HEAD
-        GameManager.Inst.UiManager.mySkillUI.CoolTimeSkill(skill);
-        while (skill.currentCoolTime >= 0.0f)
-=======
+        GameManager.Inst.UiManager.mySkillUI.CoolTimeSkill(skillInfo);
+
         while (skillInfo.curSkillCool >= 0.0f)
->>>>>>> 65b6d458ca01479e689b6c2690f24d894ac8c349
         {
             skillInfo.curSkillCool -= Time.deltaTime;
             yield return null;

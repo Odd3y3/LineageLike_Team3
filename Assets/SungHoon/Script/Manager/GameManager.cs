@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public UiManager UiManager;
 
 
+
     private void Awake()
     {
         base.Initialize();
@@ -27,5 +28,6 @@ public class GameManager : Singleton<GameManager>
             UiManager = FindObjectOfType<UiManager>();
         }
     }
+
 
 }

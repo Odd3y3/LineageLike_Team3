@@ -87,13 +87,7 @@ public class Player : PlayerBattleSystem
     public void OnBaseAttack()
     {
         BattleManager.AttackCircle(myAttackArea.position, 1.0f, enemyMask);
-        Collider[] myCols = Physics.OverlapSphere(myAttackArea.position, 1.0f, enemyMask);
-        foreach(Collider col in myCols)
-        {
-            Debug.Log("Attack Hit !");
-            //IDamage damage = col.GetComponent<IDamage>();
-            //if (damage != null) damage.OnDamage(curAttackPoint);
-        }
+        
     }
 
     //public void OnSkill()
@@ -121,7 +115,7 @@ public class Player : PlayerBattleSystem
         {
             if (Input.GetMouseButton(0))
             {
-                myAnim.SetBool("BaseAttack", true);
+                myAnim.SetBool("BaseAttack", true); 
             }
             yield return null;
         }

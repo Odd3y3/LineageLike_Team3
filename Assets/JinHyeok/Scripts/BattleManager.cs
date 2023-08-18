@@ -9,14 +9,25 @@ public class BattleManager : MonoBehaviour
 
     public static void AttackCircle(Vector3 pos, float size, LayerMask enemyMask)
     {
-        //Gizmos.DrawSphere(pos, size);
+        Collider[] myCols = Physics.OverlapSphere(pos, size, enemyMask);
+        foreach (Collider col in myCols)
+        {
+            Debug.Log("Attack Hit !");
+            //IDamage damage = col.GetComponent<IDamage>();
+            //if (damage != null) damage.OnDamage(curAttackPoint);
+        }
+
+        //Gizmo test¿ë
         originPos = pos;
         originSize = size;
     }
 
+    //Test¿ë Gizmo
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        Color color = Color.blue;
+        color.a = 0.5f;
+        Gizmos.color = color;
         Gizmos.DrawSphere(originPos, originSize);
     }
 }

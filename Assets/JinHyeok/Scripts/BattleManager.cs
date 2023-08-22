@@ -18,14 +18,14 @@ public class BattleManager : MonoBehaviour
     static float originSize = 0f;
 
     public static void AttackCircle(Vector3 pos, float size, LayerMask enemyMask, float dmg,
-        Vector3 attackVec, AttackType attackType, float knockBackDist = 0)
+        Vector3 attackVec, bool isDown = false, float knockBackDist = 0)
     {
         Collider[] myCols = Physics.OverlapSphere(pos, size, enemyMask);
         foreach (Collider col in myCols)
         {
             Debug.Log("Attack Hit !");
             IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(dmg, attackType, attackVec, knockBackDist);
+            if (damage != null) damage.OnDamage(dmg, attackVec, knockBackDist, isDown);
         }
 
         //Gizmo test¿ë

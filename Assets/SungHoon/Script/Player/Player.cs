@@ -36,7 +36,7 @@ public class Player : PlayerBattleSystem
             UseSkill(SkillKey.Dash);
         }
 
-        if (!IsSkillAreaSelecting)
+        if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
         {
             //기본 공격
             if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
@@ -69,6 +69,12 @@ public class Player : PlayerBattleSystem
     public void OnDamage(float dmg)
     {
         curHP -= dmg;
+    }
+
+    public void OnMouseClickMove(Vector3 pos)
+    {
+        if(!myAnim.GetBool("IsDamaged"))
+            MovePosByPath(pos);
     }
 
     //public void OnSkillEffect(GameObject Effect)

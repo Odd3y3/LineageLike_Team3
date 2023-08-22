@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 [System.Serializable]
 public struct BattleStat
@@ -17,7 +20,7 @@ public struct BattleStat
 
 public interface IDamage
 {
-    void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist);
+    void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown);
 }
 
 public interface ILive
@@ -35,22 +38,61 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
     protected Transform myTarget = null;
 
-    public void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
+    public void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
         curHP -= dmg - curDefensePoint;
-        switch(attackType)
+        if (!isDown)
         {
-            case AttackType.Normal:
-                Debug.Log($"Attack type is NORMAL \n Damage is {dmg}");
-                break;
-            case AttackType.Stagger:
-                Debug.Log($"Attack type is Stagger \n Damage is {dmg}");
-                break;
-            case AttackType.Down:
-                Debug.Log($"Attack type is Down \n Damage is {dmg}");
-                break;
+            //일반 공격일 때, (경직)
+            OnCharStagger();
+        }
+        else
+        {
+            //다운 공격일 때,
+            OnCharDown();
+        }
+        KnockBack(attackVec, knockBackDist);
+    }
+
+    protected virtual void OnCharStagger()
+    {
+        StopMove();
+        //myAnim.SetTrigger("Damaged");
+        myAnim.Play("Damaged", -1, 0f);
+        
+    }
+    protected virtual void OnCharDown()
+    {
+
+    }
+
+    void KnockBack(Vector3 attackVec, float knockBackDist)
+    {
+        transform.forward = -attackVec;
+        //transform.Translate(attackVec * knockBackDist, Space.World);
+        StartCoroutine(Moving(attackVec * knockBackDist));
+    }
+    IEnumerator Moving(Vector3 dir)
+    {
+        float dist = dir.magnitude;
+        dir.Normalize();
+
+        while (dist > 0.0f)
+        {
+            float delta = Time.deltaTime * 10.0f;   //넉백 속도 일단 고정. 30.0f
+            if (delta > dist) delta = dist;
+            dist -= delta;
+
+            transform.Translate(dir * delta, Space.World);
+
+            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position;
+            }
+            yield return null;
         }
     }
+
     public void OnBaseAttack()
     {
         BattleManager.AttackCircle(myAttackArea.position,
@@ -58,7 +100,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
             enemyMask,
             BattleStat.DefaultAttackPoint,
             transform.forward,
-            AttackType.Normal);
+            false, 1.0f);
     }
 
     public bool IsLive

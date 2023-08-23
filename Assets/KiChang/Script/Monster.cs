@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : AImovement
@@ -61,6 +62,7 @@ public class Monster : AImovement
         yield return new WaitForSeconds(t);
         ChangeState(State.Normal);
     }
+
     // Start is called before the first frame update
     void Start()
     {

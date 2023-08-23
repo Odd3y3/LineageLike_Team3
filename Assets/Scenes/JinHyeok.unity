@@ -833,7 +833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a94dc84032bc0c24bb3cbbf0bf8512f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myPlayer: {fileID: 0}
+  myPlayer: {fileID: 1712626661}
   ItemManager: {fileID: 1205044632}
   UiManager: {fileID: 549312612}
 --- !u!1 &185569196
@@ -7565,6 +7565,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9147814794650244043, guid: 22935087282d3424193abac8ec595a3c, type: 3}
   m_PrefabInstance: {fileID: 2041065865456898297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1712626661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7092515626693074312, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+  m_PrefabInstance: {fileID: 2041065865456898297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d752a7fffae3d94ba2ff3c7ab86673f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1730313280
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10332,6 +10343,34 @@ PrefabInstance:
     - target: {fileID: 3843384524216191899, guid: 22935087282d3424193abac8ec595a3c, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1712626661}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnSkillAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PlayerBattleSystem, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 3913269762279775927, guid: 22935087282d3424193abac8ec595a3c, type: 3}
+      propertyPath: SkillAction.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5708617087908238128, guid: 22935087282d3424193abac8ec595a3c, type: 3}
       propertyPath: clickAction.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

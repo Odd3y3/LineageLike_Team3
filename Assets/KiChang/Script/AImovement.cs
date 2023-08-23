@@ -55,6 +55,11 @@ public class AImovement : BattleSystem
                     myAnim.SetTrigger("Attack");
                 }
             }
+            else if (myAnim.GetBool("IsDamaged"))
+            {
+                StopMove();
+                StopMoveTarget();
+            }
             else if (!IsMoveToTarget)
             {
                 MoveTargetByPath(target);

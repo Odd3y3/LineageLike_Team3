@@ -53,7 +53,6 @@ public class PlayerBattleSystem : BattleSystem
 
     protected bool IsSkillAreaSelecting { get; private set; } = false;
 
-
     Skill usingSkill = null;
     Vector3 usingSkillPos = Vector3.zero;
 
@@ -69,10 +68,10 @@ public class PlayerBattleSystem : BattleSystem
         InitSkill();
     }
 
-    public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
-    {
-        curHP -= dmg - curDefensePoint;
-    }
+    //public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
+    //{
+    //    curHP -= dmg - curDefensePoint;
+    //}
 
     void InitSkill()
     {
@@ -107,13 +106,13 @@ public class PlayerBattleSystem : BattleSystem
     {
         if(skillInfo.skill == null)
         {
-            Debug.Log("해당 스킬이 없습니다.");
+            //Debug.Log("해당 스킬이 없습니다.");
             return;
         }
         if(skillInfo.curSkillCool > 0.0f)
         {
 
-            Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skillInfo.curSkillCool}");
+            //Debug.Log($"해당 스킬이 쿨타임 중 입니다. 남은 쿨타임 : {skillInfo.curSkillCool}");
             return;
         }
 
@@ -176,8 +175,11 @@ public class PlayerBattleSystem : BattleSystem
 
         StopMoveAndRotate();
 
-        usingSkill = skillInfo.skill;
-        usingSkillPos = effectPos;
+        if (!skillInfo.skill.IsDash)
+        {
+            usingSkill = skillInfo.skill;
+            usingSkillPos = effectPos;
+        }
         myAnim.SetTrigger(skillInfo.skill.AnimationClip.name);
     }
 
@@ -204,4 +206,12 @@ public class PlayerBattleSystem : BattleSystem
             Instantiate(usingSkill.EffectPrefab, pos, transform.rotation);
     }
 
+    public void OnSkillAttack()
+    {
+        if (usingSkill != null)
+        {
+            float dmg = usingSkill.TotalDamage(BattleStat.DefaultAttackPoint);
+            //usingSkill.damageArea?.Calculate(dmg, transform, enemyMask);
+        }
+    }
 }

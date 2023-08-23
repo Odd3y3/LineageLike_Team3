@@ -34,9 +34,10 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
     [SerializeField] Transform myAttackArea = null;
     
-    [SerializeField] LayerMask enemyMask;
+    [SerializeField] protected LayerMask enemyMask;
 
     protected Transform myTarget = null;
+
 
     public void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
@@ -95,7 +96,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
     public void OnBaseAttack()
     {
-        BattleManager.AttackCircle(myAttackArea.position,
+        BattleManager.AttackDirCircle(myAttackArea.position,
             1.0f,
             enemyMask,
             BattleStat.DefaultAttackPoint,

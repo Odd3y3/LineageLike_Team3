@@ -7,9 +7,12 @@ public class GameManager : Singleton<GameManager>
     public Player myPlayer;
     public ItemManager ItemManager;
     public UiManager UiManager;
+
+
+
     private void Awake()
     {
-        Initialized();
+        base.Initialize();
     }
 
     void Start()
@@ -19,9 +22,12 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        
+        if(ItemManager==null || UiManager == null)
+        {
+            ItemManager = FindObjectOfType<ItemManager>();
+            UiManager = FindObjectOfType<UiManager>();
+        }
     }
 
-    
 
 }

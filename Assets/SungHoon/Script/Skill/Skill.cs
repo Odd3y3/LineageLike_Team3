@@ -2,12 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+public interface IDamageArea
+{
+    void Calculate(float dmg, Transform transform, LayerMask enemyMask);
+}
 
 [CreateAssetMenu(fileName = "Skill", menuName = "SkillObject/Skill", order = int.MaxValue)]
 public class Skill : ScriptableObject
 {
     [SerializeField]
-    public GameObject Icon = null;
+    public Sprite Icon = null;
     [SerializeField]
     public AnimationClip AnimationClip = null;
     [SerializeField]
@@ -16,7 +22,8 @@ public class Skill : ScriptableObject
     public bool IsAreaSelect = false;
     public GameObject AreaPrefab = null;
     public bool IsDash = false;
-
+    [SerializeField]
+    public IDamageArea damageArea = null;
 
     //데미지 관련해서는 MultiDamage * 플레이어공격력 + AddDamage 로 계산하여 데미지를 줄 예정
     [SerializeField]

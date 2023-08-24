@@ -6,21 +6,20 @@ using UnityEngine.AI;
 
 public class Player : PlayerBattleSystem
 {
-    NavMeshPath path = null;
     public Item PickUpItem = null;
-    public Transform myWeaponPos = null;
-    public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
 
     private void Awake()
     {
-        GameManager.Inst.myPlayer = this;
+        if (GameManager.Inst.myPlayer == null)
+        {
+            GameManager.Inst.myPlayer = this;
+        }
     }
 
     void Start()
     {
         Initialize();
-        path = new NavMeshPath();
     }
 
     void Update()
@@ -37,7 +36,7 @@ public class Player : PlayerBattleSystem
             UseSkill(SkillKey.Dash);
         }
 
-        if (!IsSkillAreaSelecting)
+        if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
         {
             //기본 공격
             if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
@@ -67,9 +66,15 @@ public class Player : PlayerBattleSystem
         }
     }
 
-    public new void OnDamage(float dmg)
+    public void OnDamage(float dmg)
     {
         curHP -= dmg;
+    }
+
+    public void OnMouseClickMove(Vector3 pos)
+    {
+        if(!myAnim.GetBool("IsDamaged"))
+            MovePosByPath(pos);
     }
 
     //public void OnSkillEffect(GameObject Effect)
@@ -86,15 +91,7 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    public void OnAttak()
-    {
-        Collider[] myCols = Physics.OverlapSphere(myWeaponPos.position, 1.0f, enemyMask);
-        foreach(Collider col in myCols)
-        {
-            IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint);
-        }
-    }
+    
 
     //public void OnSkill()
     //{
@@ -121,7 +118,7 @@ public class Player : PlayerBattleSystem
         {
             if (Input.GetMouseButton(0))
             {
-                myAnim.SetBool("BaseAttack", true);
+                myAnim.SetBool("BaseAttack", true); 
             }
             yield return null;
         }
@@ -182,27 +179,7 @@ public class Player : PlayerBattleSystem
         }
     }
 
-    public void MovePos(Vector3 pos)
-    {
-        if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
-        {
-            StopMove();
-            //StopAllCoroutines();
-
-            moveCoroutineList.Add(StartCoroutine(MovingByPath(path.corners)));
-        }
-    }
-
-    IEnumerator MovingByPath(Vector3[] list)
-    {
-        int i = 0;
-        while (i < list.Length - 1)
-        {
-            Coroutine co = StartCoroutine(MovingToPos(list[i + 1], () => ++i));
-            moveCoroutineList.Add(co);
-            yield return co;
-        }
-    }
+    
 
     public void SetStatus(TMPro.TMP_Text[] statList)
     {
@@ -212,6 +189,5 @@ public class Player : PlayerBattleSystem
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
-
     
 }

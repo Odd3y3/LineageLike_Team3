@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
@@ -12,7 +13,72 @@ public class MoveMent : CharProperty
     public LayerMask skillClickMask;
     public LayerMask virtualGroundMask;
 
-    protected List<Coroutine> moveCoroutineList;
+    List<Coroutine> moveCoroutineList = new List<Coroutine>();
+    Coroutine moveTargetCoroutine;
+
+    NavMeshPath path = null;
+
+    protected virtual void Initialize()
+    {
+        path = new NavMeshPath();
+    }
+
+    /// <summary>
+    /// Target을 Navmesh 따라서 이동하는 함수. (0.5초마다 target의 위치로 이동)
+    /// 이동 멈추려면 StopMoveTarget() 호출.
+    /// </summary>
+    protected void MoveTargetByPath(Transform target)
+    {
+        StopMoveTarget();
+        moveTargetCoroutine = StartCoroutine(MovingTargetByPath(target));
+    }
+    IEnumerator MovingTargetByPath(Transform target)
+    {
+        while(target != null)
+        {
+            MovePosByPath(target.position);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+    protected void StopMoveTarget()
+    {
+        if (moveTargetCoroutine != null)
+            StopCoroutine(moveTargetCoroutine);
+        moveTargetCoroutine = null;
+    }
+    protected bool IsMoveToTarget
+    {
+        get
+        {
+            return moveTargetCoroutine != null;
+        }
+    }
+
+    /// <summary>
+    /// pos값으로 Navmesh 따라서 이동하는 함수.
+    /// </summary>
+    protected void MovePosByPath(Vector3 pos)
+    {
+        if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
+        {
+            StopMove();
+            //StopAllCoroutines();
+
+            moveCoroutineList.Add(StartCoroutine(MovingByPath(path.corners)));
+        }
+    }
+
+    IEnumerator MovingByPath(Vector3[] list)
+    {
+        int i = 0;
+        while (i < list.Length - 1)
+        {
+            Coroutine co = StartCoroutine(MovingToPos(list[i + 1], () => ++i));
+            moveCoroutineList.Add(co);
+            yield return co;
+        }
+    }
+
 
     public void MoveToPos(Vector3 Pos)
     {
@@ -71,65 +137,6 @@ public class MoveMent : CharProperty
             }
             angle -= delta;
             transform.Rotate(Vector3.up * delta * rotDir);
-            yield return null;
-        }
-    }
-
-    protected void AttackTarget(Transform target)
-    {
-        StopAllCoroutines();
-        StartCoroutine(Attacking(target));
-    }
-
-
-
-    IEnumerator Attacking(Transform target)
-    {
-        ILive live = target.GetComponent<ILive>();
-        while (target != null)
-        {
-            if (live != null && !live.IsLive) break;
-            playTime += Time.deltaTime;
-            Vector3 dir = target.position - transform.position;
-            float dist = dir.magnitude - BattleStat.AttackRange;
-            if (dist < 0.01f) dist = 0.0f;
-            dir.Normalize();
-
-            float delta = moveSpeed * Time.deltaTime;
-            if (!Mathf.Approximately(dist, 0.0f))
-            {
-                myAnim.SetBool("IsMove", true);
-
-                if (delta > dist) delta = dist;
-                if (!myAnim.GetBool("IsAttacking"))
-                {
-                    transform.Translate(dir * delta, Space.World);
-                }
-            }
-            else
-            {
-                myAnim.SetBool("IsMove", false);
-                if (playTime >= BattleStat.AttackDelay)
-                {
-                    playTime = 0.0f;
-                    myAnim.SetTrigger("Attack");
-                }
-
-            }
-            float angle = Vector3.Angle(dir, transform.forward);
-            float rotDir = 1.0f;
-            if (Vector3.Dot(dir, transform.right) < 0.0f)
-            {
-                rotDir = -1.0f;
-            }
-            delta = rotSpeed * Time.deltaTime;
-
-            if (!Mathf.Approximately(angle, 0.0f))
-            {
-                if (delta > angle) delta = angle;
-                transform.Rotate(Vector3.up * delta * rotDir);
-            }
-
             yield return null;
         }
     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : Component
+public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
 	static T _inst = null;
 	public static T Inst
@@ -11,7 +11,7 @@ public class Singleton<T> : MonoBehaviour where T : Component
 		{
 			if (_inst == null)
 			{
-				_inst = FindAnyObjectByType<T>();
+				_inst = FindObjectOfType<T>();
 				if (_inst == null)
 				{
 					GameObject obj = new GameObject();
@@ -24,13 +24,11 @@ public class Singleton<T> : MonoBehaviour where T : Component
 	}
 	protected void Initialized()
 	{
-		if (_inst == null)
+		if (_inst != null && _inst !=this)
 		{
+			Destroy(_inst.gameObject);
 			_inst = this as T;
 		}
-		else
-		{
-			Destroy(this);
-		}
+		DontDestroyOnLoad(transform.root.gameObject);
 	}
 }

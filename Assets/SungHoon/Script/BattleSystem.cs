@@ -39,9 +39,10 @@ public class BattleSystem : MoveMent , IDamage, ILive
     protected Transform myTarget = null;
 
 
-    public void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
+    public virtual void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
-        curHP -= dmg - curDefensePoint;
+        float damage = dmg - curDefensePoint;
+        curHP -= damage;
         if (!isDown)
         {
             //일반 공격일 때, (경직)
@@ -53,6 +54,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
             OnCharDown();
         }
         KnockBack(attackVec, knockBackDist);
+        BattleManager.DamagePopup(transform, damage);
     }
 
     protected virtual void OnCharStagger()
@@ -80,7 +82,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
         while (dist > 0.0f)
         {
-            float delta = Time.deltaTime * 10.0f;   //넉백 속도 일단 고정. 30.0f
+            float delta = Time.deltaTime * 30.0f;   //넉백 속도 일단 고정. 30.0f
             if (delta > dist) delta = dist;
             dist -= delta;
 
@@ -101,7 +103,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
             enemyMask,
             BattleStat.DefaultAttackPoint,
             transform.forward,
-            false, 1.0f);
+            false, 0.5f);
     }
 
     public bool IsLive

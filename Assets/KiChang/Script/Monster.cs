@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : AImovement
 {
@@ -15,9 +15,11 @@ public class Monster : AImovement
     Vector3 startPos = Vector3.zero;
 
     public Transform barPoint = null;
-    public Transform uiHpBars = null;
+    Transform uiHpBars = null;
 
-    MonsterStatBar myStatUI = null;
+    GameObject hpBarObj = null;
+
+    //MonsterStatBar myStatUI = null;
 
     //protected Transform myTarget = null;
 
@@ -43,6 +45,8 @@ public class Monster : AImovement
             case State.Dead:
                 GetComponent<Collider>().enabled = false;
                 StopAllCoroutines();
+                myAnim.SetTrigger("Die");
+                DisAppear();
                 break;
         }
     }
@@ -68,11 +72,12 @@ public class Monster : AImovement
     {
         Initialize();
 
-       
-        //myStatUI = Instantiate(Resources.Load("UI\\HpBar") as GameObject,
-        //    SceneData.Inst.HpBars).GetComponent<MonsterStatBar>();
+
+        hpBarObj = Instantiate(Resources.Load("UI\\EnemyHPBar") as GameObject,
+            GameObject.Find("DynamicCanvas").transform);
+        myHpBar = hpBarObj.GetComponent<Slider>();
+        hpBarObj.GetComponent<EnemyHPBar>().SetTarget(transform);
         //myStatUI.Initialize(barPoint);
-        //myHpBar = myStatUI.mySlider;
 
         startPos = transform.position;
         ChangeState(State.Normal);
@@ -91,21 +96,37 @@ public class Monster : AImovement
         ChangeState(State.Battle);
     }
 
+    public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
+    {
+        base.OnDamage(dmg, attackVec, knockBackDist, isDown);
+
+        if(!IsLive)
+        {
+            ChangeState(State.Dead);
+        }
+        else
+        {
+            if (myTarget == null) myTarget = GameManager.Inst.myPlayer.transform;
+            ChangeState(State.Battle);
+        }
+    }
+
     //protected override void OnDead()
     //{
     //    ChangeState(State.Dead);
     //}
-   
-    public void DisAppear()
+
+    void DisAppear()
     {
-        StartCoroutine(DisAppearing(0.5f, 2.0f));
+        Destroy(hpBarObj);
+        StartCoroutine(DisAppearing(0.2f, 7.0f));
     }
     IEnumerator DisAppearing(float speed, float t)
     {
         yield return new WaitForSeconds(t);
-        Destroy(myStatUI.gameObject);
+        //Destroy(myStatUI.gameObject);
 
-        float dist = 1.0f;
+        float dist = 2.0f;
         while (dist > 0.0f)
         {
             float delta = speed * Time.deltaTime;

@@ -17,9 +17,12 @@ public class HS_ParticleCollisionInstance : MonoBehaviour
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
 
+    float playerAttackDmg = 0f;
     void Start()
     {
         part = GetComponent<ParticleSystem>();
+
+        playerAttackDmg = GameManager.Inst.myPlayer.BattleStat.DefaultAttackPoint;
     }
 
     //private void OnTriggerEnter(Collider other)
@@ -62,6 +65,7 @@ public class HS_ParticleCollisionInstance : MonoBehaviour
                     instance.transform.LookAt(collisionEvents[i].intersection + collisionEvents[i].normal);
                     instance.transform.rotation *= Quaternion.Euler(rotationOffset);
                 }
+
                 Destroy(instance, DestroyTimeDelay);
             }
         }

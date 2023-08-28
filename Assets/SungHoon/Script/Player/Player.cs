@@ -7,8 +7,6 @@ using UnityEngine.AI;
 public class Player : PlayerBattleSystem
 {
     public Item PickUpItem = null;
-    public Transform myAttackArea = null;
-    public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
 
     private void Awake()
@@ -26,10 +24,6 @@ public class Player : PlayerBattleSystem
 
     void Update()
     {
-        //데미지
-        //이펙트
-
-
         //대쉬 Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -38,7 +32,7 @@ public class Player : PlayerBattleSystem
             UseSkill(SkillKey.Dash);
         }
 
-        if (!IsSkillAreaSelecting)
+        if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
         {
             //기본 공격
             if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
@@ -62,15 +56,12 @@ public class Player : PlayerBattleSystem
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            OnDamage(10);
-        }
     }
 
-    public new void OnDamage(float dmg)
+    public void OnMouseClickMove(Vector3 pos)
     {
-        curHP -= dmg;
+        if(!myAnim.GetBool("IsDamaged"))
+            MovePosByPath(pos);
     }
 
     //public void OnSkillEffect(GameObject Effect)
@@ -87,17 +78,7 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    public void OnBaseAttack()
-    {
-        BattleManager.AttackCircle(myAttackArea.position, 1.0f, enemyMask);
-        Collider[] myCols = Physics.OverlapSphere(myAttackArea.position, 1.0f, enemyMask);
-        foreach(Collider col in myCols)
-        {
-            Debug.Log("Attack Hit !");
-            //IDamage damage = col.GetComponent<IDamage>();
-            //if (damage != null) damage.OnDamage(curAttackPoint);
-        }
-    }
+    
 
     //public void OnSkill()
     //{
@@ -124,7 +105,7 @@ public class Player : PlayerBattleSystem
         {
             if (Input.GetMouseButton(0))
             {
-                myAnim.SetBool("BaseAttack", true);
+                myAnim.SetBool("BaseAttack", true); 
             }
             yield return null;
         }

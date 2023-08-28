@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
+using static UnityEditor.PlayerSettings;
 
 [System.Serializable]
 public struct BattleStat
@@ -17,7 +20,7 @@ public struct BattleStat
 
 public interface IDamage
 {
-    void OnDamage(float dmg);
+    void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown);
 }
 
 public interface ILive
@@ -29,11 +32,78 @@ public class BattleSystem : MoveMent , IDamage, ILive
 {
     public List<Item> myItem;
 
+    [SerializeField] Transform myAttackArea = null;
+    
+    [SerializeField] protected LayerMask enemyMask;
+
     protected Transform myTarget = null;
 
-    public void OnDamage(float dmg)
+
+    public virtual void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
-        curHP -= dmg - curDefensePoint;
+        float damage = dmg - curDefensePoint;
+        curHP -= damage;
+        if (!isDown)
+        {
+            //일반 공격일 때, (경직)
+            OnCharStagger();
+        }
+        else
+        {
+            //다운 공격일 때,
+            OnCharDown();
+        }
+        KnockBack(attackVec, knockBackDist);
+        BattleManager.DamagePopup(transform, damage);
+    }
+
+    protected virtual void OnCharStagger()
+    {
+        StopMove();
+        //myAnim.SetTrigger("Damaged");
+        myAnim.Play("Damaged", -1, 0f);
+        
+    }
+    protected virtual void OnCharDown()
+    {
+
+    }
+
+    void KnockBack(Vector3 attackVec, float knockBackDist)
+    {
+        transform.forward = -attackVec;
+        //transform.Translate(attackVec * knockBackDist, Space.World);
+        StartCoroutine(Moving(attackVec * knockBackDist));
+    }
+    IEnumerator Moving(Vector3 dir)
+    {
+        float dist = dir.magnitude;
+        dir.Normalize();
+
+        while (dist > 0.0f)
+        {
+            float delta = Time.deltaTime * 30.0f;   //넉백 속도 일단 고정. 30.0f
+            if (delta > dist) delta = dist;
+            dist -= delta;
+
+            transform.Translate(dir * delta, Space.World);
+
+            if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, 5.0f, NavMesh.AllAreas))
+            {
+                transform.position = hit.position;
+            }
+            yield return null;
+        }
+    }
+
+    public void OnBaseAttack()
+    {
+        BattleManager.AttackDirCircle(myAttackArea.position,
+            1.0f,
+            enemyMask,
+            BattleStat.DefaultAttackPoint,
+            transform.forward,
+            false, 0.5f);
     }
 
     public bool IsLive

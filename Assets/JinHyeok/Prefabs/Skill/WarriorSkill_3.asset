@@ -18,9 +18,23 @@ MonoBehaviour:
   IsAreaSelect: 1
   AreaPrefab: {fileID: 462506874625469812, guid: acfc35d90490b9d409588a9d9b3b596e, type: 3}
   IsDash: 0
+  damageArea:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000}
+        m_TargetAssemblyTypeName: Skill, Assembly-CSharp
+        m_MethodName: WarriorSkill_3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MultiDamage: 1
   AddDamage: 0
   CoolTime: 15
-  currentCoolTime: 9.971785
   Range: 1
   Duration: 0

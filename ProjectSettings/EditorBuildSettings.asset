@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SungHoon/LoadingSceneTest.unity
-    guid: aabac99f79dbea145be20109fcd7836d
+    path: Assets/Scenes/LoadingScene.unity
+    guid: ee34798b11ea1d7498713f7b4a76dad2
   - enabled: 1
-    path: Assets/Scenes/SungHoon/SceneLoadTest.unity
-    guid: c672516dc5703bc45b7b5301af092c4f
+    path: Assets/Scenes/Title.unity
+    guid: 3b6e9dd05cd8faa4eb32611fa8c52f60
   - enabled: 1
-    path: Assets/Scenes/SungHoon.unity
-    guid: 2a88d0255aaf9944a9c8ca35e9b2e6d9
+    path: Assets/Scenes/JMW.unity
+    guid: 661436da9eafc9541ae847c75c2988ca
   m_configObjects: {}

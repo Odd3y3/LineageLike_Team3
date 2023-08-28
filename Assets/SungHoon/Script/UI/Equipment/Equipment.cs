@@ -31,7 +31,7 @@ public class Equipment :UIProperty
 
     private void TryOpenState()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !MenuUI.GameIsPaused)
         {
             stateActivated = !stateActivated;
 

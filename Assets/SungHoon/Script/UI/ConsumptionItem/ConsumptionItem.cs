@@ -18,20 +18,23 @@ public class ConsumptionItem : UIObject
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (!MenuUI.GameIsPaused)
         {
-            OnUseItem(slots[0].consumptionItem);
-            slots[0].SetSlotCount(-1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            OnUseItem(slots[1].consumptionItem);
-            slots[1].SetSlotCount(-1);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            OnUseItem(slots[2].consumptionItem);
-            slots[2].SetSlotCount(-1);
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                OnUseItem(slots[0].consumptionItem);
+                slots[0].SetSlotCount(-1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                OnUseItem(slots[1].consumptionItem);
+                slots[1].SetSlotCount(-1);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                OnUseItem(slots[2].consumptionItem);
+                slots[2].SetSlotCount(-1);
+            }
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
+    
     static T _inst = null;
     public static T Inst
     {
@@ -24,12 +25,12 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     }
 
     protected void Initialize()
-    {
+    {   
         if (_inst != null && _inst != this) //참조하는 인스턴스가 자기자신이 아니면 새로 만들어진 거다 
         {
             Destroy(_inst.gameObject);
             _inst = this as T;
         }
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
 }

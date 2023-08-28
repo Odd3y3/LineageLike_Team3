@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/LoadingSceneTest.unity
+    guid: aabac99f79dbea145be20109fcd7836d
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/SceneLoadTest.unity
+    guid: c672516dc5703bc45b7b5301af092c4f
+  - enabled: 1
+    path: Assets/Scenes/SungHoon.unity
+    guid: 2a88d0255aaf9944a9c8ca35e9b2e6d9
   m_configObjects: {}

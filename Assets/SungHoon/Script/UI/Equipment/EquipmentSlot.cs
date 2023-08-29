@@ -17,7 +17,7 @@ public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
     {
         myEquipment = _item;
         myImage.sprite = myEquipment.Sprite;
-        GameManager.Inst.myPlayer.OnEquipItem(_item);
+        GameManager.Inst.inGameManager.myPlayer.OnEquipItem(_item);
         SetColor(1,Color.white);
     }
 
@@ -32,7 +32,7 @@ public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
     private void Unmount()
     {
         GameManager.Inst.UiManager.myInventory.AcquireItem(myEquipment);
-        GameManager.Inst.myPlayer.OnUnmountITem(myEquipment);
+        GameManager.Inst.inGameManager.myPlayer.OnUnmountITem(myEquipment);
         myEquipment = null;
         myImage.sprite = null;
         

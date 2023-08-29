@@ -45,7 +45,7 @@ public class ConsumptionItem : UIObject
             switch (item.ItemType)
             {
                 case Item.ITEMTYPE.Potion:
-                    GameManager.Inst.myPlayer.OnUsePotion(item);
+                    GameManager.Inst.inGameManager.myPlayer.OnUsePotion(item);
 
                     break;
                 case Item.ITEMTYPE.BattlePotion:

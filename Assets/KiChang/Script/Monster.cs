@@ -106,7 +106,7 @@ public class Monster : AImovement
         }
         else
         {
-            if (myTarget == null) myTarget = GameManager.Inst.myPlayer.transform;
+            if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
             ChangeState(State.Battle);
         }
     }

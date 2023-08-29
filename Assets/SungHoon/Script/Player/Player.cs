@@ -11,10 +11,10 @@ public class Player : PlayerBattleSystem
 
     private void Awake()
     {
-        if (GameManager.Inst.myPlayer == null)
-        {
-            GameManager.Inst.myPlayer = this;
-        }
+        //if (GameManager.Inst.myPlayer == null)
+        //{
+        //    GameManager.Inst.myPlayer = this;
+        //}
     }
 
     void Start()

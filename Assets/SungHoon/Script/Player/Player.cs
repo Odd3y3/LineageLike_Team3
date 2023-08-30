@@ -11,10 +11,10 @@ public class Player : PlayerBattleSystem
 
     private void Awake()
     {
-        if (GameManager.Inst.myPlayer == null)
-        {
-            GameManager.Inst.myPlayer = this;
-        }
+        //if (GameManager.Inst.myPlayer == null)
+        //{
+        //    GameManager.Inst.myPlayer = this;
+        //}
     }
 
     void Start()
@@ -24,10 +24,6 @@ public class Player : PlayerBattleSystem
 
     void Update()
     {
-        //데미지
-        //이펙트
-
-
         //대쉬 Space bar
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -60,15 +56,6 @@ public class Player : PlayerBattleSystem
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            OnDamage(10);
-        }
-    }
-
-    public void OnDamage(float dmg)
-    {
-        curHP -= dmg;
     }
 
     public void OnMouseClickMove(Vector3 pos)

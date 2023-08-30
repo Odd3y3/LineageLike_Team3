@@ -55,6 +55,10 @@ public class PlayerBattleSystem : BattleSystem
 
     Skill usingSkill = null;
     Vector3 usingSkillPos = Vector3.zero;
+    public Skill UsingSkill
+    {
+        get => usingSkill;
+    }
 
     protected override void Initialize()
     {
@@ -210,8 +214,7 @@ public class PlayerBattleSystem : BattleSystem
     {
         if (usingSkill != null)
         {
-            float dmg = usingSkill.TotalDamage(BattleStat.DefaultAttackPoint);
-            //usingSkill.damageArea?.Calculate(dmg, transform, enemyMask);
+            usingSkill.SkillAttack(BattleStat.DefaultAttackPoint, transform, enemyMask);
         }
     }
 }

@@ -26,12 +26,12 @@ public class Equipment :UIProperty
     void Update()
     {
         TryOpenState();
-        GameManager.Inst.myPlayer.SetStatus(myStatusList);
+        GameManager.Inst.inGameManager.myPlayer.SetStatus(myStatusList);
     }
 
     private void TryOpenState()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && !MenuUI.GameIsPaused)
         {
             stateActivated = !stateActivated;
 

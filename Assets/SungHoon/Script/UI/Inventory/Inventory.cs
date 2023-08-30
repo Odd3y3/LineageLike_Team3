@@ -31,7 +31,7 @@ public class Inventory : UIProperty
 
     private void TryOpenInventory()
     {
-        if (Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I) && !MenuUI.GameIsPaused)
         {
             invectoryActivated = !invectoryActivated;
 

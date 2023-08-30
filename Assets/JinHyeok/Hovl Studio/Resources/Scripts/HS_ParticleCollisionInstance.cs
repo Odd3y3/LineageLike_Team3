@@ -62,6 +62,7 @@ public class HS_ParticleCollisionInstance : MonoBehaviour
                     instance.transform.LookAt(collisionEvents[i].intersection + collisionEvents[i].normal);
                     instance.transform.rotation *= Quaternion.Euler(rotationOffset);
                 }
+
                 Destroy(instance, DestroyTimeDelay);
             }
         }

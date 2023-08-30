@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -41,7 +42,7 @@ public class BattleManager : MonoBehaviour
             IDamage damage = col.GetComponent<IDamage>();
             Vector3 attackVec = col.transform.position - pos;
             attackVec.y = 0f;
-            if (damage != null) damage.OnDamage(dmg, col.transform.position - pos, knockBackDist, isDown);
+            if (damage != null) damage.OnDamage(dmg, attackVec, knockBackDist, isDown);
         }
 
         //Gizmo test용
@@ -56,5 +57,34 @@ public class BattleManager : MonoBehaviour
         color.a = 0.5f;
         Gizmos.color = color;
         Gizmos.DrawSphere(originPos, originSize);
+    }
+
+
+    //데미지 표시
+    static GameObject dmgPopupPrefab = null;
+    public static GameObject DmgPopupPrefab
+    {
+        get
+        {
+            if (dmgPopupPrefab == null)
+                dmgPopupPrefab = Resources.Load<GameObject>("UI\\DmgPopup");
+            return dmgPopupPrefab;
+        }
+    }
+    static GameObject dynamicCanvas = null;
+    public static GameObject DynamicCanvas
+    {
+        get
+        {
+            if (dynamicCanvas == null)
+                dynamicCanvas = GameObject.Find("DynamicCanvas");
+            return dynamicCanvas;
+        }
+    }
+    public static void DamagePopup(Transform transform, float dmg)
+    {
+        GameObject obj = Instantiate(DmgPopupPrefab, DynamicCanvas.transform);
+        obj.GetComponent<TextMeshProUGUI>().text = dmg.ToString();
+        obj.GetComponent<DamagePopup>().SetPos(transform);
     }
 }

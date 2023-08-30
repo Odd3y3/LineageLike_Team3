@@ -8,7 +8,7 @@ public class SceneLoader : Singleton<SceneLoader>
 {
     private void Awake()
     {
-        base.Initialized();
+        base.Initialize();
     }
     // Start is called before the first frame update
     void Start()

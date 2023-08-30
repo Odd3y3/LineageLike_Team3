@@ -2644,6 +2644,7 @@ MonoBehaviour:
   ItemManager: {fileID: 0}
   UiManager: {fileID: 0}
   inGameManager: {fileID: 915212985}
+  sceneLoader: {fileID: 446519147}
 --- !u!4 &386219139
 Transform:
   m_ObjectHideFlags: 0
@@ -14663,10 +14664,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 446519147}
-        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 386219138}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: StartNewGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

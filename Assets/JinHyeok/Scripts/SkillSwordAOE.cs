@@ -6,7 +6,7 @@ public class SkillSwordAOE : MonoBehaviour
 {
     void Start()
     {
-        float playerAttackDmg = GameManager.Inst.myPlayer.BattleStat.DefaultAttackPoint;
+        float playerAttackDmg = GameManager.Inst.inGameManager.myPlayer.BattleStat.DefaultAttackPoint;
         Skill.WarriorSkill_3(playerAttackDmg, transform, LayerMask.GetMask("Enemy"));
     }
 }

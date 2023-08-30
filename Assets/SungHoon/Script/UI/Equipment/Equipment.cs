@@ -26,7 +26,7 @@ public class Equipment :UIProperty
     void Update()
     {
         TryOpenState();
-        GameManager.Inst.myPlayer.SetStatus(myStatusList);
+        GameManager.Inst.inGameManager.myPlayer.SetStatus(myStatusList);
     }
 
     private void TryOpenState()

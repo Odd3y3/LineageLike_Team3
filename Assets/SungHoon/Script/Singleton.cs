@@ -25,10 +25,11 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 
     protected void Initialize()
     {
-        if (Inst != null && Inst != this) //참조하는 인스턴스가 자기자신이 아니면 새로 만들어진 거다 
+        //새로 생긴 inst가 삭제 되도록 변경
+        if (Inst != this) //참조하는 인스턴스가 자기자신이 아니면 새로 만들어진 거다 
         {
-            Destroy(_inst.gameObject);
-            _inst = this as T;
+            Destroy(gameObject);
+            return;
         }
         DontDestroyOnLoad(gameObject);
     }

@@ -9,6 +9,7 @@ public class GameManager : Singleton<GameManager>
     public InGameManager inGameManager;
     public SceneLoader sceneLoader;
 
+    public PlayerSpawnPoints spawnPoints;
     private void Awake()
     {
         base.Initialize();
@@ -30,14 +31,14 @@ public class GameManager : Singleton<GameManager>
         //}
     }
 
-    public void StartInGameScene()
+    public void StartInGameScene(int spawnPointNum)
     {
         //씬 변경후 설정 해 줘야 되는 것
         //UIManager 바인드 설정
         UiManager = FindObjectOfType<UiManager>();
 
         //플레이어 생성
-        SpawnPlayer();
+        SpawnPlayer(spawnPointNum);
 
         //카메라 바인드 설정
         FindObjectOfType<FollowCamera>().SetTarget(inGameManager.myPlayer.transform);
@@ -50,12 +51,21 @@ public class GameManager : Singleton<GameManager>
         
     }
 
-    public void SpawnPlayer()
+    public void SpawnPlayer(int spawnPointNum)
     {
         GameObject player = Instantiate(Resources.Load<GameObject>("Player"));
         inGameManager.myPlayer = player.GetComponent<Player>();
 
-        inGameManager.myPlayer.transform.position = new Vector3(-28f, 1f, -52.5f);
+        //ui hpBar 바인딩
+        inGameManager.myPlayer.myHpBar = UiManager.myHpSlider;
+
+        //플레이어 스폰 위치
+        spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
+        if (spawnPoints != null)
+        {
+            inGameManager.myPlayer.transform.position = 
+                spawnPoints.spawnPoint[spawnPointNum].transform.position;
+        }
     }
 
     /// <summary>
@@ -68,11 +78,16 @@ public class GameManager : Singleton<GameManager>
 
     public void StartNewGame()
     {
-        sceneLoader.LoadScene(2);
+        sceneLoader.LoadScene(2, 0);
     }
 
     public void StartLoadGame()
     {
 
+    }
+
+    public void MapChange(int sceneNum, int spawnPointNum)
+    {
+        sceneLoader.LoadScene(sceneNum, spawnPointNum);
     }
 }

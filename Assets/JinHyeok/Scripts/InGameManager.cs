@@ -16,11 +16,11 @@ public class InGameManager : MonoBehaviour
                 _player = FindObjectOfType<Player>();
             return _player;
         }
+        set { _player = value; }
     }
 
     PlayerInfo _playerInfo;
     
-
 
     //세이브 로드 기능
     public void Save()

@@ -23,7 +23,7 @@ public class SkillUISlot : UIProperty
     // Update is called once per frame
     void Update()
     {
-        if (myAllImage[0].sprite!=mySkill.Icon || myAllImage[1].sprite != mySkill.Icon)
+        if (myAllImage[0].sprite!=mySkill?.Icon || myAllImage[1].sprite != mySkill?.Icon)
         {
             for (int i = 0; i < 2; i++)
             {

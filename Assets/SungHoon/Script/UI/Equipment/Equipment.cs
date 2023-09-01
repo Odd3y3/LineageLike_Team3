@@ -15,7 +15,7 @@ public class Equipment :UIProperty
     private void Awake()
     {
         slots = myAllEquipmentSlots;
-        CloseStare();
+        CloseState();
     }
 
     void Start()
@@ -26,7 +26,7 @@ public class Equipment :UIProperty
     void Update()
     {
         TryOpenState();
-        GameManager.Inst.inGameManager.myPlayer.SetStatus(myStatusList);
+        GameManager.Inst.inGameManager.myPlayer?.SetStatus(myStatusList);
     }
 
     private void TryOpenState()
@@ -38,7 +38,7 @@ public class Equipment :UIProperty
             if (stateActivated)
                 OpenState();
             else
-                CloseStare();
+                CloseState();
         }
     }
 
@@ -47,7 +47,7 @@ public class Equipment :UIProperty
         go_ststeBase.SetActive(true);
     }
 
-    private void CloseStare()
+    private void CloseState()
     {
         go_ststeBase.SetActive(false);
     }

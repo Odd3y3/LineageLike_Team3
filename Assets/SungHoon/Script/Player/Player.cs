@@ -9,6 +9,8 @@ public class Player : PlayerBattleSystem
     public Item PickUpItem = null;
     Coroutine comboCheckCoroutine;
 
+    public bool CanMove { get; set; } = false;
+
     private void Awake()
     {
         //if (GameManager.Inst.myPlayer == null)
@@ -24,43 +26,47 @@ public class Player : PlayerBattleSystem
 
     void Update()
     {
-        //대쉬 Space bar
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (CanMove)
         {
-            //StopMove();
-            //ImmediateRotate();
-            UseSkill(SkillKey.Dash);
-        }
-
-        if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
-        {
-            //기본 공격
-            if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+            //대쉬 Space bar
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                StopMoveAndRotate();
-                myAnim.SetBool("BaseAttack", true);
+                //StopMove();
+                //ImmediateRotate();
+                UseSkill(SkillKey.Dash);
             }
 
-            //스킬 애니메이션
-            if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+            if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
             {
-                UseSkill(SkillKey.QSkill);
+                //기본 공격
+                if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+                {
+                    StopMoveAndRotate();
+                    myAnim.SetBool("BaseAttack", true);
+                }
+
+                //스킬 애니메이션
+                if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.QSkill);
+                }
+                if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.WSkill);
+                }
+                if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.ESkill);
+                }
             }
-            if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.WSkill);
-            }
-            if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.ESkill);
-            }
+
         }
 
     }
 
     public void OnMouseClickMove(Vector3 pos)
     {
-        if(!myAnim.GetBool("IsDamaged"))
+        if(CanMove && !myAnim.GetBool("IsDamaged"))
             MovePosByPath(pos);
     }
 

@@ -169,6 +169,7 @@ MonoBehaviour:
     DefaultDefensePoint: 0
     AttackRange: 2
     AttackDelay: 3
+    AttackSize: 1
   moveSpeed: 2
   rotSpeed: 360
   skillClickMask:
@@ -182,9 +183,9 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
+  isRoaming: 1
   myState: 0
   barPoint: {fileID: 0}
-  uiHpBars: {fileID: 0}
 --- !u!1 &4682918425901263779
 GameObject:
   m_ObjectHideFlags: 0

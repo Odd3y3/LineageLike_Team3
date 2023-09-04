@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Player : PlayerBattleSystem
 {
@@ -11,12 +12,15 @@ public class Player : PlayerBattleSystem
 
     public bool CanMove { get; set; } = false;
 
+    GameObject destinationMarker;
+
     private void Awake()
     {
         //if (GameManager.Inst.myPlayer == null)
         //{
         //    GameManager.Inst.myPlayer = this;
         //}
+        destinationMarker = Resources.Load<GameObject>("destinationMarker");
     }
 
     void Start()
@@ -36,7 +40,8 @@ public class Player : PlayerBattleSystem
                 UseSkill(SkillKey.Dash);
             }
 
-            if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
+            if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged")
+                && !EventSystem.current.IsPointerOverGameObject())
             {
                 //기본 공격
                 if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
@@ -67,7 +72,13 @@ public class Player : PlayerBattleSystem
     public void OnMouseClickMove(Vector3 pos)
     {
         if(CanMove && !myAnim.GetBool("IsDamaged"))
+        {
+            //destination point 생성
+            GameObject marker = Instantiate(destinationMarker);
+            marker.transform.position = pos;
+            //이동
             MovePosByPath(pos);
+        }
     }
 
     //public void OnSkillEffect(GameObject Effect)

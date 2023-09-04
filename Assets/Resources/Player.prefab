@@ -2142,6 +2142,7 @@ MonoBehaviour:
     DefaultDefensePoint: 0
     AttackRange: 0
     AttackDelay: 0
+    AttackSize: 1
   moveSpeed: 5
   rotSpeed: 720
   skillClickMask:

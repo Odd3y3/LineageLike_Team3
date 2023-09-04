@@ -16,6 +16,7 @@ public struct BattleStat
     public float DefaultDefensePoint;
     public float AttackRange;
     public float AttackDelay;
+    public float AttackSize;
 }
 
 public interface IDamage
@@ -99,9 +100,9 @@ public class BattleSystem : MoveMent , IDamage, ILive
     public void OnBaseAttack()
     {
         BattleManager.AttackDirCircle(myAttackArea.position,
-            1.0f,
+            BattleStat.AttackSize,
             enemyMask,
-            BattleStat.DefaultAttackPoint,
+            curAttackPoint,
             transform.forward,
             false, 0.5f);
     }

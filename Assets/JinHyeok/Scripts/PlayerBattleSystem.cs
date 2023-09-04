@@ -110,7 +110,7 @@ public class PlayerBattleSystem : BattleSystem
     {
         if(skillInfo.skill == null)
         {
-            //Debug.Log("해당 스킬이 없습니다.");
+            Debug.Log("해당 스킬이 없습니다.");
             return;
         }
         if(skillInfo.curSkillCool > 0.0f)
@@ -214,7 +214,7 @@ public class PlayerBattleSystem : BattleSystem
     {
         if (usingSkill != null)
         {
-            usingSkill.SkillAttack(BattleStat.DefaultAttackPoint, transform, enemyMask);
+            usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
         }
     }
 }

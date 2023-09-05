@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class EquipmentSlot : UIObject,IPointerClickHandler, IDropHandler
+public class EquipmentSlot : UIObject<EquipmentSlot>,IPointerClickHandler, IDropHandler
 {
     public Item myEquipment;
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillUISlot : UIProperty
+public class SkillUISlot : UIProperty<SkillUISlot>
 {
     public TMPro.TMP_Text myText=null;
 
@@ -39,6 +39,7 @@ public class SkillUISlot : UIProperty
 
     public IEnumerator Cooling(float t)
     {
+        
         if (Mathf.Approximately(myAllImage[1].fillAmount, 1.0f))
         {
             myAllImage[1].raycastTarget = false;

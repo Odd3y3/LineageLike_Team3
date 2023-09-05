@@ -35,7 +35,7 @@ public class PlayerBattleSystem : BattleSystem
     }
 
     [SerializeField]
-    Skills equippedSkills;
+    protected Skills equippedSkills;
 
     SkillInfo DashInfo;
     SkillInfo QSkillInfo;
@@ -65,8 +65,6 @@ public class PlayerBattleSystem : BattleSystem
         base.Initialize();
 
         usingSkillPos = transform.position;
-
-        GameManager.Inst.UiManager?.mySkillUI.SetSkillUI(equippedSkills);
 
         //스킬 초기화
         InitSkill();

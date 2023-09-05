@@ -8,6 +8,8 @@ public class UiManager : Singleton<UiManager>
     public Equipment myEquipment;
     public ConsumptionItem myConsumptionItem;
     public SkillUI mySkillUI;
+    public SkillWindow mySkillWindow;
+
 
     private void Awake()
     {

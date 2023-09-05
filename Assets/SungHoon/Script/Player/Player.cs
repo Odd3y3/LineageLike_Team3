@@ -56,6 +56,10 @@ public class Player : PlayerBattleSystem
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            LevelUp();
+        }
     }
 
     public void OnMouseClickMove(Vector3 pos)
@@ -78,7 +82,16 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    
+    public void LevelUp()
+    {
+        curLv++;
+        BattleStat.MaxHP += 10;
+        BattleStat.MaxMP += 10;
+        BattleStat.MaxExp *= 2;
+        curAttackPoint += 10;
+        curDefensePoint+= 10;
+        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(curLv);
+    }
 
     //public void OnSkill()
     //{
@@ -91,6 +104,10 @@ public class Player : PlayerBattleSystem
     //    }
     //}
 
+    public Skills setSkill()
+    {
+        return equippedSkills;
+    }
 
     public void OnComboCheckStart()
     {

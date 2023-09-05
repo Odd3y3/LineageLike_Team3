@@ -23,9 +23,9 @@ public class Skill : ScriptableObject
 
     //데미지 관련해서는 MultiDamage * 플레이어공격력 + AddDamage 로 계산하여 데미지를 줄 예정
     [SerializeField]
-    private float MultiDamage = 1.0f;
+    public float MultiDamage = 1.0f;
     [SerializeField]
-    private float AddDamage = 0.0f;
+    public float AddDamage = 0.0f;
 
 
     public float CoolTime = 0.0f;

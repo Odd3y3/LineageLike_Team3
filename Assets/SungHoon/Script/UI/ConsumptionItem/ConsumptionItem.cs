@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ConsumptionItem : UIObject
+public class ConsumptionItem : UIObject<ConsumptionItemSlot>
 {
     public ConsumptionItemSlot[] slots;
     private void Awake()
     {
-        slots = myAllConsumptionSlots;
+        slots = myAllSlots;
     }
     // Start is called before the first frame update
     void Start()

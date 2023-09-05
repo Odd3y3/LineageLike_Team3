@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : UIObject, IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
+public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
 
     //아이템 장착시 아이템 삭제 구현하기

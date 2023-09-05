@@ -9,6 +9,7 @@ public class Monster : AImovement
     {
         Create, Normal, Roaming, Battle, Dead
     }
+    public bool isRoaming = true;
 
     public State myState = State.Create;
 
@@ -30,14 +31,17 @@ public class Monster : AImovement
         switch (myState)
         {
             case State.Normal:
-                Vector3 rndDir = Vector3.forward;
-                Quaternion rndRot = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
-                float dist = Random.Range(0.0f, 5.0f);
-                rndDir = rndRot * rndDir * dist;
-                Vector3 rndPos = startPos + rndDir;
+                if (isRoaming)
+                {
+                    Vector3 rndDir = Vector3.forward;
+                    Quaternion rndRot = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
+                    float dist = Random.Range(0.0f, 5.0f);
+                    rndDir = rndRot * rndDir * dist;
+                    Vector3 rndPos = startPos + rndDir;
 
-                MoveToPos(rndPos, () => StartCoroutine(Waiting(Random.Range(1.0f, 3.0f))));
-                ChangeState(State.Roaming);
+                    MoveToPos(rndPos, () => StartCoroutine(Waiting(Random.Range(1.0f, 3.0f))));
+                    ChangeState(State.Roaming);
+                }
                 break;
             case State.Battle:
                 AttackTarget(myTarget);
@@ -98,16 +102,14 @@ public class Monster : AImovement
 
     public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
+        if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
+        ChangeState(State.Battle);
+
         base.OnDamage(dmg, attackVec, knockBackDist, isDown);
 
         if(!IsLive)
         {
             ChangeState(State.Dead);
-        }
-        else
-        {
-            if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
-            ChangeState(State.Battle);
         }
     }
 

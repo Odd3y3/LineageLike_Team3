@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : UIProperty
+public class Inventory : UIProperty<InventorySlot>
 {
     public static bool invectoryActivated = false;
 
@@ -15,7 +15,7 @@ public class Inventory : UIProperty
 
     private void Awake()
     {
-        slots = myAllInventorySlots;
+        slots = myAllSlots;
         CloseInventory();
     }
 

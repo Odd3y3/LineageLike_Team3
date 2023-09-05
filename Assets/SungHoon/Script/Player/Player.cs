@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Player : PlayerBattleSystem
 {
@@ -11,12 +12,15 @@ public class Player : PlayerBattleSystem
 
     public bool CanMove { get; set; } = false;
 
+    GameObject destinationMarker;
+
     private void Awake()
     {
         //if (GameManager.Inst.myPlayer == null)
         //{
         //    GameManager.Inst.myPlayer = this;
         //}
+        destinationMarker = Resources.Load<GameObject>("destinationMarker");
     }
 
     void Start()
@@ -39,7 +43,8 @@ public class Player : PlayerBattleSystem
             if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
             {
                 //기본 공격
-                if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
+                if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack")
+                    && !EventSystem.current.IsPointerOverGameObject())
                 {
                     StopMoveAndRotate();
                     myAnim.SetBool("BaseAttack", true);
@@ -62,12 +67,22 @@ public class Player : PlayerBattleSystem
 
         }
 
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            LevelUp();
+        }
     }
 
     public void OnMouseClickMove(Vector3 pos)
     {
-        if(CanMove && !myAnim.GetBool("IsDamaged"))
+        if(CanMove && !myAnim.GetBool("IsDamaged") && !EventSystem.current.IsPointerOverGameObject())
+        {
+            //destination point 생성
+            GameObject marker = Instantiate(destinationMarker);
+            marker.transform.position = pos;
+            //이동
             MovePosByPath(pos);
+        }
     }
 
     //public void OnSkillEffect(GameObject Effect)
@@ -84,7 +99,16 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    
+    public void LevelUp()
+    {
+        curLv++;
+        BattleStat.MaxHP += 10;
+        BattleStat.MaxMP += 10;
+        BattleStat.MaxExp *= 2;
+        curAttackPoint += 10;
+        curDefensePoint+= 10;
+        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(curLv);
+    }
 
     //public void OnSkill()
     //{
@@ -97,6 +121,10 @@ public class Player : PlayerBattleSystem
     //    }
     //}
 
+    public Skills setSkill()
+    {
+        return equippedSkills;
+    }
 
     public void OnComboCheckStart()
     {
@@ -109,9 +137,10 @@ public class Player : PlayerBattleSystem
 
         while (true)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                myAnim.SetBool("BaseAttack", true); 
+                myAnim.SetBool("BaseAttack", true);
+                break;
             }
             yield return null;
         }
@@ -120,8 +149,27 @@ public class Player : PlayerBattleSystem
 
     public void OnComboCheckEnd()
     {
-        StopCoroutine(comboCheckCoroutine);
+        if(comboCheckCoroutine != null)
+            StopCoroutine(comboCheckCoroutine);
     }
+
+    public void OnDash()
+    {
+        StartCoroutine(DashCoroutine(0.5f, 3.0f));
+    }
+    IEnumerator DashCoroutine(float time, float speed)
+    {
+        float t = 0;
+        while (t < time)
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+            yield return null;
+            t += Time.deltaTime;
+        }
+    }
+
+    //==============================================================================
 
     public void OnAcquisition(Item acquisitionItem) 
     {

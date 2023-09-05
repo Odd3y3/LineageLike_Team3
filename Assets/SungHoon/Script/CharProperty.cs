@@ -22,7 +22,7 @@ public class CharProperty : MonoBehaviour
         }
     }
 
-    int _lv =1;
+    int _lv =0;
 
     protected int curLv
     {
@@ -85,11 +85,13 @@ public class CharProperty : MonoBehaviour
         get => _exp;
         set
         {
-            _exp = value;
+            _exp = Mathf.Clamp(value, 0.0f, BattleStat.MaxExp);
+            if (myExpBar != null) myExpBar.value = _exp / BattleStat.MaxExp;
         }
     }
 
     public Slider myHpBar = null;
+    public Slider myExpBar = null;
     protected float playTime = 0.0f;
     public BattleStat BattleStat;
 

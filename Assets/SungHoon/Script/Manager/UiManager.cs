@@ -11,5 +11,7 @@ public class UiManager : MonoBehaviour
     public Equipment myEquipment;
     public ConsumptionItem myConsumptionItem;
     public SkillUI mySkillUI;
+    public SkillWindow mySkillWindow;
+
 
 }

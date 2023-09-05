@@ -68,12 +68,20 @@ public class PlayerBattleSystem : BattleSystem
 
         //스킬 초기화
         InitSkill();
+
+        GameManager.Inst.UiManager?.mySkillUI.SetSkillUI(equippedSkills);
     }
 
     //public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
     //{
     //    curHP -= dmg - curDefensePoint;
     //}
+
+    public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
+    {
+        if(!myAnim.GetBool("IsImmunity"))
+            base.OnDamage(dmg, attackVec, knockBackDist, isDown);
+    }
 
     void InitSkill()
     {
@@ -108,7 +116,7 @@ public class PlayerBattleSystem : BattleSystem
     {
         if(skillInfo.skill == null)
         {
-            //Debug.Log("해당 스킬이 없습니다.");
+            Debug.Log("해당 스킬이 없습니다.");
             return;
         }
         if(skillInfo.curSkillCool > 0.0f)
@@ -183,6 +191,8 @@ public class PlayerBattleSystem : BattleSystem
             usingSkillPos = effectPos;
         }
         myAnim.SetTrigger(skillInfo.skill.AnimationClip.name);
+
+        myAnim.SetBool("IsAttack", true);
     }
 
     IEnumerator CoolingSkill(SkillInfo skillInfo)
@@ -212,7 +222,17 @@ public class PlayerBattleSystem : BattleSystem
     {
         if (usingSkill != null)
         {
-            usingSkill.SkillAttack(BattleStat.DefaultAttackPoint, transform, enemyMask);
+            //usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
+            StartCoroutine(SkillAttackCoroutine(usingSkill));
+        }
+    }
+    IEnumerator SkillAttackCoroutine(Skill usingSkill)
+    {
+        var t = new WaitForSeconds(usingSkill.AttackInterval);
+        for(int i = 0; i < usingSkill.AttackCount; i++)
+        {
+            usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
+            yield return t;
         }
     }
 }

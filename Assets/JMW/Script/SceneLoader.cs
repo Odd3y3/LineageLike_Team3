@@ -4,12 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneLoader : Singleton<SceneLoader>
+public class SceneLoader : MonoBehaviour
 {
-    private void Awake()
-    {
-        base.Initialize();
-    }
     // Start is called before the first frame update
     void Start()
     {
@@ -22,20 +18,20 @@ public class SceneLoader : Singleton<SceneLoader>
         
     }
 
-    public void LoadScene(int sceneIdx)
+    public void LoadScene(int sceneIdx, int spawnPointNum)
     {
-        StartCoroutine(LoadingScene(sceneIdx));
+        StartCoroutine(LoadingScene(sceneIdx, spawnPointNum));
     }
-    IEnumerator LoadingScene(int idx)
+    IEnumerator LoadingScene(int idx, int spawnPointNum)
     {
         yield return SceneManager.LoadSceneAsync(0);
 
         Slider slider = FindObjectOfType<Slider>();
 
-        yield return StartCoroutine(Loading(slider, idx));
+        yield return StartCoroutine(Loading(slider, idx, spawnPointNum));
     }
 
-    IEnumerator Loading(Slider slider, int idx)
+    IEnumerator Loading(Slider slider, int idx, int spawnPointNum)
     {
         AsyncOperation ao = SceneManager.LoadSceneAsync(idx);
 
@@ -59,5 +55,8 @@ public class SceneLoader : Singleton<SceneLoader>
             }
             yield return null;
         }
+
+        yield return new WaitForSeconds(1.0f);
+        GameManager.Inst.StartInGameScene(spawnPointNum);
     }
 }

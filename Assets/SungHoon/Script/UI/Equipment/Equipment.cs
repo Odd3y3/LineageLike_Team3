@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Equipment :UIProperty<EquipmentSlot>
+public class Equipment :UIProperty 
 {
     public static bool stateActivated = false;
     [SerializeField]
@@ -14,8 +14,8 @@ public class Equipment :UIProperty<EquipmentSlot>
     public TMPro.TMP_Text[] myStatusList = null;
     private void Awake()
     {
-        slots = myAllSlots;
-        CloseStare();
+        slots = myAllEquipmentSlots;
+        CloseState();
     }
 
     void Start()
@@ -26,7 +26,7 @@ public class Equipment :UIProperty<EquipmentSlot>
     void Update()
     {
         TryOpenState();
-        GameManager.Inst.inGameManager.myPlayer.SetStatus(myStatusList);
+        GameManager.Inst.inGameManager.myPlayer?.SetStatus(myStatusList);
     }
 
     private void TryOpenState()
@@ -38,7 +38,7 @@ public class Equipment :UIProperty<EquipmentSlot>
             if (stateActivated)
                 OpenState();
             else
-                CloseStare();
+                CloseState();
         }
     }
 
@@ -47,7 +47,7 @@ public class Equipment :UIProperty<EquipmentSlot>
         go_ststeBase.SetActive(true);
     }
 
-    private void CloseStare()
+    private void CloseState()
     {
         go_ststeBase.SetActive(false);
     }

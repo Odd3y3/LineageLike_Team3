@@ -36,5 +36,8 @@ MonoBehaviour:
   MultiDamage: 1
   AddDamage: 0
   CoolTime: 15
+  AttackCount: 1
+  AttackInterval: 0.2
+  KnockackDist: 0.1
   Range: 1
   Duration: 0

@@ -77,6 +77,12 @@ public class PlayerBattleSystem : BattleSystem
     //    curHP -= dmg - curDefensePoint;
     //}
 
+    public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
+    {
+        if(!myAnim.GetBool("IsImmunity"))
+            base.OnDamage(dmg, attackVec, knockBackDist, isDown);
+    }
+
     void InitSkill()
     {
         DashInfo = new SkillInfo(equippedSkills.Dash);
@@ -185,6 +191,8 @@ public class PlayerBattleSystem : BattleSystem
             usingSkillPos = effectPos;
         }
         myAnim.SetTrigger(skillInfo.skill.AnimationClip.name);
+
+        myAnim.SetBool("IsAttack", true);
     }
 
     IEnumerator CoolingSkill(SkillInfo skillInfo)
@@ -214,7 +222,17 @@ public class PlayerBattleSystem : BattleSystem
     {
         if (usingSkill != null)
         {
+            //usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
+            StartCoroutine(SkillAttackCoroutine(usingSkill));
+        }
+    }
+    IEnumerator SkillAttackCoroutine(Skill usingSkill)
+    {
+        var t = new WaitForSeconds(usingSkill.AttackInterval);
+        for(int i = 0; i < usingSkill.AttackCount; i++)
+        {
             usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
+            yield return t;
         }
     }
 }

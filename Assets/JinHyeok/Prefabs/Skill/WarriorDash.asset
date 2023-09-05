@@ -18,9 +18,14 @@ MonoBehaviour:
   IsAreaSelect: 0
   AreaPrefab: {fileID: 0}
   IsDash: 1
+  damageArea:
+    m_PersistentCalls:
+      m_Calls: []
   MultiDamage: 2
   AddDamage: 0
   CoolTime: 3
-  currentCoolTime: -0.00036381464
+  AttackCount: 1
+  AttackInterval: 0.2
+  KnockackDist: 0
   Range: 1
   Duration: 0

@@ -415,6 +415,12 @@ MonoBehaviour:
   DeadAction:
     m_PersistentCalls:
       m_Calls: []
+  DashStartAction:
+    m_PersistentCalls:
+      m_Calls: []
+  DashEndAction:
+    m_PersistentCalls:
+      m_Calls: []
   SkillEffectStartAction:
     m_PersistentCalls:
       m_Calls: []

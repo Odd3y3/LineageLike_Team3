@@ -66,6 +66,7 @@ public class HS_ParticleCollisionInstance : MonoBehaviour
                 Destroy(instance, DestroyTimeDelay);
             }
         }
+
         if (DestoyMainEffect == true)
         {
             Destroy(gameObject, DestroyTimeDelay + 0.5f);

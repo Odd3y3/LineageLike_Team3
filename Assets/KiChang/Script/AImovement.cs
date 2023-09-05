@@ -32,7 +32,7 @@ public class AImovement : BattleSystem
     IEnumerator Attacking(Transform target)
     {
         MoveTargetByPath(target);
-
+        //playTime = 1.0f;
         while (true)
         {
             if(playTime > 0)

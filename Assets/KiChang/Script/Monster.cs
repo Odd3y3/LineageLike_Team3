@@ -102,16 +102,14 @@ public class Monster : AImovement
 
     public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
+        if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
+        ChangeState(State.Battle);
+
         base.OnDamage(dmg, attackVec, knockBackDist, isDown);
 
         if(!IsLive)
         {
             ChangeState(State.Dead);
-        }
-        else
-        {
-            if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
-            ChangeState(State.Battle);
         }
     }
 

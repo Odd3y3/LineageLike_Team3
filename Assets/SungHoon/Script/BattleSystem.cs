@@ -43,6 +43,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
     public virtual void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
         float damage = dmg - curDefensePoint;
+        damage = damage <= 1 ? 1 : damage;
         curHP -= damage;
         if (!isDown)
         {

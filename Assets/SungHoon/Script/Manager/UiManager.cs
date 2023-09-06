@@ -14,4 +14,11 @@ public class UiManager : MonoBehaviour
     public SkillWindow mySkillWindow;
 
 
+    public void DefalutSetting()
+    {
+        mySkillUI.SetSkillUI();
+        mySkillWindow.setSkill();
+
+    }
+
 }

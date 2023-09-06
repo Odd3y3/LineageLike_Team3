@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Equipment :UIProperty 
+public class Equipment :UIProperty<EquipmentSlot>
 {
     public static bool stateActivated = false;
     [SerializeField]
@@ -14,7 +14,7 @@ public class Equipment :UIProperty
     public TMPro.TMP_Text[] myStatusList = null;
     private void Awake()
     {
-        slots = myAllEquipmentSlots;
+        slots = myAllSlots;
         CloseState();
     }
 

@@ -18,6 +18,14 @@ public class InGameManager : MonoBehaviour
         }
         set { _player = value; }
     }
+    
+    public Skills myPlayerSkill
+    {
+        get
+        {
+            return myPlayer.setSkill();
+        }
+    }
 
     PlayerInfo _playerInfo;
     

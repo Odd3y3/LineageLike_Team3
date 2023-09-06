@@ -46,6 +46,8 @@ public class GameManager : Singleton<GameManager>
         //플레이어 생성
         SpawnPlayer(spawnPointNum);
 
+        UiManager.DefalutSetting();
+
         //카메라 바인드 설정
         FindObjectOfType<FollowCamera>().SetTarget(inGameManager.myPlayer.transform);
 
@@ -117,9 +119,9 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    public void StartNewGame()
+    public void StartNewGame(int index)
     {
-        FadeOut(() => sceneLoader.LoadScene(2, 0));
+        FadeOut(() => sceneLoader.LoadScene(index, 0));
         //sceneLoader.LoadScene(2, 0);
     }
 

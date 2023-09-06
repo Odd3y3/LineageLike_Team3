@@ -18,9 +18,6 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     private void Awake()
     {
         slots = myAllSlots;
-        mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
-        setSkill();
-        ChangeInfo();
     }
     // Start is called before the first frame update
     void Start()
@@ -72,9 +69,17 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
 
     public void setSkill()
     {
+        mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
         slots[0].mySkill = mySkills.QSkill;
         slots[1].mySkill = mySkills.WSkill;
         slots[2].mySkill = mySkills.ESkill;
+
+        foreach(SkillWindowSlot slots in slots)
+        {
+            slots.DefalutSetting();
+            slots.ChangeInfo();
+        }
+        ChangeInfo();
     }
 
     public void ChangeInfo()

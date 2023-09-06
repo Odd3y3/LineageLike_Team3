@@ -68,8 +68,6 @@ public class PlayerBattleSystem : BattleSystem
 
         //스킬 초기화
         InitSkill();
-
-        GameManager.Inst.UiManager?.mySkillUI.SetSkillUI(equippedSkills);
     }
 
     //public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)

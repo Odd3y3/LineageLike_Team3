@@ -20,16 +20,19 @@ public class SkillWindowSlot : UIProperty<SkillWindowSlot>
     // Start is called before the first frame update
     void Start()
     {
-        defalutAddDamage = mySkill.AddDamage;
-        defalutMultiDamage = mySkill.MultiDamage;
-        myImage.sprite = mySkill.Icon;
-        ChangeInfo();
         
     }
     // Update is called once per frame
     void Update()
     { 
 
+    }
+
+    public void DefalutSetting()
+    {
+        defalutAddDamage = mySkill.AddDamage;
+        defalutMultiDamage = mySkill.MultiDamage;
+        myImage.sprite = mySkill.Icon;
     }
 
     public void ChangeInfo()

@@ -2133,11 +2133,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
+  myExpBar: {fileID: 0}
   BattleStat:
     LV: 1
     MaxHP: 100
     MaxMP: 100
-    MaxExp: 0
+    MaxExp: 100
     DefaultAttackPoint: 30
     DefaultDefensePoint: 0
     AttackRange: 0

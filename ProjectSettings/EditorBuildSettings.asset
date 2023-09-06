@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/JinHyeok.unity
     guid: 9ee0212bf04b89841af86638b4d1cca0
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/TitleTest.unity
+    guid: 37c6b6676c173b341baa852cb8b28be4
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/MainTest.unity
+    guid: 0303ffa5dae706f4eb85651c743a4088
   m_configObjects: {}

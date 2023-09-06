@@ -11,13 +11,13 @@ public class SkillUI : UIProperty<SkillUISlot>
     private void Awake()
     {
         slots = myAllSlots;
-        mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SetSkillUI();
+        
+        //SetSkillUI();
     }
 
     // Update is called once per frame
@@ -40,6 +40,7 @@ public class SkillUI : UIProperty<SkillUISlot>
 
     public void SetSkillUI()
     {
+        mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
         slots[0].mySkill = mySkills.QSkill;
         slots[1].mySkill = mySkills.WSkill;
         slots[2].mySkill = mySkills.ESkill;

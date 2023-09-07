@@ -78,7 +78,7 @@ public class Monster : AImovement
 
 
         hpBarObj = Instantiate(Resources.Load("UI\\EnemyHPBar") as GameObject,
-            GameObject.Find("DynamicCanvas").transform);
+            GameObject.Find("DynamicCanvas").transform.GetChild(0));
         myHpBar = hpBarObj.GetComponent<Slider>();
         hpBarObj.GetComponent<EnemyHPBar>().SetTarget(transform);
         //myStatUI.Initialize(barPoint);

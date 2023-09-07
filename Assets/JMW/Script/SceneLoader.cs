@@ -56,7 +56,8 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(1.0f);
+        //yield return new WaitForSeconds(1.0f);
+        yield return null;
         GameManager.Inst.StartInGameScene(spawnPointNum);
     }
 }

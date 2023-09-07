@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3036,7 +3036,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ab4f6321f1d4c4da5e47f03608082e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 11400000, guid: 88d668a9eb5198d4f9dc08a599fcfaa6, type: 2}
+  saveData: {fileID: 11400000, guid: f46bc13c7684f8442bd6676fd12e2048, type: 2}
   tmp: {fileID: 35547109}
   deleteButton: {fileID: 1360461628}
 --- !u!1 &442017540
@@ -8619,7 +8619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ab4f6321f1d4c4da5e47f03608082e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 11400000, guid: f46bc13c7684f8442bd6676fd12e2048, type: 2}
+  saveData: {fileID: 11400000, guid: eaab8e4af09ced74daf1e513cb86769e, type: 2}
   tmp: {fileID: 702259059}
   deleteButton: {fileID: 1663184586}
 --- !u!1 &1244952296

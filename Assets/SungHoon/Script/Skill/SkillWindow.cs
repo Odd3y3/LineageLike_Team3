@@ -18,6 +18,7 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     private void Awake()
     {
         slots = myAllSlots;
+        CloseInventory();
     }
     // Start is called before the first frame update
     void Start()
@@ -67,7 +68,7 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
         Base.SetActive(false);
     }
 
-    public void setSkill()
+    public void SetSkill()
     {
         mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
         slots[0].mySkill = mySkills.QSkill;

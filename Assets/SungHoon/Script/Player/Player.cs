@@ -21,11 +21,13 @@ public class Player : PlayerBattleSystem
         //    GameManager.Inst.myPlayer = this;
         //}
         destinationMarker = Resources.Load<GameObject>("destinationMarker");
+
+        Initialize();
     }
 
     void Start()
     {
-        Initialize();
+        //Initialize();
     }
 
     void Update()
@@ -43,7 +45,7 @@ public class Player : PlayerBattleSystem
             if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
             {
                 //기본 공격
-                if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack")
+                if (Input.GetMouseButtonDown(0) && !myAnim.GetBool("IsAttack")
                     && !EventSystem.current.IsPointerOverGameObject())
                 {
                     StopMoveAndRotate();
@@ -67,6 +69,7 @@ public class Player : PlayerBattleSystem
 
         }
 
+        //Test용
         if (Input.GetKeyDown(KeyCode.F1))
         {
             LevelUp();
@@ -101,13 +104,16 @@ public class Player : PlayerBattleSystem
 
     public void LevelUp()
     {
-        curLv++;
+        BattleStat.LV++;
         BattleStat.MaxHP += 10;
+        curHP += 10;
         BattleStat.MaxMP += 10;
+        curMP += 10;
         BattleStat.MaxExp *= 2;
+        curExp = 0;
         curAttackPoint += 10;
         curDefensePoint+= 10;
-        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(curLv);
+        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(BattleStat.LV);
     }
 
     //public void OnSkill()
@@ -121,7 +127,7 @@ public class Player : PlayerBattleSystem
     //    }
     //}
 
-    public Skills setSkill()
+    public Skills GetSkill()
     {
         return equippedSkills;
     }
@@ -153,6 +159,8 @@ public class Player : PlayerBattleSystem
             StopCoroutine(comboCheckCoroutine);
     }
 
+
+    //대쉬 거리 증가
     public void OnDash()
     {
         StartCoroutine(DashCoroutine(0.5f, 3.0f));
@@ -224,7 +232,7 @@ public class Player : PlayerBattleSystem
 
     public void SetStatus(TMPro.TMP_Text[] statList)
     {
-        statList[0].text = curLv.ToString();
+        statList[0].text = BattleStat.LV.ToString();
         statList[1].text = BattleStat.MaxHP.ToString();
         statList[2].text = BattleStat.MaxMP.ToString();
         statList[3].text = curAttackPoint.ToString();

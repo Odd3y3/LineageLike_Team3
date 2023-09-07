@@ -7,8 +7,8 @@ public class SaveData : ScriptableObject
 {
     //저장할 데이터들
 
-    //BattleStat
+    public bool IsEmpty = true;
 
-    public GameObject charactorPrefab;
+    public PlayerInfo playerInfo;
 }
 

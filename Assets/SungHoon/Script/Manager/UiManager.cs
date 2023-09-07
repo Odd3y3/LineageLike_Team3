@@ -17,8 +17,17 @@ public class UiManager : MonoBehaviour
     public void DefalutSetting()
     {
         mySkillUI.SetSkillUI();
-        mySkillWindow.setSkill();
+        mySkillWindow.SetSkill();
 
     }
 
+    public void OnSaveButton()
+    {
+        GameManager.Inst.inGameManager.Save();
+    }
+
+    public void OnGoTitleButton()
+    {
+
+    }
 }

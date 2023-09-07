@@ -15,18 +15,18 @@ MonoBehaviour:
   IsEmpty: 0
   playerInfo:
     SceneNum: 2
-    Pos: {x: -25.652998, y: 1.0243376, z: -55.675694}
+    Pos: {x: -29.57, y: 1.34, z: -52.41}
     Gold: 0
-    CurHP: 140
-    CurMP: 140
-    CurAttackPoint: 70
-    CurDefencePoint: 40
+    CurHP: 100
+    CurMP: 100
+    CurAttackPoint: 30
+    CurDefencePoint: 0
     CurExp: 0
     BattleStat:
-      LV: 5
-      MaxHP: 140
-      MaxMP: 140
-      MaxExp: 1600
+      LV: 1
+      MaxHP: 100
+      MaxMP: 100
+      MaxExp: 100
       DefaultAttackPoint: 30
       DefaultDefensePoint: 0
       AttackRange: 0

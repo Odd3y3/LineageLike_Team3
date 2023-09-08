@@ -24,3 +24,4 @@ EditorBuildSettings:
     path: Assets/Scenes/SungHoon/MainTest.unity
     guid: 0303ffa5dae706f4eb85651c743a4088
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

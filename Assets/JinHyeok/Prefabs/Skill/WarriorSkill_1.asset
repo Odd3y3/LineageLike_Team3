@@ -12,14 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d843ffb05e06b5e4e954ea4567f2f467, type: 3}
   m_Name: WarriorSkill_1
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: e32aad571b880e549a22b1cc2f2f84a2, type: 3}
   AnimationClip: {fileID: 7400000, guid: cd8958db25b814e41ba3059f508325aa, type: 2}
   EffectPrefab: {fileID: 355429707437331680, guid: ba42b46a24d8b154c9084128f5f1fe67, type: 3}
   IsAreaSelect: 0
   AreaPrefab: {fileID: 0}
+  IsDash: 0
+  damageArea:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000}
+        m_TargetAssemblyTypeName: Skill, Assembly-CSharp
+        m_MethodName: WarriorSkill_1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MultiDamage: 2
   AddDamage: 0
   CoolTime: 5
-  currentCoolTime: 1.66622
+  AttackCount: 1
+  AttackInterval: 0.2
+  KnockackDist: 3
   Range: 1
   Duration: 0

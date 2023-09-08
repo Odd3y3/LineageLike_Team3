@@ -22,20 +22,9 @@ public class CharProperty : MonoBehaviour
         }
     }
 
-    int _lv =1;
-
-    protected int curLv
-    {
-        get => _lv;
-        set
-        {
-            _lv = value;
-        }
-    }
-
     float _hp = 0.0f;
 
-    protected float curHP
+    public float curHP
     {
         get => _hp;
         set
@@ -47,7 +36,7 @@ public class CharProperty : MonoBehaviour
 
     float _mp = 0.0f;
 
-    protected float curMP
+    public float curMP
     {
         get => _mp;
         set
@@ -58,7 +47,7 @@ public class CharProperty : MonoBehaviour
 
     float _ap = 0.0f;
 
-    protected float curAttackPoint
+    public float curAttackPoint
     {
         get => _ap;
         set
@@ -69,7 +58,7 @@ public class CharProperty : MonoBehaviour
 
     float _dp = 0.0f;
 
-    protected float curDefensePoint
+    public float curDefensePoint
     {
         get => _dp;
         set
@@ -78,8 +67,20 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    float _exp = 0.0f;
+
+    public float curExp
+    {
+        get => _exp;
+        set
+        {
+            _exp = Mathf.Clamp(value, 0.0f, BattleStat.MaxExp);
+            if (myExpBar != null) myExpBar.value = _exp / BattleStat.MaxExp;
+        }
+    }
 
     public Slider myHpBar = null;
+    public Slider myExpBar = null;
     protected float playTime = 0.0f;
     public BattleStat BattleStat;
 

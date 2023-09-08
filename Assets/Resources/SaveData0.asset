@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91eabd9b5152a4d45ba02955ac526576, type: 3}
+  m_Name: SaveData0
+  m_EditorClassIdentifier: 
+  IsEmpty: 0
+  playerInfo:
+    SceneNum: 2
+    Pos: {x: -29.57, y: 1.34, z: -52.41}
+    Gold: 0
+    CurHP: 100
+    CurMP: 100
+    CurAttackPoint: 30
+    CurDefencePoint: 0
+    CurExp: 0
+    BattleStat:
+      LV: 1
+      MaxHP: 100
+      MaxMP: 100
+      MaxExp: 100
+      DefaultAttackPoint: 30
+      DefaultDefensePoint: 0
+      AttackRange: 0
+      AttackDelay: 0
+      AttackSize: 1
+    PlayTime: 0

@@ -1,25 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : AImovement
 {
-
     public enum State
     {
         Create, Normal, Roaming, Battle, Dead
     }
+    public bool isRoaming = true;
 
     public State myState = State.Create;
 
     Vector3 startPos = Vector3.zero;
 
     public Transform barPoint = null;
-    public Transform uiHpBars = null;
+    Transform uiHpBars = null;
 
-    MonsterStatBar myStatUI = null;
+    GameObject hpBarObj = null;
 
-    protected Transform myTarget = null;
+    //MonsterStatBar myStatUI = null;
+
+    //protected Transform myTarget = null;
 
     void ChangeState(State s)
     {
@@ -28,21 +31,26 @@ public class Monster : AImovement
         switch (myState)
         {
             case State.Normal:
-                Vector3 rndDir = Vector3.forward;
-                Quaternion rndRot = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
-                float dist = Random.Range(0.0f, 5.0f);
-                rndDir = rndRot * rndDir * dist;
-                Vector3 rndPos = startPos + rndDir;
+                if (isRoaming)
+                {
+                    Vector3 rndDir = Vector3.forward;
+                    Quaternion rndRot = Quaternion.Euler(0, Random.Range(0.0f, 360.0f), 0);
+                    float dist = Random.Range(0.0f, 5.0f);
+                    rndDir = rndRot * rndDir * dist;
+                    Vector3 rndPos = startPos + rndDir;
 
-                MoveToPos(rndPos, () => StartCoroutine(Waiting(Random.Range(1.0f, 3.0f))));
-                ChangeState(State.Roaming);
+                    MoveToPos(rndPos, () => StartCoroutine(Waiting(Random.Range(1.0f, 3.0f))));
+                    ChangeState(State.Roaming);
+                }
                 break;
             case State.Battle:
-                AttackTarget(myPerception.myTarget);
+                AttackTarget(myTarget);
                 break;
             case State.Dead:
                 GetComponent<Collider>().enabled = false;
                 StopAllCoroutines();
+                myAnim.SetTrigger("Die");
+                DisAppear();
                 break;
         }
     }
@@ -62,16 +70,18 @@ public class Monster : AImovement
         yield return new WaitForSeconds(t);
         ChangeState(State.Normal);
     }
+
     // Start is called before the first frame update
     void Start()
     {
         Initialize();
 
-       
-        //myStatUI = Instantiate(Resources.Load("UI\\HpBar") as GameObject,
-        //    SceneData.Inst.HpBars).GetComponent<MonsterStatBar>();
+
+        hpBarObj = Instantiate(Resources.Load("UI\\EnemyHPBar") as GameObject,
+            GameObject.Find("DynamicCanvas").transform.GetChild(0));
+        myHpBar = hpBarObj.GetComponent<Slider>();
+        hpBarObj.GetComponent<EnemyHPBar>().SetTarget(transform);
         //myStatUI.Initialize(barPoint);
-        //myHpBar = myStatUI.mySlider;
 
         startPos = transform.position;
         ChangeState(State.Normal);
@@ -90,21 +100,35 @@ public class Monster : AImovement
         ChangeState(State.Battle);
     }
 
+    public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
+    {
+        if (myTarget == null) myTarget = GameManager.Inst.inGameManager.myPlayer.transform;
+        ChangeState(State.Battle);
+
+        base.OnDamage(dmg, attackVec, knockBackDist, isDown);
+
+        if(!IsLive)
+        {
+            ChangeState(State.Dead);
+        }
+    }
+
     //protected override void OnDead()
     //{
     //    ChangeState(State.Dead);
     //}
-   
-    public void DisAppear()
+
+    void DisAppear()
     {
-        StartCoroutine(DisAppearing(0.5f, 2.0f));
+        Destroy(hpBarObj);
+        StartCoroutine(DisAppearing(0.2f, 7.0f));
     }
     IEnumerator DisAppearing(float speed, float t)
     {
         yield return new WaitForSeconds(t);
-        Destroy(myStatUI.gameObject);
+        //Destroy(myStatUI.gameObject);
 
-        float dist = 1.0f;
+        float dist = 2.0f;
         while (dist > 0.0f)
         {
             float delta = speed * Time.deltaTime;

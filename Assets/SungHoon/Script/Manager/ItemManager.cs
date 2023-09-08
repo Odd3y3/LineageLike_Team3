@@ -43,7 +43,7 @@ public class ItemManager : Singleton<ItemManager>
     }
     private void Awake()
     {
-        Initialized();
+      //  base.Initialize();
     }
     void Start()
     {

@@ -10,6 +10,7 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     public UnityEvent SkillAction;
     public UnityEvent AttackAction;
     public UnityEvent DeadAction;
+    public UnityEvent DashAction;
 
     //public Transform Player = null;
     public UnityEvent SkillEffectStartAction;
@@ -43,5 +44,10 @@ public class PlayerAttackAnimEvent : MonoBehaviour
     public void OnSkillEffectStart()
     {
         SkillEffectStartAction?.Invoke();
+    }
+
+    public void OnDash()
+    {
+        DashAction?.Invoke();
     }
 }

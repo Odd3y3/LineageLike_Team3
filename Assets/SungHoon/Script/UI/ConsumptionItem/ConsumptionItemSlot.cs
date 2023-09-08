@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class ConsumptionItemSlot : UIObject,IDropHandler, IPointerClickHandler
+public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, IPointerClickHandler
 {
     public Item consumptionItem;
 

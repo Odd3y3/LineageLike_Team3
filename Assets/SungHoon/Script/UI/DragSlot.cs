@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DragSlot : UIObject
+public class DragSlot : UIObject<DragSlot>
 {
     static public DragSlot instance;
     public InventorySlot dragInventorySlot;

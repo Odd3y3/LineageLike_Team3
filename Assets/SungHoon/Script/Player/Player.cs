@@ -3,73 +3,89 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.AI;
+using UnityEngine.EventSystems;
 
 public class Player : PlayerBattleSystem
 {
-    NavMeshPath path = null;
     public Item PickUpItem = null;
-    public Transform myWeaponPos = null;
-    public LayerMask enemyMask;
     Coroutine comboCheckCoroutine;
+
+    public bool CanMove { get; set; } = false;
+
+    GameObject destinationMarker;
 
     private void Awake()
     {
-        GameManager.Inst.myPlayer = this;
+        //if (GameManager.Inst.myPlayer == null)
+        //{
+        //    GameManager.Inst.myPlayer = this;
+        //}
+        destinationMarker = Resources.Load<GameObject>("destinationMarker");
+
+        Initialize();
     }
 
     void Start()
     {
-        Initialize();
-        path = new NavMeshPath();
+        //Initialize();
     }
 
     void Update()
     {
-        //데미지
-        //이펙트
-
-
-        //대쉬 Space bar
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (CanMove)
         {
-            //StopMove();
-            //ImmediateRotate();
-            UseSkill(SkillKey.Dash);
+            //대쉬 Space bar
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                //StopMove();
+                //ImmediateRotate();
+                UseSkill(SkillKey.Dash);
+            }
+
+            if (!IsSkillAreaSelecting && !myAnim.GetBool("IsDamaged"))
+            {
+                //기본 공격
+                if (Input.GetMouseButtonDown(0) && !myAnim.GetBool("IsAttack")
+                    && !EventSystem.current.IsPointerOverGameObject())
+                {
+                    StopMoveAndRotate();
+                    myAnim.SetBool("BaseAttack", true);
+                }
+
+                //스킬 애니메이션
+                if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.QSkill);
+                }
+                if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.WSkill);
+                }
+                if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
+                {
+                    UseSkill(SkillKey.ESkill);
+                }
+            }
+
         }
 
-        if (!IsSkillAreaSelecting)
+        //Test용
+        if (Input.GetKeyDown(KeyCode.F1))
         {
-            //기본 공격
-            if (Input.GetMouseButton(0) && !myAnim.GetBool("IsAttack"))
-            {
-                StopMoveAndRotate();
-                myAnim.SetBool("BaseAttack", true);
-            }
-
-            //스킬 애니메이션
-            if (Input.GetKeyDown(KeyCode.Q) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.QSkill);
-            }
-            if (Input.GetKeyDown(KeyCode.W) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.WSkill);
-            }
-            if (Input.GetKeyDown(KeyCode.E) && !myAnim.GetBool("IsAttack"))
-            {
-                UseSkill(SkillKey.ESkill);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            OnDamage(10);
+            LevelUp();
         }
     }
 
-    public new void OnDamage(float dmg)
+    public void OnMouseClickMove(Vector3 pos)
     {
-        curHP -= dmg;
+        if(CanMove && !myAnim.GetBool("IsDamaged") && !EventSystem.current.IsPointerOverGameObject())
+        {
+            //destination point 생성
+            GameObject marker = Instantiate(destinationMarker);
+            marker.transform.position = pos;
+            //이동
+            MovePosByPath(pos);
+        }
     }
 
     //public void OnSkillEffect(GameObject Effect)
@@ -86,27 +102,35 @@ public class Player : PlayerBattleSystem
         Destroy(obj);
     }
 
-    public void OnAttak()
+    public void LevelUp()
     {
-        Collider[] myCols = Physics.OverlapSphere(myWeaponPos.position, 1.0f, enemyMask);
-        foreach(Collider col in myCols)
-        {
-            IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint);
-        }
+        BattleStat.LV++;
+        BattleStat.MaxHP += 10;
+        curHP += 10;
+        BattleStat.MaxMP += 10;
+        curMP += 10;
+        BattleStat.MaxExp *= 2;
+        curExp = 0;
+        curAttackPoint += 10;
+        curDefensePoint+= 10;
+        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(BattleStat.LV);
     }
 
-    public void OnSkill()
+    //public void OnSkill()
+    //{
+
+    //        Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
+    //    foreach (Collider col in myCols)
+    //    {
+    //        IDamage damage = col.GetComponent<IDamage>();
+    //        if (damage != null) damage.OnDamage(curAttackPoint + skillDamage);
+    //    }
+    //}
+
+    public Skills GetSkill()
     {
-
-            Collider[] myCols = Physics.OverlapSphere(transform.position, skillRadius, enemyMask);
-        foreach (Collider col in myCols)
-        {
-            IDamage damage = col.GetComponent<IDamage>();
-            if (damage != null) damage.OnDamage(curAttackPoint + skillDamage);
-        }
+        return equippedSkills;
     }
-
 
     public void OnComboCheckStart()
     {
@@ -119,9 +143,10 @@ public class Player : PlayerBattleSystem
 
         while (true)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 myAnim.SetBool("BaseAttack", true);
+                break;
             }
             yield return null;
         }
@@ -130,8 +155,29 @@ public class Player : PlayerBattleSystem
 
     public void OnComboCheckEnd()
     {
-        StopCoroutine(comboCheckCoroutine);
+        if(comboCheckCoroutine != null)
+            StopCoroutine(comboCheckCoroutine);
     }
+
+
+    //대쉬 거리 증가
+    public void OnDash()
+    {
+        StartCoroutine(DashCoroutine(0.5f, 3.0f));
+    }
+    IEnumerator DashCoroutine(float time, float speed)
+    {
+        float t = 0;
+        while (t < time)
+        {
+            transform.position += transform.forward * speed * Time.deltaTime;
+
+            yield return null;
+            t += Time.deltaTime;
+        }
+    }
+
+    //==============================================================================
 
     public void OnAcquisition(Item acquisitionItem) 
     {
@@ -182,36 +228,15 @@ public class Player : PlayerBattleSystem
         }
     }
 
-    public void MovePos(Vector3 pos)
-    {
-        if (NavMesh.CalculatePath(transform.position, pos, NavMesh.AllAreas, path) && !myAnim.GetBool("IsAttack"))
-        {
-            StopMove();
-            //StopAllCoroutines();
-
-            moveCoroutineList.Add(StartCoroutine(MovingByPath(path.corners)));
-        }
-    }
-
-    IEnumerator MovingByPath(Vector3[] list)
-    {
-        int i = 0;
-        while (i < list.Length - 1)
-        {
-            Coroutine co = StartCoroutine(MovingToPos(list[i + 1], () => ++i));
-            moveCoroutineList.Add(co);
-            yield return co;
-        }
-    }
+    
 
     public void SetStatus(TMPro.TMP_Text[] statList)
     {
-        statList[0].text = curLv.ToString();
+        statList[0].text = BattleStat.LV.ToString();
         statList[1].text = BattleStat.MaxHP.ToString();
         statList[2].text = BattleStat.MaxMP.ToString();
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
-
     
 }

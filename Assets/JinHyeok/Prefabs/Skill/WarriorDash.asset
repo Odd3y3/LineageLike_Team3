@@ -12,15 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d843ffb05e06b5e4e954ea4567f2f467, type: 3}
   m_Name: WarriorDash
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 62ce59ce09148c847b198159a3abc9f6, type: 3}
   AnimationClip: {fileID: 7400000, guid: 05294fbecbbbd1a40b5b40fb2c33e147, type: 2}
   EffectPrefab: {fileID: 0}
   IsAreaSelect: 0
   AreaPrefab: {fileID: 0}
   IsDash: 1
+  damageArea:
+    m_PersistentCalls:
+      m_Calls: []
   MultiDamage: 2
   AddDamage: 0
   CoolTime: 3
-  currentCoolTime: -0.00036381464
+  AttackCount: 1
+  AttackInterval: 0.2
+  KnockackDist: 0
   Range: 1
   Duration: 0

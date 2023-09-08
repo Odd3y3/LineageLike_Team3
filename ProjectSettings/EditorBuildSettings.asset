@@ -4,5 +4,24 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Main/LoadingScene.unity
+    guid: ee34798b11ea1d7498713f7b4a76dad2
+  - enabled: 1
+    path: Assets/Scenes/Main/Title.unity
+    guid: 4918e672e782f2f4ca524fce6b776276
+  - enabled: 1
+    path: Assets/Scenes/Main/Main.unity
+    guid: 48b662bbf22c4a74a9d8a22405a0f0c6
+  - enabled: 1
+    path: Assets/Scenes/Main/TestSecondMap.unity
+    guid: 36fb66628ae82194e88f4fc5eed9ec68
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/TitleTest.unity
+    guid: 37c6b6676c173b341baa852cb8b28be4
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/MainTest.unity
+    guid: 0303ffa5dae706f4eb85651c743a4088
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

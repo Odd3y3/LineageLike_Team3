@@ -734,6 +734,7 @@ MonoBehaviour:
   sceneLoader: {fileID: 0}
   spawnPoints: {fileID: 0}
   FadeInOutImage: {fileID: 0}
+  curSceneNum: 1
 --- !u!1 &185569196
 GameObject:
   m_ObjectHideFlags: 0
@@ -2034,6 +2035,7 @@ MonoBehaviour:
   myEquipment: {fileID: 1786476301}
   myConsumptionItem: {fileID: 2054673427}
   mySkillUI: {fileID: 1770285088}
+  mySkillWindow: {fileID: 0}
 --- !u!1001 &550776753
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4859,6 +4861,7 @@ MonoBehaviour:
   myEquipment: {fileID: 1786476301}
   myConsumptionItem: {fileID: 2054673427}
   mySkillUI: {fileID: 1770285088}
+  mySkillWindow: {fileID: 0}
 --- !u!4 &1064275931
 Transform:
   m_ObjectHideFlags: 0

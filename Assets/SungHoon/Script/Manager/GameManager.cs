@@ -22,8 +22,6 @@ public class GameManager : Singleton<GameManager>
     private void Awake()
     {
         base.Initialize();
-
-        //로드 할 수 있는 정보 불러오기(Load Slot)
     }
 
     void Start()
@@ -33,11 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        //if(ItemManager==null || UiManager == null)
-        //{
-        //    ItemManager = FindObjectOfType<ItemManager>();
-        //    UiManager = FindObjectOfType<UiManager>();
-        //}
+        
     }
 
     public void StartInGameScene(int spawnPointNum)
@@ -163,6 +157,10 @@ public class GameManager : Singleton<GameManager>
     {
         curSceneNum = sceneNum;
         FadeOut(() => sceneLoader.LoadScene(sceneNum, spawnPointNum));
-        //sceneLoader.LoadScene(sceneNum, spawnPointNum);
+    }
+
+    public void GameOver()
+    {
+        UiManager.myGameOverWindow.SetActive(true);
     }
 }

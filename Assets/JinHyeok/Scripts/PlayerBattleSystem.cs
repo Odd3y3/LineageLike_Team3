@@ -25,7 +25,9 @@ public class SkillInfo
 }
 
 public class PlayerBattleSystem : BattleSystem
-{   
+{
+    public bool CanMove { get; set; } = false;
+
     protected enum SkillKey
     {
         Dash,
@@ -70,15 +72,26 @@ public class PlayerBattleSystem : BattleSystem
         InitSkill();
     }
 
-    //public new void OnDamage(float dmg, AttackType attackType, Vector3 attackVec, float knockBackDist)
-    //{
-    //    curHP -= dmg - curDefensePoint;
-    //}
 
     public override void OnDamage(float dmg, Vector3 attackVec, float knockBackDist, bool isDown)
     {
-        if(!myAnim.GetBool("IsImmunity"))
+        if (!myAnim.GetBool("IsImmunity"))
+        {
             base.OnDamage(dmg, attackVec, knockBackDist, isDown);
+            if (!IsLive)
+            {
+                //Game Over
+                GameManager.Inst.GameOver();
+                PlayerDead();
+            }
+        }
+    }
+
+    void PlayerDead()
+    {
+        CanMove = false;
+        myAnim.SetTrigger("Die");
+        myAnim.SetBool("IsImmunity", true);
     }
 
     void InitSkill()

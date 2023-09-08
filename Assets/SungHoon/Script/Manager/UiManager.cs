@@ -12,6 +12,9 @@ public class UiManager : MonoBehaviour
     public ConsumptionItem myConsumptionItem;
     public SkillUI mySkillUI;
     public SkillWindow mySkillWindow;
+    public MiniMap myMiniMap;
+
+    public GameObject myGameOverWindow;
 
 
     public void DefalutSetting()
@@ -19,6 +22,7 @@ public class UiManager : MonoBehaviour
         mySkillUI.SetSkillUI();
         mySkillWindow.SetSkill();
 
+        myMiniMap?.SetTarget();
     }
 
     public void OnSaveButton()

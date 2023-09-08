@@ -7,11 +7,11 @@ using UnityEngine;
 public class QuestDataObject : ScriptableObject
 {
     public QuestObject[] questObject;
-    public void OnValidate()
-    {
-        for(int index=0; index < questObject.Length; ++index)
-        {
-            questObject[index].data.id = index;
-        }
-    }
+    //public void OnValidate()
+    //{
+    //    for(int index=0; index < questObject.Length; ++index)
+    //    {
+    //        questObject[index].data.id = index;
+    //    }
+    //}
 }

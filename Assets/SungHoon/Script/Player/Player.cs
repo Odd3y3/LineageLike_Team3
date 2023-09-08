@@ -10,7 +10,7 @@ public class Player : PlayerBattleSystem
     public Item PickUpItem = null;
     Coroutine comboCheckCoroutine;
 
-    public bool CanMove { get; set; } = false;
+    
 
     GameObject destinationMarker;
 

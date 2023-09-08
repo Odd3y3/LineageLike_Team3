@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6588,7 +6588,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   saveDatas:
   - {fileID: 11400000, guid: eaab8e4af09ced74daf1e513cb86769e, type: 2}
-  - {fileID: 11400000, guid: f46bc13c7684f8442bd6676fd12e2048, type: 2}
+  - {fileID: 11400000, guid: 88d668a9eb5198d4f9dc08a599fcfaa6, type: 2}
   - {fileID: 11400000, guid: 49ff415c0fc33d2408e5eac0be0b2495, type: 2}
   curSaveSlotNum: -1
 --- !u!4 &915212986

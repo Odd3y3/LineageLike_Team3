@@ -4,14 +4,30 @@ using UnityEngine;
 
 public class MiniMap : MonoBehaviour
 {
-    public Transform Player;
-
-    private void LateUpdate()
+    Transform _target;
+    public void SetTarget()
     {
-        Vector3 newPosition = Player.position;
-        newPosition.y = transform.position.y;
-        transform.position = newPosition;
-
-        //transform.rotation = Quaternion.Euler(90f, Player.eulerAngles.y, 0f);
+        _target = GameManager.Inst.inGameManager.myPlayer.transform;
+        StartCoroutine(Following());
     }
+
+    IEnumerator Following()
+    {
+        while (true)
+        {
+            Vector3 newPosition = _target.position;
+            newPosition.y = transform.position.y;
+            transform.position = newPosition;
+            yield return null;
+        }
+    }
+
+    //private void LateUpdate()
+    //{
+    //    Vector3 newPosition = Player.position;
+    //    newPosition.y = transform.position.y;
+    //    transform.position = newPosition;
+
+    //    //transform.rotation = Quaternion.Euler(90f, Player.eulerAngles.y, 0f);
+    //}
 }

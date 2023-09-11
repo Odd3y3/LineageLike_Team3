@@ -12,8 +12,7 @@ public enum QuestStatus
 
 [CreateAssetMenu(fileName = "new Quest", menuName = "Quest system/Quests/ New Quest")]
 public class QuestObject : ScriptableObject
-
 {
-    public Quest data = new Quest();
+    public Quest data;
     public QuestStatus status;
 }

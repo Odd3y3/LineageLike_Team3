@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class QuestDataObject : ScriptableObject
 {
-    public QuestObject[] questObject;
+    public QuestObject[] questObjects;
     //public void OnValidate()
     //{
     //    for(int index=0; index < questObject.Length; ++index)

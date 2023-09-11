@@ -1,9 +1,9 @@
-﻿
+﻿using UnityEngine;
 public interface IInteractable
 {
-    /*
+   
     float Distance { get; }
-    bool Interact(GameObject other);
-    void StopInteract(GameObject other);*/
+    void Interact(GameObject other);
+    void StopInteract(GameObject other);
 
 }

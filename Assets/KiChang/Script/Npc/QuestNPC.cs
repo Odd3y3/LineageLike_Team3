@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class QuestNPC : MonoBehaviour
+public class QuestNPC : MonoBehaviour, IInteractable
 {
+    public LayerMask playerMask;
+
     public QuestObject questObject;
 
     public Dialogue readyDialogue;
@@ -16,7 +18,7 @@ public class QuestNPC : MonoBehaviour
     GameObject interactGO = null;
     private void Start()
     {
-        QuestManage.Instance.OnCompletedQuest += OnCompleteQuest;
+        QuestManager.Instance.OnCompletedQuest += OnCompleteQuest;
 
     }
 
@@ -27,7 +29,7 @@ public class QuestNPC : MonoBehaviour
 
     public Action<QuestObject> OnCompleteQuest { get; private set; }
 
-    public void Intetact(GameObject other)
+    public void Interact(GameObject other)
     {
         float calcDistance = Vector3.Distance(other.transform.position, transform.position);
         if (calcDistance > distance)
@@ -40,21 +42,21 @@ public class QuestNPC : MonoBehaviour
         }
         this.interactGO = other;
 
-        DialogueManage.Instance.OnEndDialogue += OnEndDialogue;
+        DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
         isStartDialogue = true;
         if(questObject.status == QuestStatus.None)
         {
-            DialogueManage.Instance.StartDialogue(readyDialogue);
+            DialogueManager.Instance.StartDialogue(readyDialogue);
             questObject.status = QuestStatus.Accepted;
         }
         else if(questObject.status == QuestStatus.Accepted)
         {
-            DialogueManage.Instance.StartDialogue(acceptedDialogue);
+            DialogueManager.Instance.StartDialogue(acceptedDialogue);
         }
 
         else if (questObject.status ==QuestStatus.Completed)
         {
-            DialogueManage.Instance.StartDialogue(completedDialogue);
+            DialogueManager.Instance.StartDialogue(completedDialogue);
          
             questObject.status = QuestStatus.Rewarded;
         }
@@ -75,4 +77,14 @@ public class QuestNPC : MonoBehaviour
     }
     #endregion Methods
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if ((1 << other.gameObject.layer & playerMask) != 0)
+        {
+            Interact(other.gameObject);
+        }
+        //DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
+        //isStartDialogue = true;
+        //DialogueManager.Instance.StartDialogue(dialogue);
+    }
 }

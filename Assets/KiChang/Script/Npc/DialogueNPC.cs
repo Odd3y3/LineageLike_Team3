@@ -15,7 +15,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     GameObject interactGO;
 
     [SerializeField]
-    float distance = 2.0f;
+    float distance = 5.0f;
 
     public float Distance => distance;
 
@@ -47,9 +47,7 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     {
         if ((1 << other.gameObject.layer & playerMask) != 0)
         {
-            DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
-            isStartDialogue = true;
-            DialogueManager.Instance.StartDialogue(dialogue);
+            Interact(other.gameObject);
         }
         //DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
         //isStartDialogue = true;

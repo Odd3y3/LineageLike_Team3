@@ -10,7 +10,7 @@ public enum QuestType
 }
 
 [Serializable]
-public class Quest : MonoBehaviour
+public struct Quest
 {
     
     public int id;

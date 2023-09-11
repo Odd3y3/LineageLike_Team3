@@ -26,7 +26,7 @@ public class SkillInfo
 
 public class PlayerBattleSystem : BattleSystem
 {
-    public bool CanMove { get; set; } = false;
+    public bool CanMove { get; set; } = true;
 
     protected enum SkillKey
     {

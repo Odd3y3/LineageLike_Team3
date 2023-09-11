@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueNPC : MonoBehaviour// IInteractable
+public class DialogueNPC : MonoBehaviour, IInteractable
 {
     public LayerMask playerMask;
 
@@ -31,27 +31,29 @@ public class DialogueNPC : MonoBehaviour// IInteractable
         }
         interactGO = other;
 
-        DialogueManage.Instance.OnEndDialogue += OnEndDialogue;
+        DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
         isStartDialogue = true;
-        DialogueManage.Instance.StartDialogue(dialogue);
+        DialogueManager.Instance.StartDialogue(dialogue);
     }
-    public void StopInteraction(GameObject other)
+    public void StopInteract(GameObject other)
     {
         isStartDialogue = false;
     }
     private void OnEndDialogue()
     {
-        StopInteraction(interactGO);
+        StopInteract(interactGO);
     }
     private void OnTriggerEnter(Collider other)
     {
         if ((1 << other.gameObject.layer & playerMask) != 0)
         {
+            DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
             isStartDialogue = true;
+            DialogueManager.Instance.StartDialogue(dialogue);
         }
-        DialogueManage.Instance.OnEndDialogue += OnEndDialogue;
-        isStartDialogue = true;
-        DialogueManage.Instance.StartDialogue(dialogue);
+        //DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
+        //isStartDialogue = true;
+        //DialogueManager.Instance.StartDialogue(dialogue);
     }
 
 }

@@ -16,10 +16,10 @@ MonoBehaviour:
     id: 0
     type: 0
     targetId: 0
-    count: 0
+    count: 1
     completeCount: 0
-    rewardExp: 0
-    rewardGold: 0
+    rewardExp: 10
+    rewardGold: 10
     rewardItemId: 0
     title: 
     description: 

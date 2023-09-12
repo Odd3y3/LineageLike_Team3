@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 
 public class QuestNPC : MonoBehaviour, IInteractable
@@ -9,6 +11,9 @@ public class QuestNPC : MonoBehaviour, IInteractable
     public LayerMask playerMask;
 
     public QuestObject questObject;
+    [SerializeField] GameObject QuestEffectGO;
+    [SerializeField] GameObject QuestRewardGO;
+
 
     public Dialogue readyDialogue;
     public Dialogue acceptedDialogue;
@@ -16,9 +21,12 @@ public class QuestNPC : MonoBehaviour, IInteractable
 
     bool isStartDialogue = false;
     GameObject interactGO = null;
+   
+    
     private void Start()
     {
         QuestManager.Instance.OnCompletedQuest += OnCompleteQuest;
+        
 
     }
 
@@ -52,13 +60,14 @@ public class QuestNPC : MonoBehaviour, IInteractable
         else if(questObject.status == QuestStatus.Accepted)
         {
             DialogueManager.Instance.StartDialogue(acceptedDialogue);
+            
         }
 
         else if (questObject.status ==QuestStatus.Completed)
         {
             DialogueManager.Instance.StartDialogue(completedDialogue);
          
-            questObject.status = QuestStatus.Rewarded;
+            questObject.status = QuestStatus.Rewarded;   
         }
      }
     public void StopInteract(GameObject other)
@@ -73,7 +82,8 @@ public class QuestNPC : MonoBehaviour, IInteractable
     }
     private void OnCompletedQuest(GameObject questObject)
     {
-
+       //if (questObject.data.id == this.questObject.id && questObject.status == QuestStatus.Completed)
+      //  {        }
     }
     #endregion Methods
 

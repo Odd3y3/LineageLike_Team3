@@ -68,6 +68,10 @@ public class Item : ScriptableObject
     }
 
     [SerializeField]
-    public GameObject Effect;
+    public GameObject _object;
+    public GameObject Object
+    {
+        get { return _object; }
+    }
 
 }

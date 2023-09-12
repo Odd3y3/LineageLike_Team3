@@ -20,4 +20,4 @@ MonoBehaviour:
   _statPoint: 30
   _sprite: {fileID: 21300000, guid: a20d322c5e65a6746808e67a31dfe555, type: 3}
   _stack: 5
-  Effect: {fileID: 0}
+  _object: {fileID: 157152, guid: 03eb254be55316240929244bd19caa02, type: 3}

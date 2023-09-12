@@ -16,11 +16,12 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private Image FadeInOutImage;
 
+    [HideInInspector]
+    public int curSceneNum = 1;
+
     private void Awake()
     {
         base.Initialize();
-
-        //로드 할 수 있는 정보 불러오기(Load Slot)
     }
 
     void Start()
@@ -30,11 +31,7 @@ public class GameManager : Singleton<GameManager>
 
     void Update()
     {
-        //if(ItemManager==null || UiManager == null)
-        //{
-        //    ItemManager = FindObjectOfType<ItemManager>();
-        //    UiManager = FindObjectOfType<UiManager>();
-        //}
+        
     }
 
     public void StartInGameScene(int spawnPointNum)
@@ -48,6 +45,7 @@ public class GameManager : Singleton<GameManager>
         //플레이어 생성
         SpawnPlayer(spawnPointNum);
 
+        //UI설정
         UiManager.DefalutSetting();
 
         //카메라 바인드 설정
@@ -104,13 +102,22 @@ public class GameManager : Singleton<GameManager>
         //ui hpBar 바인딩
         inGameManager.myPlayer.myHpBar = UiManager.myHpSlider;
 
-        //플레이어 스폰 위치
-        spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
-        if (spawnPoints != null)
+        //플레이어 정보 받기 (SaveData)
+        inGameManager.Load(inGameManager.myPlayer);
+        
+        //-1이 아니면 해당 스폰포인트로 이동
+        if (spawnPointNum != -1)
         {
-            inGameManager.myPlayer.transform.position = 
-                spawnPoints.spawnPoint[spawnPointNum].transform.position;
+            //스폰 포인트로 플레이어 이동
+            spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
+            if (spawnPoints != null)
+            {
+                inGameManager.myPlayer.transform.position = 
+                    spawnPoints.spawnPoint[spawnPointNum].transform.position;
+            }
+
         }
+
     }
 
     /// <summary>
@@ -121,20 +128,41 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    public void StartNewGame(int index)
+    public void StartNewGame(int sceneNum)
     {
-        FadeOut(() => sceneLoader.LoadScene(index, 0));
+        //test
+        inGameManager.curSaveSlotNum = 0;
+
+        curSceneNum = sceneNum;
+        FadeOut(() => sceneLoader.LoadScene(sceneNum, 0));
         //sceneLoader.LoadScene(2, 0);
     }
 
-    public void StartLoadGame()
+    public void StartLoadGame(int saveSlotNum)
     {
-
+        SaveData saveData = inGameManager.saveDatas[saveSlotNum];
+        if (saveData.IsEmpty)
+        {
+            inGameManager.curSaveSlotNum = saveSlotNum;
+            curSceneNum = 2;
+            FadeOut(() => sceneLoader.LoadScene(curSceneNum, 0));
+        }
+        else
+        {
+            inGameManager.curSaveSlotNum = saveSlotNum;
+            curSceneNum = saveData.playerInfo.SceneNum;
+            FadeOut(() => sceneLoader.LoadScene(curSceneNum, -1));
+        }
     }
 
     public void MapChange(int sceneNum, int spawnPointNum)
     {
+        curSceneNum = sceneNum;
         FadeOut(() => sceneLoader.LoadScene(sceneNum, spawnPointNum));
-        //sceneLoader.LoadScene(sceneNum, spawnPointNum);
+    }
+
+    public void GameOver()
+    {
+        UiManager.myGameOverWindow.SetActive(true);
     }
 }

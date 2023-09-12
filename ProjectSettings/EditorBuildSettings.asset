@@ -13,13 +13,10 @@ EditorBuildSettings:
     guid: 4918e672e782f2f4ca524fce6b776276
   - enabled: 1
     path: Assets/Scenes/Main/Main.unity
-    guid: 968b917a4040160428382326ecae7cd9
+    guid: 48b662bbf22c4a74a9d8a22405a0f0c6
   - enabled: 1
-    path: Assets/Scenes/Main/TestSecondMap.unity
-    guid: 36fb66628ae82194e88f4fc5eed9ec68
-  - enabled: 1
-    path: Assets/Scenes/JinHyeok.unity
-    guid: 9ee0212bf04b89841af86638b4d1cca0
+    path: Assets/Scenes/Main/MainDungeon.unity
+    guid: f923f259c814610479013381ed68b734
   - enabled: 1
     path: Assets/Scenes/SungHoon/TitleTest.unity
     guid: 37c6b6676c173b341baa852cb8b28be4
@@ -27,3 +24,4 @@ EditorBuildSettings:
     path: Assets/Scenes/SungHoon/MainTest.unity
     guid: 0303ffa5dae706f4eb85651c743a4088
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

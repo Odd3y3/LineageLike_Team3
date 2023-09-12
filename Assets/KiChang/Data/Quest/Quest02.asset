@@ -12,5 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ecc4f27005dc244498c1b9b7591d355, type: 3}
   m_Name: Quest02
   m_EditorClassIdentifier: 
-  data: {fileID: 0}
-  status: 0
+  data:
+    id: 1
+    type: 0
+    targetId: 1
+    count: 5
+    completeCount: 0
+    rewardExp: 5
+    rewardGold: 5
+    rewardItemId: 5
+    title: Monster
+    description: Destroy Enemy
+  status: 3

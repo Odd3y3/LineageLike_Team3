@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Monster : AImovement
 {
@@ -129,6 +130,7 @@ public class Monster : AImovement
     {
         Destroy(hpBarObj);
         StartCoroutine(DisAppearing(0.2f, 7.0f));
+       // QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, 0);
     }
     IEnumerator DisAppearing(float speed, float t)
     {
@@ -144,5 +146,5 @@ public class Monster : AImovement
             yield return null;
         }
         Destroy(gameObject);
-    }
+     }
 }

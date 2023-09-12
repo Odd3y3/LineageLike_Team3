@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using UnityEngine.UI;
 
 
@@ -26,8 +28,29 @@ public class QuestNPC : MonoBehaviour, IInteractable
     private void Start()
     {
         QuestManager.Instance.OnCompletedQuest += OnCompleteQuest;
-        
-
+    }
+    private void Update()
+    {
+        if (questObject.status == QuestStatus.None)
+        {
+            QuestEffectGO.SetActive(true);
+            QuestRewardGO.SetActive(false);
+        }
+        else if(questObject.status == QuestStatus.Accepted)
+        {
+            QuestEffectGO.SetActive(false);
+            QuestRewardGO.SetActive(false);
+        }
+        else if (questObject.status == QuestStatus.Completed)
+        {
+            QuestEffectGO.SetActive(false);
+            QuestRewardGO.SetActive(true);
+        }
+        else if (questObject.status == QuestStatus.Rewarded)
+        {
+            QuestEffectGO.SetActive(false);
+            QuestRewardGO.SetActive(false);
+        }
     }
 
     #region IInteractable Interface
@@ -62,7 +85,6 @@ public class QuestNPC : MonoBehaviour, IInteractable
             DialogueManager.Instance.StartDialogue(acceptedDialogue);
             
         }
-
         else if (questObject.status ==QuestStatus.Completed)
         {
             DialogueManager.Instance.StartDialogue(completedDialogue);

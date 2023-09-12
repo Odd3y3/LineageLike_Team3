@@ -12,6 +12,8 @@ public class DialogueManager : MonoBehaviour
     
     public TMPro.TextMeshProUGUI nameText;
     public TMPro.TextMeshProUGUI dialogueText;
+    public GameObject nextButton;
+    public GameObject acceptButton;
 
     public Animator animator = null;
 
@@ -32,6 +34,9 @@ public class DialogueManager : MonoBehaviour
     }
     public void StartDialogue(Dialogue dialogue)
     {
+        nextButton.SetActive(true);
+        acceptButton.SetActive(false);
+
         OnStartDialogue?.Invoke();
         animator?.SetBool("IsOpen", true);
 
@@ -52,6 +57,11 @@ public class DialogueManager : MonoBehaviour
             //OnEndDialogue();
             EndDialogue();
             return;
+        }
+        else if(sentences.Count == 1)
+        {
+            nextButton.SetActive(false);
+            acceptButton.SetActive(true);
         }
         string sentence = sentences.Dequeue();
         StopAllCoroutines();

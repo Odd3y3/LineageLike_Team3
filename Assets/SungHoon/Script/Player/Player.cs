@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public class Player : PlayerBattleSystem
+public class Player : PlayerBattleSystem, ICutScene
 {
     public Item PickUpItem = null;
     Coroutine comboCheckCoroutine;
@@ -175,6 +175,19 @@ public class Player : PlayerBattleSystem
             yield return null;
             t += Time.deltaTime;
         }
+    }
+
+    //ÄÆ¾À °ü·Ã
+    public void OnStartCutScene()
+    {
+        CanMove = false;
+        myAnim.SetBool("IsMove", false);
+        StopMoveAndRotate();
+    }
+
+    public void OnEndCutScene()
+    {
+        CanMove = true;
     }
 
     //==============================================================================

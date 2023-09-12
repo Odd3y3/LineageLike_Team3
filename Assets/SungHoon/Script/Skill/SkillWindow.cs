@@ -18,7 +18,7 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     private void Awake()
     {
         slots = myAllSlots;
-        CloseInventory();
+        CloseSkillWindow();
     }
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,10 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     // Update is called once per frame
     void Update()
     {
-        TryOpenSkillWindow();
+        if (Input.GetKeyDown(KeyCode.K) && !MenuUI.GameIsPaused)
+        {
+            TryOpenSkillWindow();
+        }
         if (SkillPoint <= 0)
         {
             foreach (SkillWindowSlot slots in slots)
@@ -39,36 +42,32 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
         }
     }
 
-    private void TryOpenSkillWindow()
+    public void TryOpenSkillWindow()
     {
-        if (Input.GetKeyDown(KeyCode.K) && !MenuUI.GameIsPaused)
-        {
             skillWindowActivated = !skillWindowActivated;
 
             if (skillWindowActivated)
             {
-                OpenInventory();
+                OpenSkillWindow();
             }
             else
             {
-                CloseInventory();
+                CloseSkillWindow();
             }
-        }
-
     }
 
-    private void OpenInventory()
+    private void OpenSkillWindow()
     {
         Base.SetActive(true);
 
     }
 
-    private void CloseInventory()
+    private void CloseSkillWindow()
     {
         Base.SetActive(false);
     }
 
-    public void SetSkill()
+    public void setSkill()
     {
         mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
         slots[0].mySkill = mySkills.QSkill;

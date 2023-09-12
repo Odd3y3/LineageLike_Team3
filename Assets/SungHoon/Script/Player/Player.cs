@@ -8,11 +8,14 @@ using UnityEngine.EventSystems;
 public class Player : PlayerBattleSystem, ICutScene
 {
     public Item PickUpItem = null;
+
     Coroutine comboCheckCoroutine;
 
     
 
     GameObject destinationMarker;
+
+    public int Gold = 0;
 
     private void Awake()
     {
@@ -241,8 +244,6 @@ public class Player : PlayerBattleSystem, ICutScene
         }
     }
 
-    
-
     public void SetStatus(TMPro.TMP_Text[] statList)
     {
         statList[0].text = BattleStat.LV.ToString();
@@ -251,5 +252,11 @@ public class Player : PlayerBattleSystem, ICutScene
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
-    
+
+    public void GoldDrop(int gold)
+    {
+        Gold += gold;
+        GameManager.Inst.UiManager.myGoodsUI.DropCoin(Gold);
+    }
+
 }

@@ -11,14 +11,20 @@ public class MenuUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
-            {
-                Resume();
-            }
-            else
-            {
-                Pause();
-            }
+            TryOpenMenuUI();
+        }
+    }
+
+    public void TryOpenMenuUI()
+    {
+        GameIsPaused = !GameIsPaused;
+        if (GameIsPaused)
+        {
+            Pause();
+        }
+        else
+        {
+            Resume();
         }
     }
 
@@ -27,7 +33,6 @@ public class MenuUI : MonoBehaviour
         pauseMenuCanvas.SetActive(false);
         BG.SetActive(false);
         Time.timeScale = 1f;
-        GameIsPaused = false;
     }
 
     public void Pause()
@@ -35,7 +40,6 @@ public class MenuUI : MonoBehaviour
         pauseMenuCanvas.SetActive(true);
         BG.SetActive(true);
         Time.timeScale = 0f;
-        GameIsPaused = true;
     }
 
     public void ToSettingMenu()

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Monster : AImovement
 {
@@ -50,6 +51,7 @@ public class Monster : AImovement
                 GetComponent<Collider>().enabled = false;
                 StopAllCoroutines();
                 myAnim.SetTrigger("Die");
+                DropItem();
                 DisAppear();
                 break;
         }
@@ -93,6 +95,12 @@ public class Monster : AImovement
         StateProcess();
     }
 
+    public void DropItem()
+    {
+        GameObject obj = Instantiate(Resources.Load("DropItem") as GameObject);
+        obj.GetComponent<ItemDrop>().OnSetItem(this.gameObject.transform);
+    }
+
     public void FindEnemy()
     {
         if (myState == State.Dead) return;
@@ -122,6 +130,7 @@ public class Monster : AImovement
     {
         Destroy(hpBarObj);
         StartCoroutine(DisAppearing(0.2f, 7.0f));
+       // QuestManager.Instance.ProcessQuest(QuestType.DestroyEnemy, 0);
     }
     IEnumerator DisAppearing(float speed, float t)
     {
@@ -137,5 +146,5 @@ public class Monster : AImovement
             yield return null;
         }
         Destroy(gameObject);
-    }
+     }
 }

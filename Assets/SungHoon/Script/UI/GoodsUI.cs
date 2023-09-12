@@ -19,7 +19,7 @@ public class GoodsUI : UIProperty<GoodsUI>
 
     public void DropCoin(int Gold)
     {
-        myGold += Gold;
+        myGold = Gold;
         myText.text = myGold.ToString();
     }
 }

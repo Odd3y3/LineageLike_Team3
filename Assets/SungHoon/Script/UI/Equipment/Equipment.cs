@@ -25,21 +25,21 @@ public class Equipment :UIProperty<EquipmentSlot>
 
     void Update()
     {
-        TryOpenState();
+        if (Input.GetKeyDown(KeyCode.C) && !MenuUI.GameIsPaused)
+        {
+            TryOpenState();
+        }
         GameManager.Inst.inGameManager.myPlayer?.SetStatus(myStatusList);
     }
 
-    private void TryOpenState()
-    {
-        if (Input.GetKeyDown(KeyCode.C) && !MenuUI.GameIsPaused)
-        {
+    public void TryOpenState()
+    { 
             stateActivated = !stateActivated;
 
             if (stateActivated)
                 OpenState();
             else
                 CloseState();
-        }
     }
 
     private void OpenState()

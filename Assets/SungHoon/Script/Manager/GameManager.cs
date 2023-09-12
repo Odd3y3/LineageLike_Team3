@@ -43,6 +43,8 @@ public class GameManager : Singleton<GameManager>
         //UIManager 바인드 설정
         UiManager = FindObjectOfType<UiManager>();
 
+        ItemManager = FindObjectOfType<ItemManager>();
+
         //플레이어 생성
         SpawnPlayer(spawnPointNum);
 

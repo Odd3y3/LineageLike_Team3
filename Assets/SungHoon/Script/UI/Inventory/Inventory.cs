@@ -26,13 +26,14 @@ public class Inventory : UIProperty<InventorySlot>
 
     void Update()
     {
-        TryOpenInventory();
-    }
-
-    private void TryOpenInventory()
-    {
         if (Input.GetKeyDown(KeyCode.I) && !MenuUI.GameIsPaused)
         {
+            TryOpenInventory();
+        }
+    }
+
+    public void TryOpenInventory()
+    {
             invectoryActivated = !invectoryActivated;
 
             if (invectoryActivated)
@@ -43,8 +44,6 @@ public class Inventory : UIProperty<InventorySlot>
             {
                 CloseInventory();
             } 
-        }
-        
     }
 
 

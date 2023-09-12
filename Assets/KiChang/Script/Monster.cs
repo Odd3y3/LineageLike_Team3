@@ -50,6 +50,7 @@ public class Monster : AImovement
                 GetComponent<Collider>().enabled = false;
                 StopAllCoroutines();
                 myAnim.SetTrigger("Die");
+                DropItem();
                 DisAppear();
                 break;
         }
@@ -91,6 +92,12 @@ public class Monster : AImovement
     void Update()
     {
         StateProcess();
+    }
+
+    public void DropItem()
+    {
+        GameObject obj = Instantiate(Resources.Load("DropItem") as GameObject);
+        obj.GetComponent<ItemDrop>().OnSetItem(this.gameObject.transform);
     }
 
     public void FindEnemy()

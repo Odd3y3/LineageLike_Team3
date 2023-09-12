@@ -12,6 +12,7 @@ public class UiManager : MonoBehaviour
     public ConsumptionItem myConsumptionItem;
     public SkillUI mySkillUI;
     public SkillWindow mySkillWindow;
+    public GoodsUI myGoodsUI;
 
 
     public void DefalutSetting()

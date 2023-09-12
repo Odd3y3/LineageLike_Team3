@@ -5669,21 +5669,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  SkillEffectStartAction:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 9219271972566919088}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnSkill
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
   SkillAction:
     m_PersistentCalls:
       m_Calls: []
@@ -5693,14 +5678,16 @@ MonoBehaviour:
   DeadAction:
     m_PersistentCalls:
       m_Calls: []
-  Player: {fileID: 0}
-  Skill1EffectStartAction:
+  DashAction:
+    m_PersistentCalls:
+      m_Calls: []
+  SkillEffectStartAction:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SkillEffectSystem, Assembly-CSharp
-        m_MethodName: OnSkillEffectStart
-        m_Mode: 0
+      - m_Target: {fileID: 9219271972566919088}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnSkill
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5721,14 +5708,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 350f3c6e0fd819b41ac09b7fb1e1b124, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BattleStat:
-    LV: 0
-    MaxHP: 0
-    MaxMP: 0
-    DefaultAttackPoint: 0
-    DefaultDefensePoint: 0
-    AttackRange: 0
-    AttackDelay: 0
 --- !u!1 &8436109078591107535
 GameObject:
   m_ObjectHideFlags: 0
@@ -5764,7 +5743,7 @@ Transform:
   - {fileID: 9205679630966909816}
   - {fileID: 8940803465906134019}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9219271972566919088
 MonoBehaviour:
@@ -5778,24 +5757,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d752a7fffae3d94ba2ff3c7ab86673f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myHpBar: {fileID: 0}
+  myExpBar: {fileID: 0}
   BattleStat:
     LV: 1
     MaxHP: 100
     MaxMP: 100
+    MaxExp: 0
     DefaultAttackPoint: 10
     DefaultDefensePoint: 10
     AttackRange: 0
     AttackDelay: 0
+    AttackSize: 0
   moveSpeed: 5
   rotSpeed: 360
+  skillClickMask:
+    serializedVersion: 2
+    m_Bits: 0
+  virtualGroundMask:
+    serializedVersion: 2
+    m_Bits: 0
   myItem: []
-  mySkills: {fileID: 0}
-  mySkill: {fileID: 0}
-  PickUpItem: {fileID: 0}
-  myWeaponPos: {fileID: 0}
+  myAttackArea: {fileID: 0}
   enemyMask:
     serializedVersion: 2
     m_Bits: 0
+  equippedSkills:
+    Dash: {fileID: 0}
+    QSkill: {fileID: 0}
+    WSkill: {fileID: 0}
+    ESkill: {fileID: 0}
+  PickUpItem: {fileID: 0}
 --- !u!114 &4221503275389319831
 MonoBehaviour:
   m_ObjectHideFlags: 0

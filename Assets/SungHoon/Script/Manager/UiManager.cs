@@ -13,13 +13,13 @@ public class UiManager : MonoBehaviour
     public SkillUI mySkillUI;
     public SkillWindow mySkillWindow;
     public GoodsUI myGoodsUI;
+    public GameObject myGameOverWindow;
 
 
     public void DefalutSetting()
     {
         mySkillUI.SetSkillUI();
         mySkillWindow.setSkill();
-
     }
 
 }

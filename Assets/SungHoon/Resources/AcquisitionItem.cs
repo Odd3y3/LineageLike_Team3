@@ -19,6 +19,7 @@ public class AcquisitionItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        myParent.AcquisitionItem(other);
+        if (!other.TryGetComponent<Player>(out Player player)) return;
+            myParent.AcquisitionItem(other);
     }
 }

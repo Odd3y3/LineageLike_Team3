@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-
     public RectTransform uiGroup;
     public Animator anim;
 
@@ -48,9 +47,6 @@ public class Shop : MonoBehaviour
     public void Buy(int index)
     {
         int price = itemPrice[index];
-        /* if(price > enterPlayer.coin) {
-             return;
-         }*/
+        
     }
-   
 }

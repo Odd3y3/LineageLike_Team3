@@ -33,7 +33,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  MultiDamage: 2
+  MultiDamage: 3
   AddDamage: 0
   CoolTime: 5
   AttackCount: 1

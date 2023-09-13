@@ -9,9 +9,9 @@ public class Shop : MonoBehaviour
     public RectTransform uiGroup;
     public Animator anim;
 
-    public GameObject[] itemobj;
+    public Item[] saleItems;
     public int[] itemPrice;
-    public Transform[] itemPos;
+    public string[] SaleName;
     public string[] talkData;
     public TMPro.TMP_Text talkText;
 
@@ -44,6 +44,7 @@ public class Shop : MonoBehaviour
             Exit();
         }
     }
+
     public void Buy(int index)
     {
         int price = itemPrice[index];

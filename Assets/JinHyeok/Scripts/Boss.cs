@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Boss : BattleSystem, ICutScene
 {
+    public Transform attackArea1;
+    public Transform attackArea2;
+    public Transform attackArea3;
+
     private void Start()
     {
         base.Initialize();
@@ -92,25 +96,41 @@ public class Boss : BattleSystem, ICutScene
         {
             case 1:
                 myAnim.SetTrigger("Attack1");
-                playTime = 3.0f;
+                playTime = 2.0f;
                 break;
             case 2:
                 myAnim.SetTrigger("Attack2");
-                playTime = 3.0f;
+                playTime = 2.0f;
                 break;
             case 3:
                 myAnim.SetTrigger("Attack3");
-                playTime = 4.0f;
+                playTime = 3.0f;
                 break;
             case 4:
                 myAnim.SetTrigger("Attack4");
-                playTime = 5.0f;
+                playTime = 3.0f;
                 break;
         }
     }
 
     public void BossAttack1()
     {
-
+        BattleManager.AttackDirCircle(attackArea1.position, 2.0f, enemyMask, 20.0f,
+            transform.forward, false, 2.0f);
+    }
+    public void BossAttack2()
+    {
+        BattleManager.AttackDirCircle(attackArea2.position, 2.0f, enemyMask, 20.0f,
+            transform.forward, false, 2.0f);
+    }
+    public void BossAttack3()
+    {
+        BattleManager.AttackDirCircle(attackArea3.position, 2.0f, enemyMask, 50.0f,
+            transform.forward, false, 5.0f);
+    }
+    public void BossAttack4()
+    {
+        BattleManager.AttackCircle(transform.position, 5.0f, enemyMask, 40.0f,
+            false, 5.0f);
     }
 }

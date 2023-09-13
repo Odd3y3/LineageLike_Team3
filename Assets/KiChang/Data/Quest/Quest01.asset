@@ -21,6 +21,7 @@ MonoBehaviour:
     rewardExp: 10
     rewardGold: 10
     rewardItemId: 0
-    title: 
-    description: 
-  status: 0
+    title: "\uBAAC\uC2A4\uD130  \uC7A1\uAE30"
+    description: "\uB9C8\uC744 \uADFC\uCC98 \uBAAC\uC2A4\uD130 \uB2E4\uC12F\uB9C8\uB9AC\uB97C
+      \uC7A1\uC544\uB77C!"
+  status: 1

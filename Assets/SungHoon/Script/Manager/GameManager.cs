@@ -163,6 +163,6 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
-        UiManager.myGameOverWindow.SetActive(true);
+       // UiManager.myGameOverWindow.SetActive(true);
     }
 }

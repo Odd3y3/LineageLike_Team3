@@ -41,10 +41,13 @@ public class ItemManager : Singleton<ItemManager>
             newItem.StatPoint = (int)newItem.ItemGrade * 10;
         }   
     }
+
+
     private void Awake()
     {
         base.Initialize();
     }
+
     void Start()
     {
         

@@ -21,6 +21,6 @@ MonoBehaviour:
     rewardExp: 5
     rewardGold: 5
     rewardItemId: 5
-    title: Monster
-    description: Destroy Enemy
-  status: 3
+    title: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30"
+    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uD55C\uB9C8\uB9AC \uC7A1\uAE30!"
+  status: 1

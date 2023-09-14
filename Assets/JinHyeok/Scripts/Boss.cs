@@ -8,6 +8,8 @@ public class Boss : BattleSystem, ICutScene
     public Transform attackArea2;
     public Transform attackArea3;
 
+    public GameObject exitPortal;
+
     private void Start()
     {
         base.Initialize();
@@ -29,7 +31,24 @@ public class Boss : BattleSystem, ICutScene
             //보스 죽는 애니메이션
             //HP바 없애기
             //컷씬 후, 아이템 드랍, 맵 막힌곳 열림, 출구 생김
+            StopAllCoroutines();
+            StartCoroutine(StartDeadCoroutine());
         }
+    }
+    IEnumerator StartDeadCoroutine()
+    {
+        myAnim.SetTrigger("Die");
+        GetComponent<Collider>().enabled = false;
+
+        yield return new WaitForSeconds(2.0f);
+
+        DropItem();
+        exitPortal.SetActive(true);
+    }
+    public void DropItem()
+    {
+        GameObject obj = Instantiate(Resources.Load("DropItem") as GameObject);
+        obj.GetComponent<ItemDrop>().OnSetItem(this.gameObject.transform);
     }
 
     public void OnStartCutScene()   

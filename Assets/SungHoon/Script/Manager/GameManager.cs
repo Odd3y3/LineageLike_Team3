@@ -50,6 +50,8 @@ public class GameManager : Singleton<GameManager>
 
         //카메라 바인드 설정
         FindObjectOfType<FollowCamera>().SetTarget(inGameManager.myPlayer.transform);
+        //미니맵카메라 바인드 설정
+        FindObjectOfType<MiniMap>().SetTarget();
 
 
         //준비 끝나고 Fade In

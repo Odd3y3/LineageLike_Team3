@@ -23,4 +23,8 @@ public class UiManager : MonoBehaviour
         mySkillWindow.setSkill();
     }
 
+    public void OnSaveButton()
+    {
+        GameManager.Inst.inGameManager.Save();
+    }
 }

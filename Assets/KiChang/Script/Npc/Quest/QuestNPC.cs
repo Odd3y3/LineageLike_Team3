@@ -77,19 +77,19 @@ public class QuestNPC : MonoBehaviour, IInteractable
         isStartDialogue = true;
         if(questObject.status == QuestStatus.None)
         {
-            DialogueManager.Instance.StartDialogue(readyDialogue);
-            questObject.status = QuestStatus.Accepted;  
+            DialogueManager.Instance.StartDialogue(readyDialogue, this);
+            //questObject.status = QuestStatus.Accepted;
         }
         else if(questObject.status == QuestStatus.Accepted)
         {
-            DialogueManager.Instance.StartDialogue(acceptedDialogue);
+            DialogueManager.Instance.StartDialogue(acceptedDialogue, this);
             
         }
         else if (questObject.status ==QuestStatus.Completed)
         {
-            DialogueManager.Instance.StartDialogue(completedDialogue);
+            DialogueManager.Instance.StartDialogue(completedDialogue, this);
          
-            questObject.status = QuestStatus.Rewarded;   
+            //questObject.status = QuestStatus.Rewarded;   
         }
      }
     public void StopInteract(GameObject other)
@@ -118,5 +118,25 @@ public class QuestNPC : MonoBehaviour, IInteractable
         //DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
         //isStartDialogue = true;
         //DialogueManager.Instance.StartDialogue(dialogue);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if ((1 << other.gameObject.layer & playerMask) != 0)
+        {
+            DialogueManager.Instance.EndDialogue();
+        }
+    }
+
+    public void Accept()
+    {
+        if(questObject.status == QuestStatus.None)
+        {
+            questObject.status = QuestStatus.Accepted;
+        }
+        else if(questObject.status == QuestStatus.Completed)
+        {
+            questObject.status = QuestStatus.Rewarded;
+            //보상 받기
+        }
     }
 }

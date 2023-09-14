@@ -15,8 +15,8 @@ MonoBehaviour:
   data:
     id: 0
     type: 0
-    targetId: 0
-    count: 1
+    targetId: 1
+    count: 5
     completeCount: 0
     rewardExp: 10
     rewardGold: 10
@@ -24,4 +24,4 @@ MonoBehaviour:
     title: "\uBAAC\uC2A4\uD130  \uC7A1\uAE30"
     description: "\uB9C8\uC744 \uADFC\uCC98 \uBAAC\uC2A4\uD130 \uB2E4\uC12F\uB9C8\uB9AC\uB97C
       \uC7A1\uC544\uB77C!"
-  status: 1
+  status: 0

@@ -2033,6 +2033,7 @@ MonoBehaviour:
   UiManager: {fileID: 0}
   inGameManager: {fileID: 915212985}
   sceneLoader: {fileID: 446519147}
+  questManager: {fileID: 999479285}
   spawnPoints: {fileID: 0}
   FadeInOutImage: {fileID: 980112707}
   curSceneNum: 1
@@ -2050,6 +2051,7 @@ Transform:
   m_Children:
   - {fileID: 446519146}
   - {fileID: 915212986}
+  - {fileID: 999479284}
   - {fileID: 1657637837}
   - {fileID: 90695799}
   m_Father: {fileID: 0}
@@ -6018,6 +6020,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 999186482}
   m_CullTransparentMesh: 1
+--- !u!1 &999479283
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 999479284}
+  - component: {fileID: 999479285}
+  m_Layer: 0
+  m_Name: QuestManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &999479284
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999479283}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.666405, y: -11.8259945, z: 47.899418}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 386219139}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &999479285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 999479283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5d3c6713d04ca4449110fff6bb38370, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  questdatabase: {fileID: 0}
+  QuestUI: {fileID: 0}
+  questTitle: {fileID: 0}
+  questExplan: {fileID: 0}
+  currentQuestValue: 0
+  questClearValue: 0
 --- !u!1 &1010884042
 GameObject:
   m_ObjectHideFlags: 0

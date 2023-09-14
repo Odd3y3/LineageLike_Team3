@@ -44,6 +44,9 @@ public class Boss : BattleSystem, ICutScene
 
         DropItem();
         exitPortal.SetActive(true);
+
+        //퀘스트 진행
+        GameManager.Inst.questManager.ProcessQuest(QuestType.DestroyEnemy, ID);
     }
     public void DropItem()
     {

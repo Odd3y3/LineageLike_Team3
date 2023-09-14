@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1ecc4f27005dc244498c1b9b7591d355, type: 3}
-  m_Name: Quest01
+  m_Name: Quest02
   m_EditorClassIdentifier: 
   data:
-    id: 0
+    id: 1
     type: 0
-    targetId: 0
+    targetId: 4
     count: 1
     completeCount: 0
-    rewardExp: 10
-    rewardGold: 10
-    rewardItemId: 0
-    title: "\uBAAC\uC2A4\uD130  \uC7A1\uAE30"
-    description: "\uB9C8\uC744 \uADFC\uCC98 \uBAAC\uC2A4\uD130 \uB2E4\uC12F\uB9C8\uB9AC\uB97C
-      \uC7A1\uC544\uB77C!"
-  status: 1
+    rewardExp: 5
+    rewardGold: 5
+    rewardItemId: 5
+    title: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30"
+    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uD55C\uB9C8\uB9AC \uC7A1\uAE30!"
+  status: 0

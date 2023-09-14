@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public UiManager UiManager;
     public InGameManager inGameManager;
     public SceneLoader sceneLoader;
+    public QuestManager questManager;
 
     public PlayerSpawnPoints spawnPoints;
 
@@ -143,17 +144,24 @@ public class GameManager : Singleton<GameManager>
     public void StartLoadGame(int saveSlotNum)
     {
         SaveData saveData = inGameManager.saveDatas[saveSlotNum];
+
+        inGameManager.curSaveSlotNum = saveSlotNum;
         if (saveData.IsEmpty)
         {
-            inGameManager.curSaveSlotNum = saveSlotNum;
             curSceneNum = 2;
             FadeOut(() => sceneLoader.LoadScene(curSceneNum, 0));
+
+            //퀘스트 초기화
+            questManager.InitQuestDatabase(saveSlotNum);
+            questManager.ResetQuestData();
         }
         else
         {
-            inGameManager.curSaveSlotNum = saveSlotNum;
             curSceneNum = saveData.playerInfo.SceneNum;
             FadeOut(() => sceneLoader.LoadScene(curSceneNum, -1));
+
+            //퀘스트 초기화
+            questManager.InitQuestDatabase(saveSlotNum);
         }
     }
 

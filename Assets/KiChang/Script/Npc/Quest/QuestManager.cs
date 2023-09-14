@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class QuestManager : MonoBehaviour
 {
-    private static QuestManager _instance;
-    public static QuestManager Instance {get{ return _instance; } }
-    
+    //private static QuestManager _instance;
+    //public static QuestManager Instance {get{ return _instance; } }
 
     public QuestDataObject questdatabase;
 
@@ -23,10 +22,23 @@ public class QuestManager : MonoBehaviour
 
     private void Awake()
     {
-        _instance = this;
+        //_instance = this;
     }
-    // Start is called before the first frame update
-    public void ProcessQuest(QuestType type, int target, int targetId)
+
+    public void InitQuestDatabase(int curSaveSlotNum)
+    {
+        questdatabase = Resources.Load<QuestDataObject>($"SaveSlot{curSaveSlotNum}\\Quest Database");
+    }
+    public void ResetQuestData()
+    {
+        foreach (QuestObject questObject in questdatabase.questObjects)
+        {
+            questObject.status = QuestStatus.None;
+            questObject.data.completeCount = 0;
+        }
+    }
+
+    public void ProcessQuest(QuestType type, int targetId)
     {
         foreach(QuestObject questObject in questdatabase.questObjects)
         {
@@ -45,4 +57,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 퀘스트 보상 받는 함수
+    /// </summary>
+    public void QuestReward()
+    {
+
+    }
 }

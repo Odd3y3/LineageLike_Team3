@@ -12,7 +12,9 @@ public class QuestNPC : MonoBehaviour, IInteractable
 {
     public LayerMask playerMask;
 
-    public QuestObject questObject;
+    public int questID;
+    QuestObject questObject = null;
+
     [SerializeField] GameObject QuestEffectGO;
     [SerializeField] GameObject QuestRewardGO;
 
@@ -26,7 +28,17 @@ public class QuestNPC : MonoBehaviour, IInteractable
     
     private void Start()
     {
-        QuestManager.Instance.OnCompletedQuest += OnCompleteQuest;
+        GameManager.Inst.questManager.OnCompletedQuest += OnCompleteQuest;
+
+        //questObject 설정
+        foreach (QuestObject questObject in GameManager.Inst.questManager.questdatabase.questObjects)
+        {
+            if (questObject.data.id == questID)
+            {
+                this.questObject = questObject;
+                break;
+            }
+        }
     }
 
     #region IInteractable Interface
@@ -137,6 +149,7 @@ public class QuestNPC : MonoBehaviour, IInteractable
         {
             questObject.status = QuestStatus.Rewarded;
             //보상 받기
+            GameManager.Inst.questManager.QuestReward();
         }
     }
 }

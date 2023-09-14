@@ -101,6 +101,7 @@ public class GameManager : Singleton<GameManager>
 
         //ui hpBar 바인딩
         inGameManager.myPlayer.myHpBar = UiManager.myHpSlider;
+        inGameManager.myPlayer.myExpBar = UiManager.myExpSlider;
 
         //플레이어 정보 받기 (SaveData)
         inGameManager.Load(inGameManager.myPlayer);

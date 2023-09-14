@@ -35,7 +35,8 @@ public class Inventory : UIProperty<InventorySlot>
     public void TryOpenInventory()
     {
             invectoryActivated = !invectoryActivated;
-
+        if (!MenuUI.GameIsPaused)
+        {
             if (invectoryActivated)
             {
                 OpenInventory();
@@ -43,7 +44,9 @@ public class Inventory : UIProperty<InventorySlot>
             else
             {
                 CloseInventory();
-            } 
+            }
+        }
+            
     }
 
 
@@ -89,6 +92,25 @@ public class Inventory : UIProperty<InventorySlot>
                 slots[i].AddItem(_item,_count);
                 return;
             }
+        }
+    }
+
+    public InvenotryData[] GetInventoryData()
+    {
+        InvenotryData[] PlayerInvenotryData = GameManager.Inst.inGameManager.InnventoryDatas;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].UpdateData();
+            PlayerInvenotryData[i] = slots[i].GetData();
+        }
+        return PlayerInvenotryData;
+    }
+
+    public void SetInventoryData(InvenotryData[] invenotrySlots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].SetData(invenotrySlots[i]);
         }
     }
 }

@@ -7,6 +7,9 @@ public class InGameManager : MonoBehaviour
 {
     public SaveData[] saveDatas;
 
+    public InvenotryData[] InnventoryDatas;
+    public EquipmentData[] EquipmentDatas;
+
     Player _player;
     /// <summary>
     /// 인게임에서의 플레이어
@@ -42,6 +45,12 @@ public class InGameManager : MonoBehaviour
         {
             _playerInfo.Gold = value;
         }
+    }
+
+    public void GoldDrop(uint gold)
+    {
+        Gold += gold;
+        GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(Gold);
     }
 
     private void Awake()

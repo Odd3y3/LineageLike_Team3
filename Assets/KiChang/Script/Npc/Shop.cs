@@ -47,7 +47,15 @@ public class Shop : MonoBehaviour
 
     public void Buy(int index)
     {
+        Item SaleItem = saleItems[index];
         int price = itemPrice[index];
+        uint ChangeGold = 0;
         
+        if(GameManager.Inst.inGameManager.Gold >= price)
+        {
+            ChangeGold= GameManager.Inst.inGameManager.Gold -= (uint)price;
+            GameManager.Inst.UiManager.myInventory.AcquireItem(SaleItem);
+            GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(ChangeGold);
+        }
     }
 }

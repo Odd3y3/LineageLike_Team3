@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GoodsUI : UIProperty<GoodsUI>
 {
-    public int myGold = 0;
+    public uint myGold = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +17,7 @@ public class GoodsUI : UIProperty<GoodsUI>
         
     }
 
-    public void DropCoin(int Gold)
+    public void ChangeCoin(uint Gold)
     {
         myGold = Gold;
         myText.text = myGold.ToString();

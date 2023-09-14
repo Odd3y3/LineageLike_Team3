@@ -2133,15 +2133,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
+  myExpBar: {fileID: 0}
   BattleStat:
     LV: 1
     MaxHP: 100
     MaxMP: 100
-    MaxExp: 0
+    MaxExp: 100
     DefaultAttackPoint: 30
     DefaultDefensePoint: 0
     AttackRange: 0
     AttackDelay: 0
+    AttackSize: 0
   moveSpeed: 5
   rotSpeed: 720
   skillClickMask:
@@ -2161,6 +2163,7 @@ MonoBehaviour:
     WSkill: {fileID: 11400000, guid: 2803e6d23fd4afe41a273f491bc3c05f, type: 2}
     ESkill: {fileID: 11400000, guid: fbfa1598a3f191a43b7e1e22281d7035, type: 2}
   PickUpItem: {fileID: 0}
+  Gold: 0
 --- !u!114 &5708617087908238128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4327,6 +4330,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   DeadAction:
+    m_PersistentCalls:
+      m_Calls: []
+  DashAction:
     m_PersistentCalls:
       m_Calls: []
   SkillEffectStartAction:

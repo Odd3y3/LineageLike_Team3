@@ -8,7 +8,7 @@ public class InGameManager : MonoBehaviour
     [HideInInspector]
     public SaveData[] saveDatas = new SaveData[3];
 
-    public InvenotryData[] InnventoryDatas;
+    public InventoryData[] InventoryDatas;
     public EquipmentData[] EquipmentDatas;
 
     Player _player;

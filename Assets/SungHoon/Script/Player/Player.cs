@@ -172,12 +172,14 @@ public class Player : PlayerBattleSystem, ICutScene
     {
         CanMove = false;
         myAnim.SetBool("IsMove", false);
+        myAnim.SetBool("IsImmunity", true);
         StopMoveAndRotate();
     }
 
     public void OnEndCutScene()
     {
         CanMove = true;
+        myAnim.SetBool("IsImmunity", false);
     }
 
     //==============================================================================

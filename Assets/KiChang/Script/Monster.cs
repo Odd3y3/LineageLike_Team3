@@ -99,7 +99,9 @@ public class Monster : AImovement
     void Awake()
     {
         startPos = transform.position;
-        spawner = transform.parent.GetComponent<EnemySpawner>();
+        
+        if(transform.parent != null)
+            transform.parent.TryGetComponent<EnemySpawner>(out spawner);
     }
 
     void OnEnable()
@@ -180,7 +182,7 @@ public class Monster : AImovement
         }
 
         //리스폰 할지 안할지
-        if (isRespawn)
+        if (isRespawn && spawner != null)
         {
             //리스폰
             spawner.Respawn(this, respawnTime);

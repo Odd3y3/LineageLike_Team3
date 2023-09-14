@@ -95,9 +95,9 @@ public class Inventory : UIProperty<InventorySlot>
         }
     }
 
-    public InvenotryData[] GetInventoryData()
+    public InventoryData[] GetInventoryData()
     {
-        InvenotryData[] PlayerInvenotryData = GameManager.Inst.inGameManager.InnventoryDatas;
+        InventoryData[] PlayerInvenotryData = GameManager.Inst.inGameManager.InventoryDatas;
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i].UpdateData();
@@ -106,7 +106,7 @@ public class Inventory : UIProperty<InventorySlot>
         return PlayerInvenotryData;
     }
 
-    public void SetInventoryData(InvenotryData[] invenotrySlots)
+    public void SetInventoryData(InventoryData[] invenotrySlots)
     {
         for (int i = 0; i < slots.Length; i++)
         {

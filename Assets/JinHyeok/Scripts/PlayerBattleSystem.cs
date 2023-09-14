@@ -87,6 +87,20 @@ public class PlayerBattleSystem : BattleSystem
         }
     }
 
+    public void LevelUp()
+    {
+        BattleStat.LV++;
+        BattleStat.MaxExp *= 2;
+        curExp = 0;
+        BattleStat.MaxHP += 10;
+        curHP += 10;
+        BattleStat.MaxMP += 10;
+        curMP += 10;
+        curAttackPoint += 10;
+        curDefensePoint += 10;
+        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(BattleStat.LV);
+    }
+
     void PlayerDead()
     {
         CanMove = false;

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+public struct EquipmentData
+{
+    public Item Equipment;
+    public Item.EQUIPMENTTYPE EquipmentType;
+}
+
+
 public class EquipmentSlot : UIObject<EquipmentSlot>,IPointerClickHandler, IDropHandler
 {
     public Item myEquipment;
@@ -10,6 +17,8 @@ public class EquipmentSlot : UIObject<EquipmentSlot>,IPointerClickHandler, IDrop
     [SerializeField]
     public Item.EQUIPMENTTYPE myEquipmentType = Item.EQUIPMENTTYPE.None;
 
+
+    EquipmentData myData;
 
     Color orgCol = Color.black;
 
@@ -79,6 +88,28 @@ public class EquipmentSlot : UIObject<EquipmentSlot>,IPointerClickHandler, IDrop
                 }
             }
         }
+    }
+
+    public void UpdateData()
+    {
+        myData.Equipment = myEquipment;
+        myData.EquipmentType = myEquipmentType;
+    }
+
+    public EquipmentData GetData()
+    {
+        return myData;
+    }
+
+    public void SetData(EquipmentData data)
+    {
+        myData = data;
+        ChangeInfo();
+    }
+
+    public void ChangeInfo()
+    {
+        AddEquipment(myData.Equipment);
     }
 
     // Start is called before the first frame update

@@ -14,7 +14,7 @@ public class ItemDrop : MonoBehaviour
     // Start is called before the first frame update
     public Item myItem = null;
     public Item.EQUIPMENGRADE curItemGrade;
-    public int Gold = 0;
+    public uint Gold = 0;
 
     public GameObject DropItem = null;
     public GameObject ItemSlot = null;
@@ -37,15 +37,7 @@ public class ItemDrop : MonoBehaviour
 
     public void OnSetItem(Transform tra)
     {
-        Type = (ItmeType)Random.Range(0, 2);
-        if (Type == ItmeType.Itme)
-        {
-            ItemSetting();
-        }
-        else
-        {
-            GoldSetting();
-        }
+        GoldSetting();
         DroppingItem(tra);
     }
 
@@ -59,7 +51,7 @@ public class ItemDrop : MonoBehaviour
 
     public void GoldSetting()
     {
-        Gold = Random.Range(0, 101);
+        Gold = (uint)Random.Range(0, 101);
         if (Gold < 50)
         {
             DropItem = myGoldObjects[0];
@@ -72,16 +64,23 @@ public class ItemDrop : MonoBehaviour
 
     public void DroppingItem(Transform tra)
     {
-        GameObject obj = Instantiate(DropItem,this.transform);
+        StartCoroutine(Delay(tra));
+    }
+
+    IEnumerator Delay(Transform tra)
+    {
+        GameObject obj = Instantiate(DropItem, this.transform);
         obj.transform.localPosition = tra.position;
+        StartCoroutine(UpDowning(obj));
+        yield return new WaitForSeconds(3.0f);
         OnDropSetting(obj);
     }
+
 
     public void OnDropSetting(GameObject obj)
     {
         OnAnimationSetting(obj);
         OnColliderSetting(obj);
-        StartCoroutine(UpDowning(obj));
         obj.AddComponent<AcquisitionItem>();
     }
 
@@ -158,7 +157,7 @@ public class ItemDrop : MonoBehaviour
         }
         else
         {
-            other.GetComponent<Player>().GoldDrop(Gold);
+            GameManager.Inst.inGameManager.GoldDrop(Gold);
             Destroy(gameObject);
         }
     }

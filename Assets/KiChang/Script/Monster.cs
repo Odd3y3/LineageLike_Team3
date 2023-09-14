@@ -58,12 +58,25 @@ public class Monster : AImovement
                 myCol.enabled = false;
                 StopAllCoroutines();
                 myAnim.SetTrigger("Die");
+                DropExp();
                 DropItem();
                 DisAppear();
 
                 //Äù½ºÆ® ÁøÇà
                 GameManager.Inst.questManager.ProcessQuest(QuestType.DestroyEnemy, ID);
                 break;
+        }
+    }
+
+    public void DropExp()
+    {
+        int Exp = Random.Range(50, 101);
+        GameManager.Inst.inGameManager.myPlayer.curExp += Exp;
+        if (GameManager.Inst.inGameManager.myPlayer.IsLvUP)
+        {
+            int less = (int)(curExp - BattleStat.MaxExp);
+            GameManager.Inst.inGameManager.myPlayer.LevelUp();
+            GameManager.Inst.inGameManager.myPlayer.curExp += less;
         }
     }
 

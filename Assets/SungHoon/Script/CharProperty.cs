@@ -88,7 +88,7 @@ public class CharProperty : MonoBehaviour
         set
         {
             _exp = Mathf.Clamp(value, 0.0f, BattleStat.MaxExp);
-            if (myExpBar != null) myExpBar.value = _exp / BattleStat.MaxExp;
+            if (myExpBar != null) myExpBar.value = _exp/ BattleStat.MaxExp;
         }
     }
 

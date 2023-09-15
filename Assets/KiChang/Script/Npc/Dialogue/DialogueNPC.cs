@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueNPC : MonoBehaviour, IInteractable
+public class DialogueNPC : NPC, IInteractable
 {
     public LayerMask playerMask;
 
@@ -18,6 +18,11 @@ public class DialogueNPC : MonoBehaviour, IInteractable
     float distance = 5.0f;
 
     public float Distance => distance;
+
+    private void Awake()
+    {
+        Initialize();
+    }
 
     public void Interact(GameObject other)
     {

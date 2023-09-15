@@ -10,5 +10,12 @@ public class SaveData : ScriptableObject
     public bool IsEmpty = true;
 
     public PlayerInfo playerInfo;
+
+    //인벤토리 아이템 정보
+    public InventoryData[] InventoryDatas = new InventoryData[20];
+    //장비창 아이템 정보
+    public EquipmentData[] EquipmentDatas = new EquipmentData[4];
+    //소비 아이템 정보 
+    public ConsumptionItemData[] ConsumptionItemDatas = new ConsumptionItemData[3];
 }
 

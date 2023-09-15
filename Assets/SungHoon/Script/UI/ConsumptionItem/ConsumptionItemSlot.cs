@@ -4,8 +4,18 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+
+[System.Serializable]
+public struct ConsumptionItemData
+{
+    public Item Item;
+    public int ItemCount;
+}
+
 public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, IPointerClickHandler
 {
+
+    ConsumptionItemData myData;
     public Item consumptionItem;
 
     public int myIndex=0;
@@ -20,8 +30,10 @@ public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, I
     {
         consumptionItem = _item;
         itemCount = _itemCount;
+        if (consumptionItem == null) return;
         myImage.sprite = consumptionItem.Sprite;
         SetColor(1);
+        OnText();
     }
 
     public void SetColor(float _alpha,Sprite changeImgage)
@@ -30,7 +42,6 @@ public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, I
         Color color = myImage.color;
         color.a = _alpha;
         myImage.color = color;
-        OnText();
     }
     // Start is called before the first frame update
     void Start()
@@ -60,6 +71,7 @@ public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, I
 
     public void SetSlotCount(int _count)
     {
+        if (consumptionItem == null) return;
         itemCount += _count;
         myText.text = itemCount.ToString();
 
@@ -130,5 +142,27 @@ public class ConsumptionItemSlot : UIObject<ConsumptionItemSlot>,IDropHandler, I
             DragSlot.instance.dragInventorySlot.SetSlotCount(lesscount);
             GameManager.Inst.UiManager.myConsumptionItem.slots[myIndex].itemCount=consumptionItem.Stack;
         }
+    }
+
+    public void UpdateData()
+    {
+        myData.Item = consumptionItem;
+        myData.ItemCount = itemCount;
+    }
+
+    public ConsumptionItemData GetData()
+    {
+        return myData;
+    }
+
+    public void SetData(ConsumptionItemData data)
+    {
+        myData = data;
+        ChangeInfo();
+    }
+
+    public void ChangeInfo()
+    {
+        AddConsumption(myData.Item,myData.ItemCount);
     }
 }

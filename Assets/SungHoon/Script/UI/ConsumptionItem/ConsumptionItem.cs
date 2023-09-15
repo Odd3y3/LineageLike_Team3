@@ -66,4 +66,24 @@ public class ConsumptionItem : UIObject<ConsumptionItemSlot>
             return;
         }
     }
+
+    public ConsumptionItemData[] GetConsumptionItemData()
+    {
+        ConsumptionItemData[] PlayerInvenotryData = GameManager.Inst.inGameManager.ConsumptionItemDatas;
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].UpdateData();
+            PlayerInvenotryData[i] = slots[i].GetData();
+        }
+        return PlayerInvenotryData;
+    }
+
+    public void SetConsumptionItemData(ConsumptionItemData[] ConsumptionItemSlots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].SetData(ConsumptionItemSlots[i]);
+        }
+
+    }
 }

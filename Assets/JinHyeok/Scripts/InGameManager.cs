@@ -8,8 +8,9 @@ public class InGameManager : MonoBehaviour
     [HideInInspector]
     public SaveData[] saveDatas = new SaveData[3];
 
-    public InventoryData[] InventoryDatas;
-    public EquipmentData[] EquipmentDatas;
+    public InventoryData[] InventoryDatas= new InventoryData[20];
+    public EquipmentData[] EquipmentDatas=new EquipmentData[4];
+    public ConsumptionItemData[] ConsumptionItemDatas = new ConsumptionItemData[3];
 
     Player _player;
     /// <summary>
@@ -66,6 +67,7 @@ public class InGameManager : MonoBehaviour
     //세이브 로드 기능
     public void Save()
     {
+        SaveData _saveData = saveDatas[curSaveSlotNum];
         //PlayerInfo _playerInfo = new PlayerInfo();
         Player player = GameManager.Inst.inGameManager.myPlayer;
         _playerInfo.SceneNum = GameManager.Inst.curSceneNum;
@@ -79,7 +81,23 @@ public class InGameManager : MonoBehaviour
         
         _playerInfo.PlayTime = 0;
 
+        _playerInfo.Gold = Gold;
 
+        InventoryDatas = GameManager.Inst.UiManager.myInventory.GetInventoryData();
+        for(int i = 0; i < 20; i++)
+        {
+            _saveData.InventoryDatas[i] = InventoryDatas[i];
+        }
+        EquipmentDatas = GameManager.Inst.UiManager.myEquipment.GetEquipmentData();
+        for (int i = 0; i < 4; i++)
+        {
+            _saveData.EquipmentDatas[i] = EquipmentDatas[i];
+        }
+        ConsumptionItemDatas = GameManager.Inst.UiManager.myConsumptionItem.GetConsumptionItemData();
+        for (int i = 0; i < 3; i++)
+        {
+            _saveData.ConsumptionItemDatas[i] = ConsumptionItemDatas[i];
+        }
         //저장
         //curSaveSlotNum = GameManager.Inst.curSceneNum;
         saveDatas[curSaveSlotNum].IsEmpty = false;
@@ -91,7 +109,8 @@ public class InGameManager : MonoBehaviour
     public void Load(Player player)
     {
         //scriptable object에서 _playerInfo로 정보 가져오기
-        _playerInfo = saveDatas[curSaveSlotNum].playerInfo;
+        SaveData _saveData = saveDatas[curSaveSlotNum];
+        _playerInfo = _saveData.playerInfo;
 
         //player 정보 넣기
         if (!saveDatas[curSaveSlotNum].IsEmpty)
@@ -103,21 +122,22 @@ public class InGameManager : MonoBehaviour
             player.curAttackPoint = _playerInfo.CurAttackPoint;
             player.curDefensePoint = _playerInfo.CurDefencePoint;
             player.curExp = _playerInfo.CurExp;
+            GameManager.Inst.UiManager.myInventory.SetInventoryData(_saveData.InventoryDatas);
+            GameManager.Inst.UiManager.myEquipment.SetEquipmentData(_saveData.EquipmentDatas);
+            GameManager.Inst.UiManager.myConsumptionItem.SetConsumptionItemData(_saveData.ConsumptionItemDatas);
+            GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(_playerInfo.Gold);
         }
     }
 }
 
-[Serializable]
+[System.Serializable]
 public struct PlayerInfo
 {
     //맵 (어느 맵에 있었는지)
     public int SceneNum;
     public Vector3 Pos;
 
-    //인벤토리 아이템 정보
-
-    //장비창 아이템 정보
-
+    
     //골드 정보
     public uint Gold;
 

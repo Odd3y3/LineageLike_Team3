@@ -12,7 +12,7 @@ public class Item : ScriptableObject
     }
     public enum POTIONTYPE
     {
-        None,Hp,Mp,Etc
+        None,Hp,Exp,Etc
     }
     public enum EQUIPMENTTYPE
     {

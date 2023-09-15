@@ -10,7 +10,14 @@ public class Monster : AImovement
     {
         Create, Normal, Roaming, Battle, Dead
     }
+    //Roaming을 하는지
     public bool isRoaming = true;
+    //리스폰을 하는지
+    public bool isRespawn = true;
+    //캐릭터가 완전히 사라지고 나서 리스폰까지의 시간.
+    public float respawnTime = 3.0f;
+
+    EnemySpawner spawner = null;
 
     public State myState = State.Create;
 
@@ -48,12 +55,28 @@ public class Monster : AImovement
                 AttackTarget(myTarget);
                 break;
             case State.Dead:
-                GetComponent<Collider>().enabled = false;
+                myCol.enabled = false;
                 StopAllCoroutines();
                 myAnim.SetTrigger("Die");
+                DropExp();
                 DropItem();
                 DisAppear();
+
+                //퀘스트 진행
+                GameManager.Inst.questManager.ProcessQuest(QuestType.DestroyEnemy, ID);
                 break;
+        }
+    }
+
+    public void DropExp()
+    {
+        int Exp = Random.Range(50, 101);
+        GameManager.Inst.inGameManager.myPlayer.curExp += Exp;
+        if (GameManager.Inst.inGameManager.myPlayer.IsLvUP)
+        {
+            int less = (int)(curExp - BattleStat.MaxExp);
+            GameManager.Inst.inGameManager.myPlayer.LevelUp();
+            GameManager.Inst.inGameManager.myPlayer.curExp += less;
         }
     }
 
@@ -73,8 +96,15 @@ public class Monster : AImovement
         ChangeState(State.Normal);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
+    {
+        startPos = transform.position;
+        
+        if(transform.parent != null)
+            transform.parent.TryGetComponent<EnemySpawner>(out spawner);
+    }
+
+    void OnEnable()
     {
         Initialize();
 
@@ -85,11 +115,16 @@ public class Monster : AImovement
         hpBarObj.GetComponent<EnemyHPBar>().SetTarget(transform);
         //myStatUI.Initialize(barPoint);
 
-        startPos = transform.position;
+        //ChangeState(State.Normal);
+        StartCoroutine(StartDelaying(2.0f));
+    }
+    IEnumerator StartDelaying(float t)
+    {
+        yield return new WaitForSeconds(t);
         ChangeState(State.Normal);
+        myPerception.gameObject.SetActive(true);
     }
 
-    // Update is called once per frame
     void Update()
     {
         StateProcess();
@@ -145,6 +180,24 @@ public class Monster : AImovement
             transform.Translate(Vector3.down * delta, Space.World);
             yield return null;
         }
-        Destroy(gameObject);
-     }
+
+        //리스폰 할지 안할지
+        if (isRespawn && spawner != null)
+        {
+            //리스폰
+            spawner.Respawn(this, respawnTime);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Respawn()
+    {
+        transform.position = startPos;
+        myCol.enabled = true;
+        myPerception.gameObject.SetActive(false);
+        ChangeState(State.Create);
+    }
 }

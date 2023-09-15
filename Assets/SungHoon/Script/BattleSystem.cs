@@ -116,12 +116,21 @@ public class BattleSystem : MoveMent , IDamage, ILive
         }
     }
 
+    public bool IsLvUP
+    {
+        get
+        {
+            return curExp>= BattleStat.MaxExp;
+        }
+    }
+
     protected override void Initialize()
     {
         base.Initialize();
 
         curHP = BattleStat.MaxHP;
         curMP = BattleStat.MaxMP;
+        curExp = BattleStat.MaxExp;
         curAttackPoint = BattleStat.DefaultAttackPoint;
         curDefensePoint = BattleStat.DefaultDefensePoint;
     }

@@ -21,6 +21,8 @@ public class DialogueManager : MonoBehaviour
 
     public event Action OnStartDialogue;
     public event Action OnEndDialogue;
+
+    QuestNPC curQNPC = null;
     
 
     private void Awake()
@@ -32,8 +34,11 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
     }
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue, QuestNPC Qnpc = null)
     {
+        if(Qnpc != null)
+            curQNPC = Qnpc;
+
         nextButton.SetActive(true);
         acceptButton.SetActive(false);
 
@@ -81,5 +86,13 @@ public class DialogueManager : MonoBehaviour
     {
         animator?.SetBool("IsOpen", false);
         OnEndDialogue?.Invoke();
+    }
+
+    public void OnAccept()
+    {
+        if(curQNPC != null)
+        {
+            curQNPC.Accept();
+        }
     }
 }

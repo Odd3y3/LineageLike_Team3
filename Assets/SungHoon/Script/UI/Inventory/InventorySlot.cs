@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+public struct InventoryData
+{
+    public Item Item;
+    public int ItemCount;
+}
+
 public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
 {
 
@@ -12,7 +18,9 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
 
     public int itemCount; // 획득한 아이템의 개수
 
-    public TMPro.TMP_Text myText=null;
+    public TMPro.TMP_Text countText=null;
+
+    InventoryData myData;
 
     //인벤토리 새로운 아이템 슬롯 추가
 
@@ -34,13 +42,13 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
 
         if (_alpha == 1&&itemCount>1)
         {
-            myText.gameObject.SetActive(true);
-            myText.text = itemCount.ToString();
+            countText.gameObject.SetActive(true);
+            countText.text = itemCount.ToString();
         }
         else
         {
-            myText.gameObject.SetActive(false);
-            myText.text = itemCount.ToString();
+            countText.gameObject.SetActive(false);
+            countText.text = itemCount.ToString();
         }
     }
 
@@ -54,12 +62,12 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
             GameManager.Inst.UiManager.myInventory.AcquireItem(item,lesscount);
         }
 
-        myText.text = itemCount.ToString();
+        countText.text = itemCount.ToString();
 
         if (itemCount > 1)
         {
-            myText.gameObject.SetActive(true);
-            myText.text = itemCount.ToString();
+            countText.gameObject.SetActive(true);
+            countText.text = itemCount.ToString();
         }
 
         if (itemCount <= 0)
@@ -75,8 +83,8 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
         myImage.sprite = null;
         SetColor(0);
 
-        myText.text = "0";
-        myText.gameObject.SetActive(false);
+        countText.text = "0";
+        countText.gameObject.SetActive(false);
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -137,6 +145,29 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
             DragSlot.instance.dragInventorySlot.AddItem(_tempItem,_tempCount);
         else
             DragSlot.instance.dragInventorySlot.ClearSlot();
+    }
+
+    public void UpdateData()
+    {
+        myData.Item = item;
+        myData.ItemCount = itemCount;
+    }
+
+    public InventoryData GetData()
+    {
+        return myData;
+    }
+
+    public void SetData(InventoryData data)
+    {
+        myData = data;
+        ChangeInfo();
+    }
+
+    public void ChangeInfo()
+    {
+        AddItem(myData.Item);
+        SetSlotCount(myData.ItemCount);
     }
 
     private void Awake()

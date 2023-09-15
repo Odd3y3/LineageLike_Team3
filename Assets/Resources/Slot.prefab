@@ -206,7 +206,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 0}
-  myText: {fileID: 2921135320544144400}
+  itemCount: 0
+  countText: {fileID: 2921135320544144400}
 --- !u!222 &7145839460173887767
 CanvasRenderer:
   m_ObjectHideFlags: 0

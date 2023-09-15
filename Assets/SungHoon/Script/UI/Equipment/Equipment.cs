@@ -36,10 +36,13 @@ public class Equipment :UIProperty<EquipmentSlot>
     { 
             stateActivated = !stateActivated;
 
+        if (!MenuUI.GameIsPaused)
+        {
             if (stateActivated)
                 OpenState();
             else
                 CloseState();
+        }    
     }
 
     private void OpenState()
@@ -78,6 +81,25 @@ public class Equipment :UIProperty<EquipmentSlot>
                     return;
                 }
             }
+        }
+    }
+
+    public EquipmentData[] GetEquipmentData()
+    {
+        EquipmentData[] PlayerEquipmentData = GameManager.Inst.inGameManager.EquipmentDatas;
+        for(int i = 0; i < slots.Length; i++)
+        {
+            slots[i].UpdateData();
+            PlayerEquipmentData[i] = slots[i].GetData();
+        }
+        return PlayerEquipmentData;
+    }
+
+    public void SetEquipmentData(EquipmentData[] equipmentSlots)
+    {
+        for (int i = 0; i < slots.Length; i++)
+        {
+            slots[i].SetData(equipmentSlots[i]);
         }
     }
 }

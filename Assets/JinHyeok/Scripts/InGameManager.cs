@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class InGameManager : MonoBehaviour
 {
-    public SaveData[] saveDatas;
+    [HideInInspector]
+    public SaveData[] saveDatas = new SaveData[3];
+
+    public InventoryData[] InventoryDatas;
+    public EquipmentData[] EquipmentDatas;
 
     Player _player;
     /// <summary>
@@ -44,9 +48,19 @@ public class InGameManager : MonoBehaviour
         }
     }
 
+    public void GoldDrop(uint gold)
+    {
+        Gold += gold;
+        GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(Gold);
+    }
+
     private void Awake()
     {
         //Load Slot 가져오기 ( Save Data )
+        for(int i = 0; i < 3; i++)
+        {
+            saveDatas[i] = Resources.Load<SaveData>($"SaveData{i}");
+        }
     }
 
     //세이브 로드 기능

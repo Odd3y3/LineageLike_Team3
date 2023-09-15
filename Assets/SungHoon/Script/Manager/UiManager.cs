@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UiManager : MonoBehaviour
 {
     public Slider myHpSlider;
+    public Slider myExpSlider;
 
     public Inventory myInventory;
     public Equipment myEquipment;
@@ -22,4 +23,8 @@ public class UiManager : MonoBehaviour
         mySkillWindow.setSkill();
     }
 
+    public void OnSaveButton()
+    {
+        GameManager.Inst.inGameManager.Save();
+    }
 }

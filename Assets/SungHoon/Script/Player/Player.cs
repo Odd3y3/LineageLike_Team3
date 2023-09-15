@@ -15,8 +15,6 @@ public class Player : PlayerBattleSystem, ICutScene
 
     GameObject destinationMarker;
 
-    public int Gold = 0;
-
     private void Awake()
     {
         //if (GameManager.Inst.myPlayer == null)
@@ -77,6 +75,8 @@ public class Player : PlayerBattleSystem, ICutScene
         {
             LevelUp();
         }
+
+
     }
 
     public void OnMouseClickMove(Vector3 pos)
@@ -105,19 +105,6 @@ public class Player : PlayerBattleSystem, ICutScene
         Destroy(obj);
     }
 
-    public void LevelUp()
-    {
-        BattleStat.LV++;
-        BattleStat.MaxHP += 10;
-        curHP += 10;
-        BattleStat.MaxMP += 10;
-        curMP += 10;
-        BattleStat.MaxExp *= 2;
-        curExp = 0;
-        curAttackPoint += 10;
-        curDefensePoint+= 10;
-        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(BattleStat.LV);
-    }
 
     //public void OnSkill()
     //{
@@ -185,12 +172,14 @@ public class Player : PlayerBattleSystem, ICutScene
     {
         CanMove = false;
         myAnim.SetBool("IsMove", false);
+        myAnim.SetBool("IsImmunity", true);
         StopMoveAndRotate();
     }
 
     public void OnEndCutScene()
     {
         CanMove = true;
+        myAnim.SetBool("IsImmunity", false);
     }
 
     //==============================================================================
@@ -214,6 +203,7 @@ public class Player : PlayerBattleSystem, ICutScene
             }
         }
     }
+
     public void OnUnmountITem(Item EquipmentItem)
     {
         if (EquipmentItem != null)
@@ -252,11 +242,4 @@ public class Player : PlayerBattleSystem, ICutScene
         statList[3].text = curAttackPoint.ToString();
         statList[4].text = curDefensePoint.ToString();
     }
-
-    public void GoldDrop(int gold)
-    {
-        Gold += gold;
-        GameManager.Inst.UiManager.myGoodsUI.DropCoin(Gold);
-    }
-
 }

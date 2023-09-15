@@ -12,7 +12,9 @@ public class QuestNPC : MonoBehaviour, IInteractable
 {
     public LayerMask playerMask;
 
-    public QuestObject questObject;
+    public int questID;
+    QuestObject questObject = null;
+
     [SerializeField] GameObject QuestEffectGO;
     [SerializeField] GameObject QuestRewardGO;
 
@@ -26,7 +28,17 @@ public class QuestNPC : MonoBehaviour, IInteractable
     
     private void Start()
     {
-        QuestManager.Instance.OnCompletedQuest += OnCompleteQuest;
+        GameManager.Inst.questManager.OnCompletedQuest += OnCompleteQuest;
+
+        //questObject 설정
+        foreach (QuestObject questObject in GameManager.Inst.questManager.questdatabase.questObjects)
+        {
+            if (questObject.data.id == questID)
+            {
+                this.questObject = questObject;
+                break;
+            }
+        }
     }
 
     #region IInteractable Interface
@@ -77,19 +89,19 @@ public class QuestNPC : MonoBehaviour, IInteractable
         isStartDialogue = true;
         if(questObject.status == QuestStatus.None)
         {
-            DialogueManager.Instance.StartDialogue(readyDialogue);
-            questObject.status = QuestStatus.Accepted;  
+            DialogueManager.Instance.StartDialogue(readyDialogue, this);
+            //questObject.status = QuestStatus.Accepted;
         }
         else if(questObject.status == QuestStatus.Accepted)
         {
-            DialogueManager.Instance.StartDialogue(acceptedDialogue);
+            DialogueManager.Instance.StartDialogue(acceptedDialogue, this);
             
         }
         else if (questObject.status ==QuestStatus.Completed)
         {
-            DialogueManager.Instance.StartDialogue(completedDialogue);
+            DialogueManager.Instance.StartDialogue(completedDialogue, this);
          
-            questObject.status = QuestStatus.Rewarded;   
+            //questObject.status = QuestStatus.Rewarded;   
         }
      }
     public void StopInteract(GameObject other)
@@ -118,5 +130,26 @@ public class QuestNPC : MonoBehaviour, IInteractable
         //DialogueManager.Instance.OnEndDialogue += OnEndDialogue;
         //isStartDialogue = true;
         //DialogueManager.Instance.StartDialogue(dialogue);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if ((1 << other.gameObject.layer & playerMask) != 0)
+        {
+            DialogueManager.Instance.EndDialogue();
+        }
+    }
+
+    public void Accept()
+    {
+        if(questObject.status == QuestStatus.None)
+        {
+            questObject.status = QuestStatus.Accepted;
+        }
+        else if(questObject.status == QuestStatus.Completed)
+        {
+            questObject.status = QuestStatus.Rewarded;
+            //보상 받기
+            GameManager.Inst.questManager.QuestReward();
+        }
     }
 }

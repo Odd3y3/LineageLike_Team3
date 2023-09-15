@@ -22,6 +22,19 @@ public class CharProperty : MonoBehaviour
         }
     }
 
+    Collider _col = null;
+    protected Collider myCol
+    {
+        get
+        {
+            if(_col == null)
+            {
+                _col = GetComponent<Collider>();
+            }
+            return _col;
+        }
+    }
+
     float _hp = 0.0f;
 
     public float curHP
@@ -75,13 +88,14 @@ public class CharProperty : MonoBehaviour
         set
         {
             _exp = Mathf.Clamp(value, 0.0f, BattleStat.MaxExp);
-            if (myExpBar != null) myExpBar.value = _exp / BattleStat.MaxExp;
+            if (myExpBar != null) myExpBar.value = _exp/ BattleStat.MaxExp;
         }
     }
 
     public Slider myHpBar = null;
     public Slider myExpBar = null;
     protected float playTime = 0.0f;
+    public int ID;
     public BattleStat BattleStat;
 
 }

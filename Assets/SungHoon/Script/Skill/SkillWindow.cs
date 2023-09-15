@@ -45,7 +45,8 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     public void TryOpenSkillWindow()
     {
             skillWindowActivated = !skillWindowActivated;
-
+        if (!MenuUI.GameIsPaused)
+        {
             if (skillWindowActivated)
             {
                 OpenSkillWindow();
@@ -54,6 +55,7 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
             {
                 CloseSkillWindow();
             }
+        }
     }
 
     private void OpenSkillWindow()

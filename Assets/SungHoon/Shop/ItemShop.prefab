@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1742897135266867873}
   - component: {fileID: 5937562561705273403}
+  - component: {fileID: 685401290130234808}
   m_Layer: 5
   m_Name: ItemShop
   m_TagString: Untagged
@@ -59,6 +60,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &685401290130234808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429141991967976472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e884353c45a523147a18cbb89e1bf3e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myShop: {fileID: 0}
+  slots: []
 --- !u!1 &1651724890351112289
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,6 +490,7 @@ GameObject:
   - component: {fileID: 7589148871850842654}
   - component: {fileID: 1362317863985430798}
   - component: {fileID: 5294699615225526369}
+  - component: {fileID: 4475833076423500370}
   m_Layer: 5
   m_Name: Item Button
   m_TagString: Untagged
@@ -600,6 +616,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4475833076423500370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2182150356050324470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a3948101ed55b4fa862816b7943b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saleItemImage: {fileID: 8822319456006585041}
+  salePrice: {fileID: 1970448778129849515}
+  saleName: {fileID: 8973525888241059435}
 --- !u!1 &2515232034287671236
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,6 +854,7 @@ GameObject:
   - component: {fileID: 5730104058323665305}
   - component: {fileID: 4375529933326476355}
   - component: {fileID: 6648082281216126866}
+  - component: {fileID: 2729860143882528650}
   m_Layer: 5
   m_Name: Item Button (2)
   m_TagString: Untagged
@@ -948,6 +980,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2729860143882528650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3441948299933920742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a3948101ed55b4fa862816b7943b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saleItemImage: {fileID: 0}
+  salePrice: {fileID: 0}
+  saleName: {fileID: 0}
 --- !u!1 &3540248055289692585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1171,7 +1218,7 @@ GameObject:
   - component: {fileID: 2341534056047583310}
   - component: {fileID: 8973525888241059435}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Sale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1593,6 +1640,7 @@ GameObject:
   - component: {fileID: 8765695507768569522}
   - component: {fileID: 7600854300730475375}
   - component: {fileID: 4122650663685701758}
+  - component: {fileID: 2099234584300893083}
   m_Layer: 5
   m_Name: Item Button (1)
   m_TagString: Untagged
@@ -1718,6 +1766,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2099234584300893083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975904805141240010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68a3948101ed55b4fa862816b7943b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saleItemImage: {fileID: 0}
+  salePrice: {fileID: 0}
+  saleName: {fileID: 0}
 --- !u!1 &7196034284709956645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1730,7 +1793,7 @@ GameObject:
   - component: {fileID: 3714679949747612732}
   - component: {fileID: 1970448778129849515}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Price
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -10,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public UiManager UiManager;
     public InGameManager inGameManager;
     public SceneLoader sceneLoader;
+    public QuestManager questManager;
 
     public PlayerSpawnPoints spawnPoints;
 
@@ -50,6 +51,8 @@ public class GameManager : Singleton<GameManager>
 
         //카메라 바인드 설정
         FindObjectOfType<FollowCamera>().SetTarget(inGameManager.myPlayer.transform);
+        //미니맵카메라 바인드 설정
+        FindObjectOfType<MiniMap>().SetTarget();
 
 
         //준비 끝나고 Fade In
@@ -101,6 +104,7 @@ public class GameManager : Singleton<GameManager>
 
         //ui hpBar 바인딩
         inGameManager.myPlayer.myHpBar = UiManager.myHpSlider;
+        inGameManager.myPlayer.myExpBar = UiManager.myExpSlider;
 
         //플레이어 정보 받기 (SaveData)
         inGameManager.Load(inGameManager.myPlayer);
@@ -141,17 +145,24 @@ public class GameManager : Singleton<GameManager>
     public void StartLoadGame(int saveSlotNum)
     {
         SaveData saveData = inGameManager.saveDatas[saveSlotNum];
+
+        inGameManager.curSaveSlotNum = saveSlotNum;
         if (saveData.IsEmpty)
         {
-            inGameManager.curSaveSlotNum = saveSlotNum;
             curSceneNum = 2;
             FadeOut(() => sceneLoader.LoadScene(curSceneNum, 0));
+
+            //퀘스트 초기화
+            questManager.InitQuestDatabase(saveSlotNum);
+            questManager.ResetQuestData();
         }
         else
         {
-            inGameManager.curSaveSlotNum = saveSlotNum;
             curSceneNum = saveData.playerInfo.SceneNum;
             FadeOut(() => sceneLoader.LoadScene(curSceneNum, -1));
+
+            //퀘스트 초기화
+            questManager.InitQuestDatabase(saveSlotNum);
         }
     }
 

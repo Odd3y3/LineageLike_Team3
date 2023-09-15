@@ -97,8 +97,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6901362293415938385}
-  - component: {fileID: 4375257186697615518}
   - component: {fileID: 2075298888764448693}
+  - component: {fileID: 4375257186697615518}
   m_Layer: 7
   m_Name: Monster
   m_TagString: Untagged
@@ -124,29 +124,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &4375257186697615518
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1638696409863849576}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.4
-  m_Height: 2.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &2075298888764448693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
+  myExpBar: {fileID: 0}
+  ID: 2
   BattleStat:
     LV: 3
     MaxHP: 100
@@ -184,8 +163,33 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isRoaming: 1
+  isRespawn: 1
+  respawnTime: 3
   myState: 0
   barPoint: {fileID: 0}
+--- !u!136 &4375257186697615518
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638696409863849576}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.4
+  m_Height: 2.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &4682918425901263779
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,6 +436,9 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   DeadAction:
+    m_PersistentCalls:
+      m_Calls: []
+  DashAction:
     m_PersistentCalls:
       m_Calls: []
   SkillEffectStartAction:

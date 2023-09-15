@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[System.Serializable]
 public struct InventoryData
 {
     public Item Item;
@@ -28,6 +29,7 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
     {
         item = _item;
         itemCount = _count;
+        if (item == null) return;
         myImage.sprite = item.Sprite;
 
         SetColor(1);
@@ -54,6 +56,7 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
 
     public void SetSlotCount(int _count)
     {
+        if (item == null || item.ItemType ==Item.ITEMTYPE.Equipment) return;
         itemCount += _count;
         if (itemCount > item.Stack)
         {
@@ -166,8 +169,7 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
 
     public void ChangeInfo()
     {
-        AddItem(myData.Item);
-        SetSlotCount(myData.ItemCount);
+        AddItem(myData.Item,myData.ItemCount);
     }
 
     private void Awake()

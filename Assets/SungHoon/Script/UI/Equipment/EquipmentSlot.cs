@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[System.Serializable]
 public struct EquipmentData
 {
     public Item Equipment;
@@ -25,6 +26,7 @@ public class EquipmentSlot : UIObject<EquipmentSlot>,IPointerClickHandler, IDrop
     public void AddEquipment(Item _item)
     {
         myEquipment = _item;
+        if (myEquipment == null) return;
         myImage.sprite = myEquipment.Sprite;
         GameManager.Inst.inGameManager.myPlayer.OnEquipItem(_item);
         SetColor(1,Color.white);

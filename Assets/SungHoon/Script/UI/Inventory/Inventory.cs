@@ -112,5 +112,6 @@ public class Inventory : UIProperty<InventorySlot>
         {
             slots[i].SetData(invenotrySlots[i]);
         }
+        
     }
 }

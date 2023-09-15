@@ -138,11 +138,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
   myExpBar: {fileID: 0}
+  ID: 3
   BattleStat:
     LV: 1
     MaxHP: 100
     MaxMP: 0
-    MaxExp: 0
+    MaxExp: 150
     DefaultAttackPoint: 10
     DefaultDefensePoint: 0
     AttackRange: 2
@@ -162,6 +163,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isRoaming: 1
+  isRespawn: 0
+  respawnTime: 10
   myState: 0
   barPoint: {fileID: 0}
 --- !u!135 &3429261444485574922

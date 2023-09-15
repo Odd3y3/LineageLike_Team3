@@ -113,11 +113,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
   myExpBar: {fileID: 0}
+  ID: 4
   BattleStat:
     LV: 5
     MaxHP: 1000
     MaxMP: 0
-    MaxExp: 0
+    MaxExp: 500
     DefaultAttackPoint: 10
     DefaultDefensePoint: 5
     AttackRange: 3
@@ -139,6 +140,7 @@ MonoBehaviour:
   attackArea1: {fileID: 1475688268539223511}
   attackArea2: {fileID: 972913330652937510}
   attackArea3: {fileID: 6767824358596644040}
+  exitPortal: {fileID: 0}
 --- !u!136 &3708854224090484241
 CapsuleCollider:
   m_ObjectHideFlags: 0

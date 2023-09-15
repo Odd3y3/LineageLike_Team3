@@ -335,6 +335,9 @@ MonoBehaviour:
   DeadAction:
     m_PersistentCalls:
       m_Calls: []
+  DashAction:
+    m_PersistentCalls:
+      m_Calls: []
   SkillEffectStartAction:
     m_PersistentCalls:
       m_Calls: []
@@ -611,11 +614,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHpBar: {fileID: 0}
+  myExpBar: {fileID: 0}
+  ID: 1
   BattleStat:
     LV: 5
     MaxHP: 100
     MaxMP: 0
-    MaxExp: 0
+    MaxExp: 50
     DefaultAttackPoint: 20
     DefaultDefensePoint: 5
     AttackRange: 2
@@ -635,6 +640,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   isRoaming: 0
+  isRespawn: 1
+  respawnTime: 3
   myState: 0
   barPoint: {fileID: 0}
 --- !u!136 &6248886124087469451

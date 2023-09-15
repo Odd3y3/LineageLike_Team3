@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public struct InvenotryData
+public struct InventoryData
 {
     public Item Item;
-    public int ItmeCount;
+    public int ItemCount;
 }
 
 public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
@@ -20,7 +20,7 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
 
     public TMPro.TMP_Text countText=null;
 
-    InvenotryData myData;
+    InventoryData myData;
 
     //인벤토리 새로운 아이템 슬롯 추가
 
@@ -150,15 +150,15 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
     public void UpdateData()
     {
         myData.Item = item;
-        myData.ItmeCount = itemCount;
+        myData.ItemCount = itemCount;
     }
 
-    public InvenotryData GetData()
+    public InventoryData GetData()
     {
         return myData;
     }
 
-    public void SetData(InvenotryData data)
+    public void SetData(InventoryData data)
     {
         myData = data;
         ChangeInfo();
@@ -167,7 +167,7 @@ public class InventorySlot : UIObject<InventorySlot>, IPointerClickHandler,IBegi
     public void ChangeInfo()
     {
         AddItem(myData.Item);
-        SetSlotCount(myData.ItmeCount);
+        SetSlotCount(myData.ItemCount);
     }
 
     private void Awake()

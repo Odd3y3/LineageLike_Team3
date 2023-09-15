@@ -102,6 +102,11 @@ public class Monster : AImovement
         
         if(transform.parent != null)
             transform.parent.TryGetComponent<EnemySpawner>(out spawner);
+
+        //미니맵 아이콘 설정
+        GameObject miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),
+            FindObjectOfType<UiManager>().myMiniMapIcons);        
+        miniMapIcon.GetComponent<MiniMapIcon>().SetTarget(transform, Color.red);
     }
 
     void OnEnable()

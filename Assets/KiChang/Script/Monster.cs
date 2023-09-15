@@ -58,7 +58,7 @@ public class Monster : AImovement
                 myCol.enabled = false;
                 StopAllCoroutines();
                 myAnim.SetTrigger("Die");
-                DropExp();
+                DropExp(BattleStat.MaxExp);
                 DropItem();
                 DisAppear();
 
@@ -68,9 +68,9 @@ public class Monster : AImovement
         }
     }
 
-    public void DropExp()
+    public void DropExp(int Exp)
     {
-        int Exp = Random.Range(50, 101);
+        //int Exp = Random.Range(50, 101);
         GameManager.Inst.inGameManager.myPlayer.curExp += Exp;
         if (GameManager.Inst.inGameManager.myPlayer.IsLvUP)
         {

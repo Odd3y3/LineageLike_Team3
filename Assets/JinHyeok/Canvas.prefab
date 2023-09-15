@@ -9718,7 +9718,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myHpSlider: {fileID: 5508916649700493184}
-  myExpSlider: {fileID: 0}
+  myExpSlider: {fileID: 7089932510552380485}
   myInventory: {fileID: 4356674277128059577}
   myEquipment: {fileID: 4903857129930530649}
   myConsumptionItem: {fileID: 6991213961306692385}

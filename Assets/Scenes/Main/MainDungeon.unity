@@ -1396,7 +1396,7 @@ PrefabInstance:
       objectReference: {fileID: 759301456}
     - target: {fileID: 7881062092503757237, guid: bb5611604de9d1f449919ba2e54da66c, type: 3}
       propertyPath: BattleStat.MaxHP
-      value: 100
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

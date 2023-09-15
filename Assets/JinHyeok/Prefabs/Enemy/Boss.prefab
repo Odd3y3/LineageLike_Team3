@@ -118,7 +118,7 @@ MonoBehaviour:
     LV: 5
     MaxHP: 1000
     MaxMP: 0
-    MaxExp: 0
+    MaxExp: 500
     DefaultAttackPoint: 10
     DefaultDefensePoint: 5
     AttackRange: 3

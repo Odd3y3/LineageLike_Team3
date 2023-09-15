@@ -11,7 +11,7 @@ public struct BattleStat
     public int LV;
     public float MaxHP;
     public float MaxMP;
-    public float MaxExp;
+    public int MaxExp;
     public float DefaultAttackPoint;
     public float DefaultDefensePoint;
     public float AttackRange;

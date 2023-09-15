@@ -27,6 +27,7 @@ public class Monster : AImovement
     Transform uiHpBars = null;
 
     GameObject hpBarObj = null;
+    MiniMapIcon miniMapIcon = null;
 
     //MonsterStatBar myStatUI = null;
 
@@ -61,6 +62,7 @@ public class Monster : AImovement
                 DropExp(BattleStat.MaxExp);
                 DropItem();
                 DisAppear();
+                miniMapIcon.gameObject.SetActive(false);
 
                 //퀘스트 진행
                 GameManager.Inst.questManager.ProcessQuest(QuestType.DestroyEnemy, ID);
@@ -104,9 +106,9 @@ public class Monster : AImovement
             transform.parent.TryGetComponent<EnemySpawner>(out spawner);
 
         //미니맵 아이콘 설정
-        GameObject miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),
-            FindObjectOfType<UiManager>().myMiniMapIcons);        
-        miniMapIcon.GetComponent<MiniMapIcon>().SetTarget(transform, Color.red);
+        miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),
+            FindObjectOfType<UiManager>().myMiniMapIcons).GetComponent<MiniMapIcon>();
+        miniMapIcon.SetTarget(transform, Color.red);
     }
 
     void OnEnable()
@@ -122,6 +124,9 @@ public class Monster : AImovement
 
         //ChangeState(State.Normal);
         StartCoroutine(StartDelaying(2.0f));
+
+        //미니맵 아이콘 켜기
+        miniMapIcon.gameObject.SetActive(true);
     }
     IEnumerator StartDelaying(float t)
     {

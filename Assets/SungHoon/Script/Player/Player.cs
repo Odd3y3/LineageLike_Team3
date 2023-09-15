@@ -24,6 +24,11 @@ public class Player : PlayerBattleSystem, ICutScene
         destinationMarker = Resources.Load<GameObject>("destinationMarker");
 
         Initialize();
+
+        //미니맵 아이콘 설정
+        GameObject miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),
+            GameManager.Inst.UiManager.myMiniMapIcons);
+        miniMapIcon.GetComponent<MiniMapIcon>().SetTarget(transform, Color.green);
     }
 
     void Start()

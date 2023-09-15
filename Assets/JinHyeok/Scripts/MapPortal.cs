@@ -12,6 +12,14 @@ public class MapPortal : MonoBehaviour
     [SerializeField]
     private int destinationSceneSpawnPointNum = 0;
 
+    private void Awake()
+    {
+        //미니맵 아이콘 설정
+        GameObject miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),
+            FindObjectOfType<UiManager>().myMiniMapIcons);
+        miniMapIcon.GetComponent<MiniMapIcon>().SetTarget(transform, Color.blue);
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {

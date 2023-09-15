@@ -15,6 +15,7 @@ public class UiManager : MonoBehaviour
     public SkillWindow mySkillWindow;
     public GoodsUI myGoodsUI;
     public GameObject myGameOverWindow;
+    public Transform myMiniMapIcons;
 
 
     public void DefalutSetting()

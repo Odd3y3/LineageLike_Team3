@@ -53,6 +53,8 @@ public class QuestManager : MonoBehaviour
                     questObject.status = QuestStatus.Completed;
                     OnCompletedQuest?.Invoke(questObject);
                 }
+
+                questObject.questListUIContent?.ChangeInfo();
             }
         }
     }

@@ -16,12 +16,15 @@ public class UiManager : MonoBehaviour
     public GoodsUI myGoodsUI;
     public GameObject myGameOverWindow;
     public Transform myMiniMapIcons;
+    public GameObject myBossHpBar;
+    public QuestListUI myQuestListUI;
 
 
     public void DefalutSetting()
     {
         mySkillUI.SetSkillUI();
         mySkillWindow.setSkill();
+        myQuestListUI.InitQuestList();
     }
 
     public void OnSaveButton()

@@ -12,14 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Main/Title.unity
     guid: 4918e672e782f2f4ca524fce6b776276
   - enabled: 1
-    path: Assets/Scenes/SungHoon/TestMain.unity
-    guid: 45c5538a94626f549a1593ac4f198708
-  - enabled: 1
     path: Assets/Scenes/Main/Main.unity
     guid: 48b662bbf22c4a74a9d8a22405a0f0c6
   - enabled: 1
     path: Assets/Scenes/Main/MainDungeon.unity
     guid: f923f259c814610479013381ed68b734
+  - enabled: 1
+    path: Assets/Scenes/SungHoon/TestMain.unity
+    guid: 45c5538a94626f549a1593ac4f198708
   - enabled: 1
     path: Assets/Scenes/SungHoon/TestTitle.unity
     guid: 746b510fc99b9554494069b83bba5499

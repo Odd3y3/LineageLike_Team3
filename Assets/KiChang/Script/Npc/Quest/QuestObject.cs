@@ -15,4 +15,6 @@ public class QuestObject : ScriptableObject
 {
     public Quest data;
     public QuestStatus status;
+
+    public QuestListUIContent questListUIContent;
 }

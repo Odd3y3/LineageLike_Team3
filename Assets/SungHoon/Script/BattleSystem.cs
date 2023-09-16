@@ -108,6 +108,18 @@ public class BattleSystem : MoveMent , IDamage, ILive
             false, 0.5f);
     }
 
+    protected void DropExp(int Exp)
+    {
+        //int Exp = Random.Range(50, 101);
+        GameManager.Inst.inGameManager.myPlayer.curExp += Exp;
+        if (GameManager.Inst.inGameManager.myPlayer.IsLvUP)
+        {
+            int less = (int)(curExp - BattleStat.MaxExp);
+            GameManager.Inst.inGameManager.myPlayer.LevelUp();
+            GameManager.Inst.inGameManager.myPlayer.curExp += less;
+        }
+    }
+
     public bool IsLive
     {
         get

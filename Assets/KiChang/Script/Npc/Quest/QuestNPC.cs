@@ -144,6 +144,7 @@ public class QuestNPC : MonoBehaviour, IInteractable
         if(questObject.status == QuestStatus.None)
         {
             questObject.status = QuestStatus.Accepted;
+            GameManager.Inst.UiManager.myQuestListUI.CreateContentUI(questObject);
         }
         else if(questObject.status == QuestStatus.Completed)
         {
@@ -151,5 +152,7 @@ public class QuestNPC : MonoBehaviour, IInteractable
             //보상 받기
             GameManager.Inst.questManager.QuestReward();
         }
+
+        questObject.questListUIContent?.ChangeInfo();
     }
 }

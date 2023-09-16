@@ -42,6 +42,8 @@ public class Boss : BattleSystem, ICutScene
 
         yield return new WaitForSeconds(2.0f);
 
+        GameManager.Inst.UiManager.myBossHpBar.SetActive(false);
+        DropExp(BattleStat.MaxExp);
         DropItem();
         exitPortal.SetActive(true);
 
@@ -66,6 +68,7 @@ public class Boss : BattleSystem, ICutScene
         AttackTarget(myTarget);
 
         //HP바 생성
+        GameManager.Inst.UiManager.myBossHpBar.SetActive(true);
     }
 
     //이동 및 공격

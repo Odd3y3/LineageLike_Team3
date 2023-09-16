@@ -49,16 +49,16 @@ public class Skill : ScriptableObject
     /// </summary>
     /// <param name="dmg">캐릭터 현재 공격력</param>
     /// <param name="transform">스킬 사용자의 transform</param>
-    public void SkillAttack(float charDmg, Transform transform, LayerMask enemyMask)
+    public void SkillAttack(float charDmg, int skillLV, Transform transform, LayerMask enemyMask)
     {
-        damageArea?.Invoke(TotalDamage(charDmg), transform, enemyMask);
+        damageArea?.Invoke(TotalDamage(charDmg) + skillLV, transform, enemyMask);
     }
 
     /// <summary>
     /// 플레이어 공격력 넣으면 총 데미지가 얼마인지 반환해주는 함수
     /// </summary>
     /// <param name="playerAttackPoint">플레이어 공격력</param>
-    float TotalDamage(float playerAttackPoint)
+    public float TotalDamage(float playerAttackPoint)
     {
         return MultiDamage * playerAttackPoint + AddDamage;
     }

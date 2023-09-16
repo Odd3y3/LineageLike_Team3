@@ -16,11 +16,13 @@ public class SkillInfo
 {
     public Skill skill;
     public float curSkillCool;
+    public int skillLV;
 
     public SkillInfo(Skill skill = null)
     {
         this.skill = skill;
         curSkillCool = 0.0f;
+        skillLV = 1;
     }
 }
 
@@ -39,10 +41,12 @@ public class PlayerBattleSystem : BattleSystem
     [SerializeField]
     protected Skills equippedSkills;
 
-    SkillInfo DashInfo;
-    SkillInfo QSkillInfo;
-    SkillInfo WSkillInfo;
-    SkillInfo ESkillInfo;
+    public SkillInfo DashInfo;
+    public SkillInfo QSkillInfo;
+    public SkillInfo WSkillInfo;
+    public SkillInfo ESkillInfo;
+
+    public int SkillPoint { get; set; } = 0;
 
     public float RemainDashCool { get => DashInfo.curSkillCool; }
     public float RemainQSkillCool { get => QSkillInfo.curSkillCool; }
@@ -55,9 +59,9 @@ public class PlayerBattleSystem : BattleSystem
 
     protected bool IsSkillAreaSelecting { get; private set; } = false;
 
-    Skill usingSkill = null;
+    SkillInfo usingSkill = null;
     Vector3 usingSkillPos = Vector3.zero;
-    public Skill UsingSkill
+    public SkillInfo UsingSkill
     {
         get => usingSkill;
     }
@@ -98,7 +102,9 @@ public class PlayerBattleSystem : BattleSystem
         curMP += 10;
         curAttackPoint += 10;
         curDefensePoint += 10;
-        GameManager.Inst.UiManager.mySkillWindow.GetSkillPoint(BattleStat.LV);
+
+        SkillPoint += 3;
+        GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();
     }
 
     void PlayerDead()
@@ -212,7 +218,7 @@ public class PlayerBattleSystem : BattleSystem
 
         if (!skillInfo.skill.IsDash)
         {
-            usingSkill = skillInfo.skill;
+            usingSkill = skillInfo;
             usingSkillPos = effectPos;
         }
         myAnim.SetTrigger(skillInfo.skill.AnimationClip.name);
@@ -236,11 +242,11 @@ public class PlayerBattleSystem : BattleSystem
     public void OnSkillEffectStart()
     {
         Vector3 pos = usingSkillPos;
-        if (!usingSkill.IsAreaSelect)
+        if (!usingSkill.skill.IsAreaSelect)
             pos = transform.position;
 
-        if(usingSkill.EffectPrefab != null)
-            Instantiate(usingSkill.EffectPrefab, pos, transform.rotation);
+        if(usingSkill.skill.EffectPrefab != null)
+            Instantiate(usingSkill.skill.EffectPrefab, pos, transform.rotation);
     }
 
     public void OnSkillAttack()
@@ -251,12 +257,12 @@ public class PlayerBattleSystem : BattleSystem
             StartCoroutine(SkillAttackCoroutine(usingSkill));
         }
     }
-    IEnumerator SkillAttackCoroutine(Skill usingSkill)
+    IEnumerator SkillAttackCoroutine(SkillInfo usingSkill)
     {
-        var t = new WaitForSeconds(usingSkill.AttackInterval);
-        for(int i = 0; i < usingSkill.AttackCount; i++)
+        var t = new WaitForSeconds(usingSkill.skill.AttackInterval);
+        for(int i = 0; i < usingSkill.skill.AttackCount; i++)
         {
-            usingSkill.SkillAttack(curAttackPoint, transform, enemyMask);
+            usingSkill.skill.SkillAttack(curAttackPoint, UsingSkill.skillLV, transform, enemyMask);
             yield return t;
         }
     }

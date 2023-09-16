@@ -11,9 +11,8 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
     private SkillWindowSlot[] slots;
 
     public TMPro.TMP_Text mySkillPointLavel = null;
-    public int SkillPoint = 0;
 
-    Skills mySkills;
+    //Skills mySkills;
 
     private void Awake()
     {
@@ -33,13 +32,13 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
         {
             TryOpenSkillWindow();
         }
-        if (SkillPoint <= 0)
-        {
-            foreach (SkillWindowSlot slots in slots)
-            {
-                slots.DontShowLevelUpButton();
-            }
-        }
+        //if (SkillPoint <= 0)
+        //{
+        //    foreach (SkillWindowSlot slots in slots)
+        //    {
+        //        slots.DontShowLevelUpButton();
+        //    }
+        //}
     }
 
     public void TryOpenSkillWindow()
@@ -71,31 +70,39 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
 
     public void setSkill()
     {
-        mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
-        slots[0].mySkill = mySkills.QSkill;
-        slots[1].mySkill = mySkills.WSkill;
-        slots[2].mySkill = mySkills.ESkill;
+        //mySkills = GameManager.Inst.inGameManager.myPlayerSkill;
+        //slots[0].mySkill = mySkills.QSkill;
+        //slots[1].mySkill = mySkills.WSkill;
+        //slots[2].mySkill = mySkills.ESkill;
 
-        foreach(SkillWindowSlot slots in slots)
+        slots[0].mySkill = GameManager.Inst.inGameManager.myPlayer.QSkillInfo;
+        slots[1].mySkill = GameManager.Inst.inGameManager.myPlayer.WSkillInfo;
+        slots[2].mySkill = GameManager.Inst.inGameManager.myPlayer.ESkillInfo;
+
+        foreach (SkillWindowSlot slot in slots)
         {
-            slots.DefalutSetting();
-            slots.ChangeInfo();
+            slot.DefalutSetting();
+            slot.ChangeInfo();
         }
         ChangeInfo();
     }
 
     public void ChangeInfo()
     {
-        mySkillPointLavel.text = SkillPoint.ToString();
+        mySkillPointLavel.text = GameManager.Inst.inGameManager.myPlayer.SkillPoint.ToString();
+        foreach (SkillWindowSlot slot in slots)
+        {
+            slot.ChangeInfo();
+        }
     }
 
-    public void GetSkillPoint(int lv)
+    public void GetSkillPoint()
     {
-        SkillPoint  = 1*(3*lv)-3;
+        //SkillPoint  = 1*(3*lv)-3;
         ChangeInfo();
-        foreach(SkillWindowSlot slots in slots)
+        foreach(SkillWindowSlot slot in slots)
         {
-            slots.ShowLevelUpButton();
+            slot.ShowLevelUpButton();
         }
     }
 }

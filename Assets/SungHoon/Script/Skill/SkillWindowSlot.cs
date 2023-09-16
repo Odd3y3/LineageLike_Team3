@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class SkillWindowSlot : UIProperty<SkillWindowSlot>
 {
-    public Skill mySkill = null;
+    public SkillInfo mySkill = null;
     public Button myLevleUpButton = null;
-    public int mySkillLevel = 1;
-    public int SkillRequirement = 1;
+    //public int mySkillLevel = 1;
+    //public int SkillRequirement = 1;
     public TMPro.TMP_Text mySkillLevelLavel = null;
     public TMPro.TMP_Text mySkillDamageLavel = null;
     public TMPro.TMP_Text mySkillRequiremenLavel = null;
@@ -30,17 +30,17 @@ public class SkillWindowSlot : UIProperty<SkillWindowSlot>
 
     public void DefalutSetting()
     {
-        defalutAddDamage = mySkill.AddDamage;
-        defalutMultiDamage = mySkill.MultiDamage;
-        myImage.sprite = mySkill.Icon;
+        //defalutAddDamage = mySkill.skill.AddDamage;
+        //defalutMultiDamage = mySkill.skill.MultiDamage;
+        myImage.sprite = mySkill.skill.Icon;
     }
 
     public void ChangeInfo()
     {
-        mySkillDamageLavel.text=(mySkill.MultiDamage * GameManager.Inst.inGameManager.myPlayer.BattleStat.DefaultAttackPoint + mySkill.AddDamage).ToString();
-        mySkillLevelLavel.text = mySkillLevel.ToString();
-        mySkillRequiremenLavel.text = SkillRequirement.ToString();
-        GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();
+        mySkillDamageLavel.text=(mySkill.skill.TotalDamage(GameManager.Inst.inGameManager.myPlayer.curAttackPoint)).ToString();
+        mySkillLevelLavel.text = mySkill.skillLV.ToString();
+        mySkillRequiremenLavel.text = mySkill.skillLV.ToString();
+        //GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();
     }
 
     public void ShowLevelUpButton()
@@ -55,22 +55,23 @@ public class SkillWindowSlot : UIProperty<SkillWindowSlot>
 
     public void SkillLevelUp()
     {
-        if (GameManager.Inst.UiManager.mySkillWindow.SkillPoint != 0&& GameManager.Inst.UiManager.mySkillWindow.SkillPoint>=SkillRequirement)
+        if (GameManager.Inst.inGameManager.myPlayer.SkillPoint != 0&& GameManager.Inst.inGameManager.myPlayer.SkillPoint >= mySkill.skillLV)
         {
-            mySkill.AddDamage += 10.0f;
-            mySkill.MultiDamage += 1.0f;
-            mySkillLevel++;
-            GameManager.Inst.UiManager.mySkillWindow.SkillPoint-=SkillRequirement;
-            SkillRequirement *= 2;
-            ChangeInfo();
-            
+            //mySkill.AddDamage += 10.0f;
+            //mySkill.MultiDamage += 1.0f;
+            //mySkillLevel++;
+            GameManager.Inst.inGameManager.myPlayer.SkillPoint -= mySkill.skillLV;
+            mySkill.skillLV++;
+            //SkillRequirement *= 2;
+            GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();
+
         }
     }
 
     private void OnDestroy()
     {
-        mySkill.AddDamage = defalutAddDamage;
-        mySkill.MultiDamage = defalutMultiDamage;
+        //mySkill.skill.AddDamage = defalutAddDamage;
+        //mySkill.skill.MultiDamage = defalutMultiDamage;
     }
 
 }

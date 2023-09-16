@@ -30,6 +30,13 @@ public class Item : ScriptableObject
     public EQUIPMENTTYPE EquipmentType;
     [SerializeField]
     public EQUIPMENGRADE ItemGrade;
+
+    [SerializeField]
+    private int _weaponid;
+    public int WeaponID
+    {
+        get { return _weaponid; }
+    }
     [SerializeField]
     private string _name;
     public string Name

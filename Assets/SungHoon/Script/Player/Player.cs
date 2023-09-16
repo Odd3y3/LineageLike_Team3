@@ -11,7 +11,13 @@ public class Player : PlayerBattleSystem, ICutScene
 
     Coroutine comboCheckCoroutine;
 
-    
+    public GameObject[] BodyObject = null;
+    public GameObject[] ArmorsObject = null;
+    public GameObject[] WeaponsObject = null;
+
+    public GameObject BootsObject = null;
+    public GameObject HelmetObject = null;
+
 
     GameObject destinationMarker;
 
@@ -207,6 +213,7 @@ public class Player : PlayerBattleSystem, ICutScene
                 curDefensePoint += EquipmentItem.StatPoint;
             }
         }
+        EquipmentOvjectActivate(EquipmentItem);
     }
 
     public void OnUnmountITem(Item EquipmentItem)
@@ -221,6 +228,84 @@ public class Player : PlayerBattleSystem, ICutScene
             {
                 curDefensePoint -= EquipmentItem.StatPoint;
             }
+        }
+        EquipmentOvjectDisabled(EquipmentItem);
+    }
+
+    public void EquipmentOvjectActivate(Item item)
+    {
+        switch(item.EquipmentType)
+        {
+            case Item.EQUIPMENTTYPE.Armor:
+                for (int i = 0; i < BodyObject.Length - 2; i++)
+                {
+                    BodyObject[i].SetActive(false);
+                }
+                foreach (GameObject Body in ArmorsObject)
+                {
+                    Body.SetActive(true);
+                }
+                break;
+            case Item.EQUIPMENTTYPE.Boots:
+                BootsObject.SetActive(true);
+                BodyObject[BodyObject.Length-1].SetActive(false);
+                break;
+            case Item.EQUIPMENTTYPE.Helmet:
+                HelmetObject.SetActive(true);
+                BodyObject[BodyObject.Length - 2].SetActive(false);
+                break;
+            case Item.EQUIPMENTTYPE.Weapon:
+                for(int i=0;i< WeaponsObject.Length; i++)
+                {
+                    if (i == item.WeaponID)
+                    {
+                        WeaponsObject[i].SetActive(true);
+                    }
+                    else
+                    {
+                        WeaponsObject[i].SetActive(false);
+                    }
+                }
+                break;
+
+        }
+
+    }
+    public void EquipmentOvjectDisabled(Item item)
+    {
+        switch (item.EquipmentType)
+        {
+            case Item.EQUIPMENTTYPE.Armor:
+                for (int i = 0; i < BodyObject.Length - 2; i++)
+                {
+                    BodyObject[i].SetActive(true);
+                }
+                foreach (GameObject Body in ArmorsObject)
+                {
+                    Body.SetActive(false);
+                }
+                break;
+            case Item.EQUIPMENTTYPE.Boots:
+                BootsObject.SetActive(false);
+                BodyObject[BodyObject.Length - 1].SetActive(true);
+                break;
+            case Item.EQUIPMENTTYPE.Helmet:
+                HelmetObject.SetActive(false);
+                BodyObject[BodyObject.Length - 2].SetActive(true);
+                break;
+            case Item.EQUIPMENTTYPE.Weapon:
+                for (int i = 0; i < WeaponsObject.Length; i++)
+                {
+                    if (i == item.WeaponID)
+                    {
+                        WeaponsObject[i].SetActive(false);
+                    }
+                    else
+                    {
+                        WeaponsObject[i].SetActive(true);
+                    }
+                }
+                break;
         }
     }
 

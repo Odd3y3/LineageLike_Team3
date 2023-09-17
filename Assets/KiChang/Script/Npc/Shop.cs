@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class Shop : MonoBehaviour
+public class Shop : NPC
 {
     public RectTransform uiGroup;
     public Animator anim;
@@ -19,7 +19,12 @@ public class Shop : MonoBehaviour
     public LayerMask playerMask;
 
     bool isActive = false;
-   
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
     void Enter(Player player)
     {
         if(!isActive)

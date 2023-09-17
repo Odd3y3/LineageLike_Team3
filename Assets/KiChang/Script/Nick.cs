@@ -23,9 +23,10 @@ public class Nick : MonoBehaviour
         }
     }
 
-    public void SetTarget(Transform target, string str)
+    public void SetTarget(Transform target, string str, Color textColor)
     {
         myTarget = target;
         myText.text = str;
+        myText.color = textColor;
     }
 }

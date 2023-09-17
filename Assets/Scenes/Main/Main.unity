@@ -136,6 +136,14 @@ PrefabInstance:
       value: WShop
       objectReference: {fileID: 0}
     - target: {fileID: 3693253743469108909, guid: 8594822d46f2828418ada51fe1cef45d, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 9049751570683551852}
+    - target: {fileID: 3693253743469108909, guid: 8594822d46f2828418ada51fe1cef45d, type: 3}
+      propertyPath: npcName
+      value: "\uC7A5\uBE44 \uC0C1\uC810"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3693253743469108909, guid: 8594822d46f2828418ada51fe1cef45d, type: 3}
       propertyPath: uiGroup
       value: 
       objectReference: {fileID: 1542538482}
@@ -478,6 +486,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 296530388693535, guid: b02f10354ca577b40803086fa3b450d7, type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 9049751570683551852}
+    - target: {fileID: 296530388693535, guid: b02f10354ca577b40803086fa3b450d7, type: 3}
+      propertyPath: npcName
+      value: "\uC7A1\uD654 \uC0C1\uC810"
+      objectReference: {fileID: 0}
     - target: {fileID: 296530388693535, guid: b02f10354ca577b40803086fa3b450d7, type: 3}
       propertyPath: uiGroup
       value: 
@@ -2860,6 +2876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a920b64ae3d0974291b96ca766d4286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcName: "\uD018\uC2A4\uD2B8NPC_1"
+  canvas: {fileID: 9049751570683551852}
   playerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -5440,6 +5458,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa18eab164721c749b63024154e996e3, type: 3}
+--- !u!224 &9049751570683551852 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7267396680325191859, guid: aa18eab164721c749b63024154e996e3, type: 3}
+  m_PrefabInstance: {fileID: 9049751570683551851}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9142643123235029422
 GameObject:
   m_ObjectHideFlags: 0

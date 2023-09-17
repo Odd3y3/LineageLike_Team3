@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 
 
-public class QuestNPC : MonoBehaviour, IInteractable
+public class QuestNPC : NPC, IInteractable
 {
     public LayerMask playerMask;
 
@@ -24,8 +24,12 @@ public class QuestNPC : MonoBehaviour, IInteractable
 
     bool isStartDialogue = false;
     GameObject interactGO = null;
-   
-    
+
+    private void Awake()
+    {
+        Initialize();
+    }
+
     private void Start()
     {
         GameManager.Inst.questManager.OnCompletedQuest += OnCompleteQuest;

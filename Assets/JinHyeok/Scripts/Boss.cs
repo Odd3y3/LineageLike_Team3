@@ -150,12 +150,12 @@ public class Boss : BattleSystem, ICutScene
     }
     public void BossAttack3()
     {
-        BattleManager.AttackDirCircle(attackArea3.position, 2.0f, enemyMask, 50.0f,
-            transform.forward, false, 5.0f);
+        BattleManager.AttackDirCircle(attackArea3.position, 2.5f, enemyMask, 50.0f,
+            transform.forward, false, 4.0f);
     }
     public void BossAttack4()
     {
         BattleManager.AttackCircle(transform.position, 5.0f, enemyMask, 40.0f,
-            false, 5.0f);
+            false, 4.0f);
     }
 }

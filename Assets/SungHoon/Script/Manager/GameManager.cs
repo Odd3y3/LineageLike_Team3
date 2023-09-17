@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
@@ -121,7 +122,7 @@ public class GameManager : Singleton<GameManager>
             }
 
         }
-
+        inGameManager.Save();
     }
 
     /// <summary>
@@ -168,8 +169,17 @@ public class GameManager : Singleton<GameManager>
 
     public void MapChange(int sceneNum, int spawnPointNum)
     {
+        inGameManager.Save();
         curSceneNum = sceneNum;
         FadeOut(() => sceneLoader.LoadScene(sceneNum, spawnPointNum));
+        
+    }
+
+    public void GotoTitle()
+    {
+        inGameManager.Save();
+        curSceneNum = 1;
+        FadeOut(() => SceneManager.LoadScene(1));
     }
 
     public void GameOver()

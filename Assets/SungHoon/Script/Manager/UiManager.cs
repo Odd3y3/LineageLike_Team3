@@ -31,4 +31,9 @@ public class UiManager : MonoBehaviour
     {
         GameManager.Inst.inGameManager.Save();
     }
+
+    public void OnGotoTitleButton()
+    {
+        GameManager.Inst.GotoTitle();
+    }
 }

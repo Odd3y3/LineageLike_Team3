@@ -83,6 +83,11 @@ public class InGameManager : MonoBehaviour
 
         _playerInfo.Gold = Gold;
 
+        _playerInfo.SkillPoint = player.SkillPoint;
+        _playerInfo.QSkillLV = player.QSkillInfo.skillLV;
+        _playerInfo.WSkillLV = player.WSkillInfo.skillLV;
+        _playerInfo.ESkillLV = player.ESkillInfo.skillLV;
+
         InventoryDatas = GameManager.Inst.UiManager.myInventory.GetInventoryData();
         for(int i = 0; i < 20; i++)
         {
@@ -115,6 +120,10 @@ public class InGameManager : MonoBehaviour
         //player 정보 넣기
         if (!saveDatas[curSaveSlotNum].IsEmpty)
         {
+            GameManager.Inst.UiManager.myInventory.SetInventoryData(_saveData.InventoryDatas);
+            GameManager.Inst.UiManager.myEquipment.SetEquipmentData(_saveData.EquipmentDatas);
+            GameManager.Inst.UiManager.myConsumptionItem.SetConsumptionItemData(_saveData.ConsumptionItemDatas);
+
             player.transform.position = _playerInfo.Pos;
             player.BattleStat = _playerInfo.BattleStat;
             player.curHP = _playerInfo.CurHP;
@@ -122,9 +131,12 @@ public class InGameManager : MonoBehaviour
             player.curAttackPoint = _playerInfo.CurAttackPoint;
             player.curDefensePoint = _playerInfo.CurDefencePoint;
             player.curExp = _playerInfo.CurExp;
-            GameManager.Inst.UiManager.myInventory.SetInventoryData(_saveData.InventoryDatas);
-            GameManager.Inst.UiManager.myEquipment.SetEquipmentData(_saveData.EquipmentDatas);
-            GameManager.Inst.UiManager.myConsumptionItem.SetConsumptionItemData(_saveData.ConsumptionItemDatas);
+            player.SkillPoint = _playerInfo.SkillPoint;
+            player.QSkillInfo.skillLV = _playerInfo.QSkillLV;
+            player.WSkillInfo.skillLV = _playerInfo.WSkillLV;
+            player.ESkillInfo.skillLV = _playerInfo.ESkillLV;
+            
+            Gold = _playerInfo.Gold;
             GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(_playerInfo.Gold);
         }
     }
@@ -147,6 +159,11 @@ public struct PlayerInfo
     public float CurDefencePoint;
     public float CurExp;
     public BattleStat BattleStat;
+
+    public int SkillPoint;
+    public int QSkillLV;
+    public int WSkillLV;
+    public int ESkillLV;
 
     //플레이 시간?
     public ulong PlayTime;

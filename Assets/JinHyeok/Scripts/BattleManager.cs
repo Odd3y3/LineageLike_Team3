@@ -42,6 +42,7 @@ public class BattleManager : MonoBehaviour
             IDamage damage = col.GetComponent<IDamage>();
             Vector3 attackVec = col.transform.position - pos;
             attackVec.y = 0f;
+            attackVec.Normalize();
             if (damage != null) damage.OnDamage(dmg, attackVec, knockBackDist, isDown);
         }
 

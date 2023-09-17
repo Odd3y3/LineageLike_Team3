@@ -32,10 +32,10 @@ Transform:
   - {fileID: 7181119247041389457}
   - {fileID: 9061052174130247589}
   - {fileID: 7724556949503598895}
-  - {fileID: 4009878653007183121}
+  - {fileID: 3632889418218074265}
   - {fileID: 460014297047707220}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2591610174600779468
 GameObject:
@@ -4902,14 +4902,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiGroup: {fileID: 0}
   anim: {fileID: 0}
-  itemobj: []
-  itemPrice: 
-  itemPos: []
+  saleItems:
+  - {fileID: 11400000, guid: a286ac14e5936e44483f4caee5535436, type: 2}
+  - {fileID: 11400000, guid: 6edea972bf2ea5948a206f9f7363b148, type: 2}
+  - {fileID: 11400000, guid: 4a8c67c5d7c0f784f9b1958e8210de28, type: 2}
+  itemPrice: 2c01000064000000c8000000
+  SaleName:
+  - "\uAC11\uC637"
+  - "\uC2E0\uBC1C"
+  - "\uD22C\uAD6C "
   talkData: []
   talkText: {fileID: 0}
   playerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &3489972237413921571
 GameObject:
   m_ObjectHideFlags: 0
@@ -6159,7 +6165,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d4101fd0f3648ce9cd36bcfc1768b64, type: 3}
---- !u!4 &4009878653007183121 stripped
+--- !u!4 &3632889418218074265 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1040106044479742729, guid: 4d4101fd0f3648ce9cd36bcfc1768b64, type: 3}
   m_PrefabInstance: {fileID: 4325055716719743888}

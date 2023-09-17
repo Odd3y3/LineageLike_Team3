@@ -16,8 +16,9 @@ MonoBehaviour:
   PotionType: 0
   EquipmentType: 2
   ItemGrade: 3
+  _weaponid: 0
   _name: Armor2
-  _statPoint: 60
+  _statPoint: 40
   _sprite: {fileID: 21300000, guid: 9c8101d479c60d34185259c220494c61, type: 3}
   _stack: 1
   _object: {fileID: 919132149155446097, guid: 19290ff456fcb03459883525adaf7dee, type: 3}

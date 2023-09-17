@@ -37,7 +37,7 @@ public class SkillWindowSlot : UIProperty<SkillWindowSlot>
 
     public void ChangeInfo()
     {
-        mySkillDamageLavel.text=(mySkill.skill.TotalDamage(GameManager.Inst.inGameManager.myPlayer.curAttackPoint)).ToString();
+        mySkillDamageLavel.text=(mySkill.skill.TotalDamage(GameManager.Inst.inGameManager.myPlayer.curAttackPoint, mySkill.skillLV)).ToString();
         mySkillLevelLavel.text = mySkill.skillLV.ToString();
         mySkillRequiremenLavel.text = mySkill.skillLV.ToString();
         //GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();

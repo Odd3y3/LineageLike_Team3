@@ -17,17 +17,27 @@ public class Shop : MonoBehaviour
 
     Player enterPlayer;
     public LayerMask playerMask;
+
+    bool isActive = false;
    
     void Enter(Player player)
     {
-        enterPlayer = player;
-        uiGroup.anchoredPosition = Vector3.zero;
+        if(!isActive)
+        {
+            enterPlayer = player;
+            uiGroup.anchoredPosition = Vector3.zero;
+            isActive = true;
+        }
     }
 
     
     public void Exit()
     {
-        uiGroup.anchoredPosition = Vector3.down * 1000;
+        if(isActive)
+        {
+            uiGroup.anchoredPosition = Vector3.down * 1000;
+            isActive = false;
+        }
 
     }
     private void OnTriggerEnter(Collider other)

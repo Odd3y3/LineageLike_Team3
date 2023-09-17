@@ -16,8 +16,9 @@ MonoBehaviour:
   PotionType: 0
   EquipmentType: 4
   ItemGrade: 1
+  _weaponid: 0
   _name: Helmet2
-  _statPoint: 0
+  _statPoint: 20
   _sprite: {fileID: 21300000, guid: 3253ad9deab97584d9f92d6a2fad17b4, type: 3}
   _stack: 1
   _object: {fileID: 6853100218831627206, guid: 80d27ac515a8dbf459212780052ae396, type: 3}

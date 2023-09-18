@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,9 +401,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myBackgroundSound:
-  - {fileID: 8300000, guid: 61a4844b74d50144ea2f41b5311dfa65, type: 3}
+  - {fileID: 0}
   - {fileID: 8300000, guid: ed41cf0be3d8fc947a83cc14b66fd0fc, type: 3}
   - {fileID: 8300000, guid: ed019906fc715254bad5a73e0900d65e, type: 3}
+  - {fileID: 8300000, guid: 61a4844b74d50144ea2f41b5311dfa65, type: 3}
   myBackGroundSource: {fileID: 1453875691}
   myEffectSource: {fileID: 2022152609}
   myUiSource: {fileID: 528710257}
@@ -4765,7 +4766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1022898481
 RectTransform:
   m_ObjectHideFlags: 0

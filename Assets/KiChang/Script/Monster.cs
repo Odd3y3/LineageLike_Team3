@@ -148,7 +148,9 @@ public class Monster : AImovement
 
         base.OnDamage(dmg, attackVec, knockBackDist, isDown);
 
-        if(!IsLive)
+        GameManager.Inst.SoundManager.OnAttackSound();
+
+        if (!IsLive)
         {
             ChangeState(State.Dead);
         }

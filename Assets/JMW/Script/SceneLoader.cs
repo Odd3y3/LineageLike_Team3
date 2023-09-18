@@ -24,7 +24,7 @@ public class SceneLoader : MonoBehaviour
     }
     IEnumerator LoadingScene(int idx, int spawnPointNum)
     {
-        yield return SceneManager.LoadSceneAsync(0);
+        yield return SceneManager.LoadSceneAsync(1);
 
         Slider slider = FindObjectOfType<Slider>();
 

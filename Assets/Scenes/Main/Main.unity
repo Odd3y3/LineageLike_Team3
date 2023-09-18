@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1397,6 +1397,7 @@ MonoBehaviour:
   dialogueText: {fileID: 607672724}
   nextButton: {fileID: 1802932861}
   acceptButton: {fileID: 1036323431}
+  questRd: {fileID: 0}
   animator: {fileID: 1935015676}
 --- !u!4 &1433548772
 Transform:
@@ -3750,8 +3751,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   questID: 0
-  QuestEffectGO: {fileID: 4100425926985883089}
-  QuestRewardGO: {fileID: 7462894088473578311}
+  questObject: {fileID: 0}
   readyDialogue:
     name: QuestNPC
     sentences:
@@ -5066,7 +5066,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4119260431672384293}
+      - m_Target: {fileID: 8072594182876053012}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -8365,19 +8365,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2207521355873957713, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207521355873957713, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207521355873957713, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2207521355873957713, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -190
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2263299834475495295, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8477,19 +8477,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3101407970813367118, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3101407970813367118, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3101407970813367118, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3101407970813367118, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -300
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3110417936312430722, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8537,19 +8537,19 @@ PrefabInstance:
       objectReference: {fileID: 370020952}
     - target: {fileID: 3631354134292229362, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3631354134292229362, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3631354134292229362, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3631354134292229362, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3764697151112139942, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
@@ -8719,6 +8719,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1433548771}
+    - target: {fileID: 5095845752832213218, guid: aa18eab164721c749b63024154e996e3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5168722869443845151, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -8753,19 +8757,19 @@ PrefabInstance:
       objectReference: {fileID: 1433548771}
     - target: {fileID: 6345751370958947562, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6345751370958947562, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6345751370958947562, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6345751370958947562, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -410
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6539084533135150510, guid: aa18eab164721c749b63024154e996e3, type: 3}
       propertyPath: m_AnchorMax.y

@@ -180,7 +180,7 @@ public class GameManager : Singleton<GameManager>
     {
         inGameManager.Save();
         curSceneNum = 1;
-        FadeOut(() => SceneManager.LoadScene(1));
+        FadeOut(() => SceneManager.LoadScene(0));
     }
 
     public void GameOver()

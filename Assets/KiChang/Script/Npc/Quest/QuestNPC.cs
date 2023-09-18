@@ -13,10 +13,7 @@ public class QuestNPC : NPC, IInteractable
     public LayerMask playerMask;
 
     public int questID;
-    QuestObject questObject = null;
-
-    [SerializeField] GameObject QuestEffectGO;
-    [SerializeField] GameObject QuestRewardGO;
+    public QuestObject questObject = null;
 
     public Dialogue readyDialogue;
     public Dialogue acceptedDialogue;

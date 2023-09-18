@@ -17,11 +17,12 @@ MonoBehaviour:
     type: 0
     targetId: 4
     count: 1
-    completeCount: 0
-    rewardExp: 100
-    rewardGold: 5
-    rewardItems: []
+    completeCount: 1
+    rewardExp: 300
+    rewardGold: 1000
+    rewardItems:
+    - {fileID: 11400000, guid: 27c4ddd09c2ffde4d87bf9a00845818f, type: 2}
     title: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30"
-    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uD55C\uB9C8\uB9AC \uC7A1\uAE30!"
-  status: 0
+    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58"
+  status: 3
   questListUIContent: {fileID: 0}

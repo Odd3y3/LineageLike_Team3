@@ -10,10 +10,12 @@ public class NPC : MonoBehaviour
 
     MiniMapIcon miniMapIcon = null;
 
+    protected GameObject NPCNameObj;
+
     protected void Initialize()
     {
-        GameObject obj = Instantiate(Resources.Load<GameObject>("UI\\NPCName"), canvas);
-        obj.GetComponent<Nick>().SetTarget(transform, npcName, Color.green);
+        NPCNameObj = Instantiate(Resources.Load<GameObject>("UI\\NPCName"), canvas);
+        NPCNameObj.GetComponent<Nick>().SetTarget(transform, npcName, Color.green);
 
         //미니맵 아이콘 설정
         miniMapIcon = Instantiate(Resources.Load<GameObject>("UI\\MiniMapIcon"),

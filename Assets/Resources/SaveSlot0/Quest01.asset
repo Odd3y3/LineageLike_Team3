@@ -18,10 +18,13 @@ MonoBehaviour:
     targetId: 1
     count: 5
     completeCount: 0
-    rewardExp: 10
-    rewardGold: 10
-    rewardItemId: 0
-    title: "\uBAAC\uC2A4\uD130  \uC7A1\uAE30"
-    description: "\uB9C8\uC744 \uADFC\uCC98 \uBAAC\uC2A4\uD130 \uB2E4\uC12F\uB9C8\uB9AC\uB97C
+    rewardExp: 100
+    rewardGold: 500
+    rewardItems:
+    - {fileID: 11400000, guid: 0ce8384427219eb4a9eb3634de33a2cd, type: 2}
+    - {fileID: 11400000, guid: 0ce8384427219eb4a9eb3634de33a2cd, type: 2}
+    title: "\uBC84\uC12F \uC0AC\uB0E5"
+    description: "\uB9C8\uC744 \uADFC\uCC98 \uBC84\uC12F \uB2E4\uC12F\uB9C8\uB9AC\uB97C
       \uC7A1\uC544\uB77C!"
-  status: 0
+  status: 2
+  questListUIContent: {fileID: 0}

@@ -21,7 +21,8 @@ public struct Quest
 
     public int rewardExp;
     public int rewardGold;
-    public int rewardItemId;
+    //public int rewardItemId;
+    public Item[] rewardItems;
 
     public string title;
     public string description;

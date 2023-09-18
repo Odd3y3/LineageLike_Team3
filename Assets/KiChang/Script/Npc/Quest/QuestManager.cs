@@ -62,8 +62,17 @@ public class QuestManager : MonoBehaviour
     /// <summary>
     /// Äù½ºÆ® º¸»ó ¹Þ´Â ÇÔ¼ö
     /// </summary>
-    public void QuestReward()
+    public void QuestReward(QuestObject questObject)
     {
-
+        Player player = GameManager.Inst.inGameManager.myPlayer;
+        //°æÇèÄ¡ È¹µæ
+        player.DropExp(questObject.data.rewardExp);
+        //°ñµå È¹µæ
+        GameManager.Inst.inGameManager.GoldDrop((uint)questObject.data.rewardGold);
+        //¾ÆÀÌÅÛ È¹µæ
+        foreach (Item item in questObject.data.rewardItems)
+        {
+            GameManager.Inst.UiManager.myInventory.AcquireItem(item);
+        }
     }
 }

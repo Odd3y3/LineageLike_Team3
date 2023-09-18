@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         nextButton.SetActive(true);
         acceptButton.SetActive(false);
             questRd.SetActive(false);
+         //   questRd.SetActive(false);
 
         OnStartDialogue?.Invoke();
         animator?.SetBool("IsOpen", true);

@@ -167,6 +167,7 @@ public class PlayerBattleSystem : BattleSystem
         {
             AnimateSkill(skillInfo, transform.position);
         }
+        GameManager.Inst.SoundManager.OnSkillEffectSound(skillInfo);
     }
     IEnumerator AreaSelecting(SkillInfo skillInfo)
     {

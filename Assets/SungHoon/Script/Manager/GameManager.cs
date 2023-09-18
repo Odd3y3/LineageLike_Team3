@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public SceneLoader sceneLoader;
     public QuestManager questManager;
     public SoundManager SoundManager;
+    public ItemDataBase itemDataBase;
 
     public PlayerSpawnPoints spawnPoints;
 

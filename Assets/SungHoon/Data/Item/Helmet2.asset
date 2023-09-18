@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
   m_Name: Helmet2
   m_EditorClassIdentifier: 
+  itemID: 7
   ItemType: 1
   PotionType: 0
   EquipmentType: 4

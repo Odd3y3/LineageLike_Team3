@@ -8,6 +8,8 @@ public class InGameManager : MonoBehaviour
     [HideInInspector]
     public SaveData[] saveDatas = new SaveData[3];
 
+    QuestDataObject[] questDataObj = new QuestDataObject[3];
+
     public InventoryData[] InventoryDatas= new InventoryData[20];
     public EquipmentData[] EquipmentDatas=new EquipmentData[4];
     public ConsumptionItemData[] ConsumptionItemDatas = new ConsumptionItemData[3];
@@ -57,10 +59,47 @@ public class InGameManager : MonoBehaviour
 
     private void Awake()
     {
-        //Load Slot 가져오기 ( Save Data )
+        //Load Slot 가져오기 ( Save Data ), + 퀘스트 Slot
         for(int i = 0; i < 3; i++)
         {
             saveDatas[i] = Resources.Load<SaveData>($"SaveData{i}");
+
+            questDataObj[i] = Resources.Load<QuestDataObject>($"SaveSlot{i}\\Quest Database");
+        }
+
+
+        //FileManager에서 데이터 가져오기
+        SerializedSaveData saveData0 = FileManager.LoadBinary<SerializedSaveData>("saveData0.sav");
+        if (saveData0 != null)
+        {
+            saveData0.ToSaveData(saveDatas[0]);
+            for(int i = 0; i < saveData0.serializedQuestDatas.Length; ++i)
+            {
+                questDataObj[0].questObjects[i].data.completeCount = saveData0.serializedQuestDatas[i].completeCount;
+                questDataObj[0].questObjects[i].status = saveData0.serializedQuestDatas[i].status;
+            }
+        }
+
+        SerializedSaveData saveData1 = FileManager.LoadBinary<SerializedSaveData>("saveData1.sav");
+        if (saveData1 != null)
+        {
+            saveData1.ToSaveData(saveDatas[1]);
+            for (int i = 0; i < saveData1.serializedQuestDatas.Length; ++i)
+            {
+                questDataObj[1].questObjects[i].data.completeCount = saveData1.serializedQuestDatas[i].completeCount;
+                questDataObj[1].questObjects[i].status = saveData1.serializedQuestDatas[i].status;
+            }
+        }
+
+        SerializedSaveData saveData2 = FileManager.LoadBinary<SerializedSaveData>("saveData2.sav");
+        if (saveData2 != null)
+        {
+            saveData2.ToSaveData(saveDatas[2]);
+            for (int i = 0; i < saveData2.serializedQuestDatas.Length; ++i)
+            {
+                questDataObj[2].questObjects[i].data.completeCount = saveData2.serializedQuestDatas[i].completeCount;
+                questDataObj[2].questObjects[i].status = saveData2.serializedQuestDatas[i].status;
+            }
         }
     }
 
@@ -107,6 +146,18 @@ public class InGameManager : MonoBehaviour
         //curSaveSlotNum = GameManager.Inst.curSceneNum;
         saveDatas[curSaveSlotNum].IsEmpty = false;
         saveDatas[curSaveSlotNum].playerInfo = _playerInfo;
+
+        //퀘스트정보
+        for(int i = 0; i < saveDatas[curSaveSlotNum].serializedQuestDatas.Length; ++i)
+        {
+            saveDatas[curSaveSlotNum].serializedQuestDatas[i].questID = questDataObj[curSaveSlotNum].questObjects[i].data.id;
+            saveDatas[curSaveSlotNum].serializedQuestDatas[i].completeCount
+                = questDataObj[curSaveSlotNum].questObjects[i].data.completeCount;
+            saveDatas[curSaveSlotNum].serializedQuestDatas[i].status
+                = questDataObj[curSaveSlotNum].questObjects[i].status;
+        }
+
+        FileManager.SaveBinary($"saveData{curSaveSlotNum}.sav", new SerializedSaveData(saveDatas[curSaveSlotNum]));
 
         Debug.Log($"{curSaveSlotNum}번 슬롯 저장됨.");
     }

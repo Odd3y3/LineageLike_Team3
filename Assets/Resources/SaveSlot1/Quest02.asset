@@ -18,9 +18,10 @@ MonoBehaviour:
     targetId: 4
     count: 1
     completeCount: 0
-    rewardExp: 5
-    rewardGold: 5
-    rewardItemId: 5
+    rewardExp: 300
+    rewardGold: 1000
+    rewardItems: []
     title: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30"
-    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uD55C\uB9C8\uB9AC \uC7A1\uAE30!"
+    description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58"
   status: 0
+  questListUIContent: {fileID: 0}

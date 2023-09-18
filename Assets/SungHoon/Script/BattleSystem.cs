@@ -108,7 +108,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
             false, 0.5f);
     }
 
-    protected void DropExp(int Exp)
+    public void DropExp(int Exp)
     {
         //int Exp = Random.Range(50, 101);
         GameManager.Inst.inGameManager.myPlayer.curExp += Exp;

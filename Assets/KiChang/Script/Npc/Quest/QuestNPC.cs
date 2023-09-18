@@ -13,10 +13,7 @@ public class QuestNPC : NPC, IInteractable
     public LayerMask playerMask;
 
     public int questID;
-    QuestObject questObject = null;
-
-    [SerializeField] GameObject QuestEffectGO;
-    [SerializeField] GameObject QuestRewardGO;
+    public QuestObject questObject = null;
 
     public Dialogue readyDialogue;
     public Dialogue acceptedDialogue;
@@ -43,6 +40,8 @@ public class QuestNPC : NPC, IInteractable
                 break;
             }
         }
+
+        NPCNameObj.GetComponent<Nick>().SetQuestObj(questObject);
     }
 
     #region IInteractable Interface
@@ -53,27 +52,7 @@ public class QuestNPC : NPC, IInteractable
     public Action<QuestObject> OnCompleteQuest { get; private set; }
     private void Update()
     {
-        if (questObject.status == QuestStatus.None)
-        {
-            QuestEffectGO.SetActive(true);
-            QuestRewardGO.SetActive(false);
-           
-        }
-        else if(questObject.status == QuestStatus.Accepted)
-        {
-            QuestEffectGO.SetActive(false);
-            QuestRewardGO.SetActive(false);
-        }
-        else if (questObject.status == QuestStatus.Completed)
-        {
-            QuestEffectGO.SetActive(false);
-            QuestRewardGO.SetActive(true);
-        }
-        else if (questObject.status == QuestStatus.Rewarded)
-        {
-            QuestEffectGO.SetActive(false);
-            QuestRewardGO.SetActive(false);
-        }
+        
     }
    
     public void Interact(GameObject other)
@@ -154,7 +133,7 @@ public class QuestNPC : NPC, IInteractable
         {
             questObject.status = QuestStatus.Rewarded;
             //보상 받기
-            GameManager.Inst.questManager.QuestReward();
+            GameManager.Inst.questManager.QuestReward(questObject);
         }
 
         questObject.questListUIContent?.ChangeInfo();

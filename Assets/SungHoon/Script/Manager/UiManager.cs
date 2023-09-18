@@ -18,6 +18,7 @@ public class UiManager : MonoBehaviour
     public Transform myMiniMapIcons;
     public GameObject myBossHpBar;
     public QuestListUI myQuestListUI;
+    public LevelUpText myLevelUpText;
 
 
     public void DefalutSetting()
@@ -25,6 +26,7 @@ public class UiManager : MonoBehaviour
         mySkillUI.SetSkillUI();
         mySkillWindow.setSkill();
         myQuestListUI.InitQuestList();
+        myLevelUpText.SetTarget();
     }
 
     public void OnSaveButton()

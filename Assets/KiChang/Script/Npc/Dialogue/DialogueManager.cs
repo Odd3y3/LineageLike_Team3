@@ -14,6 +14,7 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject nextButton;
     public GameObject acceptButton;
+    public GameObject questRd;
 
     public Animator animator = null;
 
@@ -41,6 +42,7 @@ public class DialogueManager : MonoBehaviour
 
         nextButton.SetActive(true);
         acceptButton.SetActive(false);
+            questRd.SetActive(false);
 
         OnStartDialogue?.Invoke();
         animator?.SetBool("IsOpen", true);

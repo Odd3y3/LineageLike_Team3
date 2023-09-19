@@ -38,4 +38,15 @@ public class UiManager : MonoBehaviour
     {
         GameManager.Inst.GotoTitle();
     }
+
+    public void OnPlayerRespawn()
+    {
+        GameManager.Inst.PlayerRespawn();
+    }
+
+    public void OnPlayerRespawnAndGoTitle()
+    {
+        GameManager.Inst.PlayerRespawn();
+        GameManager.Inst.GotoTitle();
+    }
 }

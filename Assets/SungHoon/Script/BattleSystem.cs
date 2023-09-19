@@ -141,7 +141,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
         curHP = BattleStat.MaxHP;
         curMP = BattleStat.MaxMP;
-        curExp = BattleStat.MaxExp;
+        curExp = 0f;
         curAttackPoint = BattleStat.DefaultAttackPoint;
         curDefensePoint = BattleStat.DefaultDefensePoint;
     }

@@ -188,4 +188,17 @@ public class GameManager : Singleton<GameManager>
     {
         UiManager.myGameOverWindow.SetActive(true);
     }
+
+    public void PlayerRespawn()
+    {
+        //스폰 포인트로 플레이어 이동
+        spawnPoints = FindObjectOfType<PlayerSpawnPoints>();
+        if (spawnPoints != null)
+        {
+            inGameManager.myPlayer.transform.position =
+                spawnPoints.spawnPoint[0].transform.position;
+        }
+        inGameManager.myPlayer.PlayerRespawn();
+        inGameManager.Save();
+    }
 }

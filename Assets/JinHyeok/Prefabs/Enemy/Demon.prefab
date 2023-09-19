@@ -140,12 +140,12 @@ MonoBehaviour:
   myExpBar: {fileID: 0}
   ID: 3
   BattleStat:
-    LV: 1
-    MaxHP: 100
+    LV: 5
+    MaxHP: 200
     MaxMP: 0
     MaxExp: 150
-    DefaultAttackPoint: 10
-    DefaultDefensePoint: 0
+    DefaultAttackPoint: 35
+    DefaultDefensePoint: 20
     AttackRange: 2
     AttackDelay: 3
     AttackSize: 1

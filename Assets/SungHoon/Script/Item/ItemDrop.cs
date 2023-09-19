@@ -72,7 +72,7 @@ public class ItemDrop : MonoBehaviour
         GameObject obj = Instantiate(DropItem, this.transform);
         obj.transform.localPosition = tra.position;
         StartCoroutine(UpDowning(obj));
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         OnDropSetting(obj);
     }
 

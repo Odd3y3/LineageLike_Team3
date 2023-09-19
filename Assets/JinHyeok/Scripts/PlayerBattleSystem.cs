@@ -98,14 +98,14 @@ public class PlayerBattleSystem : BattleSystem
         levelUpEffect.SetActive(true);
 
         BattleStat.LV++;
-        BattleStat.MaxExp *= 2;
+        BattleStat.MaxExp += 100;
         curExp = 0;
-        BattleStat.MaxHP += 10;
-        curHP += 10;
-        BattleStat.MaxMP += 10;
-        curMP += 10;
-        curAttackPoint += 10;
-        curDefensePoint += 10;
+        BattleStat.MaxHP += 20;
+        curHP += 20;
+        BattleStat.MaxMP += 20;
+        curMP += 20;
+        curAttackPoint += 3;
+        curDefensePoint += 3;
 
         SkillPoint += 3;
         GameManager.Inst.UiManager.mySkillWindow.ChangeInfo();
@@ -116,6 +116,14 @@ public class PlayerBattleSystem : BattleSystem
         CanMove = false;
         myAnim.SetTrigger("Die");
         myAnim.SetBool("IsImmunity", true);
+    }
+
+    public void PlayerRespawn()
+    {
+        curHP = BattleStat.MaxHP;
+        CanMove = true;
+        myAnim.Play("Idle");
+        myAnim.SetBool("IsImmunity", false);
     }
 
     void InitSkill()

@@ -190,6 +190,10 @@ public class InGameManager : MonoBehaviour
             Gold = _playerInfo.Gold;
             GameManager.Inst.UiManager.myGoodsUI.ChangeCoin(_playerInfo.Gold);
         }
+        else
+        {
+            Gold = 0;
+        }
     }
 }
 

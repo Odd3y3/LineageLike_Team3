@@ -142,10 +142,10 @@ MonoBehaviour:
   BattleStat:
     LV: 3
     MaxHP: 100
-    MaxMP: 100
+    MaxMP: 0
     MaxExp: 100
-    DefaultAttackPoint: 10
-    DefaultDefensePoint: 0
+    DefaultAttackPoint: 20
+    DefaultDefensePoint: 5
     AttackRange: 2
     AttackDelay: 3
     AttackSize: 1

@@ -21,7 +21,7 @@ MonoBehaviour:
     rewardExp: 100
     rewardGold: 300
     rewardItems:
-    - {fileID: 11400000, guid: 7f6d2e56494d53d44b697ef30bee2a75, type: 2}
+    - {fileID: 11400000, guid: 27c4ddd09c2ffde4d87bf9a00845818f, type: 2}
     title: "\uBC84\uC12F \uC0AC\uB0E5"
     description: "\uB9C8\uC744 \uADFC\uCC98 \uBC84\uC12F \uB2E4\uC12F\uB9C8\uB9AC\uB97C
       \uC7A1\uC544\uB77C!"

@@ -13,8 +13,9 @@ public class Option : MonoBehaviour
     void Start()
     {
         myBackGroundSource = GameManager.Inst.SoundManager.myBackGroundSource;
-        myBackGroundSoundBar.value = 1.0f;
-        myEffectSoundBar.value = 1.0f;
+        myEffectSource = GameManager.Inst.SoundManager.myEffectSource;
+        myBackGroundSoundBar.value = myBackGroundSource.volume;
+        myEffectSoundBar.value = myEffectSource.volume;
     }
 
     // Update is called once per frame

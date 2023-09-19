@@ -171,7 +171,7 @@ public class PlayerBattleSystem : BattleSystem
         {
             AnimateSkill(skillInfo, transform.position);
         }
-        GameManager.Inst.SoundManager.OnSkillEffectSound(skillInfo);
+        
     }
     IEnumerator AreaSelecting(SkillInfo skillInfo)
     {
@@ -252,6 +252,9 @@ public class PlayerBattleSystem : BattleSystem
 
         if(usingSkill.skill.EffectPrefab != null)
             Instantiate(usingSkill.skill.EffectPrefab, pos, transform.rotation);
+
+        if (UsingSkill != null)
+            GameManager.Inst.SoundManager.OnSkillEffectSound(UsingSkill);
     }
 
     public void OnSkillAttack()

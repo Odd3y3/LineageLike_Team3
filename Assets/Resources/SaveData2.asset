@@ -12,4 +12,85 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eabd9b5152a4d45ba02955ac526576, type: 3}
   m_Name: SaveData2
   m_EditorClassIdentifier: 
-  charactorPrefab: {fileID: 0}
+  IsEmpty: 1
+  playerInfo:
+    SceneNum: 0
+    Pos: {x: 0, y: 0, z: 0}
+    Gold: 0
+    CurHP: 0
+    CurMP: 0
+    CurAttackPoint: 0
+    CurDefencePoint: 0
+    CurExp: 0
+    BattleStat:
+      LV: 0
+      MaxHP: 0
+      MaxMP: 0
+      MaxExp: 0
+      DefaultAttackPoint: 0
+      DefaultDefensePoint: 0
+      AttackRange: 0
+      AttackDelay: 0
+      AttackSize: 0
+    SkillPoint: 0
+    QSkillLV: 0
+    WSkillLV: 0
+    ESkillLV: 0
+    PlayTime: 0
+  InventoryDatas:
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  EquipmentDatas:
+  - Equipment: {fileID: 0}
+    EquipmentType: 0
+  - Equipment: {fileID: 0}
+    EquipmentType: 0
+  - Equipment: {fileID: 0}
+    EquipmentType: 0
+  - Equipment: {fileID: 0}
+    EquipmentType: 0
+  ConsumptionItemDatas:
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0
+  - Item: {fileID: 0}
+    ItemCount: 0

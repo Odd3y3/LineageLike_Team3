@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public SceneLoader sceneLoader;
     public QuestManager questManager;
     public SoundManager SoundManager;
+    public ItemDataBase itemDataBase;
 
     public PlayerSpawnPoints spawnPoints;
 
@@ -180,7 +181,7 @@ public class GameManager : Singleton<GameManager>
     {
         inGameManager.Save();
         curSceneNum = 1;
-        FadeOut(() => SceneManager.LoadScene(1));
+        FadeOut(() => SceneManager.LoadScene(0));
     }
 
     public void GameOver()

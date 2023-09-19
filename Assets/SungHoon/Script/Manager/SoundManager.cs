@@ -14,13 +14,13 @@ public class SoundManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myEffectSource = FindObjectOfType<Player>().GetComponentInChildren<AudioSource>();
+        //myEffectSource = FindObjectOfType<Player>().GetComponentInChildren<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().buildIndex != 0)
+        if (SceneManager.GetActiveScene().buildIndex > 1)
         {
             if (myBackGroundSource.isPlaying == false)
             {
@@ -37,27 +37,36 @@ public class SoundManager : MonoBehaviour
 
     public void OnSkillEffectSound(SkillInfo useSkill)
     {
-        if (myEffectSource.isPlaying == true)
+        if(myEffectSource != null)
         {
-            myEffectSource.Stop();
+            if (myEffectSource.isPlaying == true)
+            {
+                myEffectSource.Stop();
+            }
+            myEffectSource.clip = useSkill.skill.SkillSound;
+            myEffectSource.Play();
         }
-        myEffectSource.clip = useSkill.skill.SkillSound;
-        myEffectSource.Play();
     }
     public void OnUISound()
     {
-        if (myUiSource.isPlaying == true)
+        if(myUiSource != null)
         {
-            myUiSource.Stop();
+            if (myUiSource.isPlaying == true)
+            {
+                myUiSource.Stop();
+            }
+            myUiSource.Play();
         }
-        myUiSource.Play();
     }
     public void OnAttackSound()
     {
-        if (myAttackSource.isPlaying == true)
+        if(myAttackSource != null)
         {
-            myAttackSource.Stop();
+            if (myAttackSource.isPlaying == true)
+            {
+                myAttackSource.Stop();
+            }
+            myAttackSource.Play();
         }
-        myAttackSource.Play();
     }
 }

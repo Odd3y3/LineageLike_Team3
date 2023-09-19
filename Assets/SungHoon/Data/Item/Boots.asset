@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
   m_Name: Boots
   m_EditorClassIdentifier: 
+  itemID: 4
   ItemType: 1
   PotionType: 0
   EquipmentType: 3
   ItemGrade: 2
+  _weaponid: 0
   _name: Boots
   _statPoint: 20
   _sprite: {fileID: 21300000, guid: cd7b401a96a069e45a2313a33309ef26, type: 3}

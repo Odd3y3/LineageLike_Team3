@@ -62,7 +62,6 @@ public class Player : PlayerBattleSystem, ICutScene
                 {
                     StopMoveAndRotate();
                     myAnim.SetBool("BaseAttack", true);
-                    GameManager.Inst.SoundManager.OnAttackSound();
                 }
 
                 //스킬 애니메이션
@@ -81,14 +80,6 @@ public class Player : PlayerBattleSystem, ICutScene
             }
 
         }
-
-        //Test용
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            LevelUp();
-        }
-
-
     }
 
     public void OnMouseClickMove(Vector3 pos)
@@ -247,16 +238,19 @@ public class Player : PlayerBattleSystem, ICutScene
                     Body.SetActive(true);
                 }
                 break;
+
             case Item.EQUIPMENTTYPE.Boots:
                 BootsObject.SetActive(true);
                 BodyObject[BodyObject.Length-1].SetActive(false);
                 break;
+
             case Item.EQUIPMENTTYPE.Helmet:
                 HelmetObject.SetActive(true);
                 BodyObject[BodyObject.Length - 2].SetActive(false);
                 break;
+
             case Item.EQUIPMENTTYPE.Weapon:
-                for(int i=0;i< WeaponsObject.Length; i++)
+                for(int i = 0; i < WeaponsObject.Length; i++)
                 {
                     if (i == item.WeaponID)
                     {
@@ -297,7 +291,7 @@ public class Player : PlayerBattleSystem, ICutScene
             case Item.EQUIPMENTTYPE.Weapon:
                 for (int i = 0; i < WeaponsObject.Length; i++)
                 {
-                    if (i == item.WeaponID)
+                    if (i != 0)
                     {
                         WeaponsObject[i].SetActive(false);
                     }
@@ -316,11 +310,11 @@ public class Player : PlayerBattleSystem, ICutScene
         {
             if (Item.PotionType == Item.POTIONTYPE.Hp)
             {
-                curHP += Item.StatPoint;
+                curHP = Mathf.Min(curHP + Item.StatPoint, BattleStat.MaxHP);
             }
             else
             {
-                curMP += Item.StatPoint;
+                //curMP += Item.StatPoint;
             }
         }
     }

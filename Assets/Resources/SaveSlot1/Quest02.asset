@@ -20,7 +20,8 @@ MonoBehaviour:
     completeCount: 0
     rewardExp: 300
     rewardGold: 1000
-    rewardItems: []
+    rewardItems:
+    - {fileID: 11400000, guid: 7f6d2e56494d53d44b697ef30bee2a75, type: 2}
     title: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58\uD558\uAE30"
     description: "\uBCF4\uC2A4 \uBAAC\uC2A4\uD130 \uCC98\uCE58"
   status: 0

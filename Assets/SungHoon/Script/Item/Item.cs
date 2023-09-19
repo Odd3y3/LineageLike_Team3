@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Item", menuName = "ItemObject/Item", order = int.MaxValue)]
 public class Item : ScriptableObject
 {
+    public int itemID;
     public enum ITEMTYPE
     {
         None, Equipment, Potion, BattlePotion, Etc

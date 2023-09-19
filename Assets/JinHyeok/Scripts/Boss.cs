@@ -44,7 +44,7 @@ public class Boss : BattleSystem, ICutScene
 
         GameManager.Inst.UiManager.myBossHpBar.SetActive(false);
         DropExp(BattleStat.MaxExp);
-        DropItem();
+        //DropItem();
         exitPortal.SetActive(true);
 
         //퀘스트 진행

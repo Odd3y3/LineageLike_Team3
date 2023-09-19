@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
   m_Name: HpPotion
   m_EditorClassIdentifier: 
+  itemID: 8
   ItemType: 2
   PotionType: 1
   EquipmentType: 0
   ItemGrade: 0
+  _weaponid: 0
   _name: HpPotion
   _statPoint: 30
   _sprite: {fileID: 21300000, guid: e52ea25af699fd445b7046374f81a5b9, type: 3}

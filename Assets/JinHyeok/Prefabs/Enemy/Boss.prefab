@@ -116,11 +116,11 @@ MonoBehaviour:
   ID: 4
   BattleStat:
     LV: 5
-    MaxHP: 1000
+    MaxHP: 2000
     MaxMP: 0
     MaxExp: 500
-    DefaultAttackPoint: 10
-    DefaultDefensePoint: 5
+    DefaultAttackPoint: 50
+    DefaultDefensePoint: 50
     AttackRange: 3
     AttackDelay: 3
     AttackSize: 0

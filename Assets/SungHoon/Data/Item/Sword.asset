@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8efbe1a18aef874e980f881616a5317, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
+  itemID: 9
   ItemType: 1
   PotionType: 0
   EquipmentType: 1
   ItemGrade: 1
-  _weaponid: 0
+  _weaponid: 2
   _name: Sword
-  _statPoint: 10
+  _statPoint: 50
   _sprite: {fileID: 21300000, guid: 4ad16adfdf2d1a441879a598de742eb6, type: 3}
   _stack: 1
   _object: {fileID: 194264, guid: e6fa756c603368045a35e5b45a1b84cb, type: 3}

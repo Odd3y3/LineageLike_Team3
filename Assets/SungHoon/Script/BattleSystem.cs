@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEditor.PlayerSettings;
 
 [System.Serializable]
 public struct BattleStat
@@ -142,7 +141,7 @@ public class BattleSystem : MoveMent , IDamage, ILive
 
         curHP = BattleStat.MaxHP;
         curMP = BattleStat.MaxMP;
-        curExp = BattleStat.MaxExp;
+        curExp = 0f;
         curAttackPoint = BattleStat.DefaultAttackPoint;
         curDefensePoint = BattleStat.DefaultDefensePoint;
     }

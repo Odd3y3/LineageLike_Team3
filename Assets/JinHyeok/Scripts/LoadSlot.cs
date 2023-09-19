@@ -16,6 +16,7 @@ public class LoadSlot : MonoBehaviour
     public void DeleteLoadSlot()
     {
         saveData.IsEmpty = true;
+        saveData.playerInfo = default;
         UpdateSlot();
     }
 

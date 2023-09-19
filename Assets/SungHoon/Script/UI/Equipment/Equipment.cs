@@ -39,7 +39,10 @@ public class Equipment :UIProperty<EquipmentSlot>
         if (!MenuUI.GameIsPaused)
         {
             if (stateActivated)
+            {
                 OpenState();
+                GameManager.Inst.SoundManager.OnUISound();
+            }
             else
                 CloseState();
         }    

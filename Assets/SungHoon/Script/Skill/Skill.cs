@@ -34,6 +34,9 @@ public class Skill : ScriptableObject
     public float AttackInterval = 0.2f;
     public float KnockackDist = 0.0f;
 
+    [SerializeField]
+    public AudioClip SkillSound;
+
     //일단 사용하지 않음.
     [SerializeField]
     public float Range = 1.0f;

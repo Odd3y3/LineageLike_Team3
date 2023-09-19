@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject nextButton;
     public GameObject acceptButton;
-    public GameObject questRd;
+    public QuestRewardWindow questRd;
 
     public Animator animator = null;
 
@@ -42,7 +42,7 @@ public class DialogueManager : MonoBehaviour
 
         nextButton.SetActive(true);
         acceptButton.SetActive(false);
-        
+        questRd.HideReward();
 
         OnStartDialogue?.Invoke();
         animator?.SetBool("IsOpen", true);
@@ -69,6 +69,13 @@ public class DialogueManager : MonoBehaviour
         {
             nextButton.SetActive(false);
             acceptButton.SetActive(true);
+
+            //퀘스트 보상 표시
+            if(curQNPC != null && curQNPC.questObject.status == QuestStatus.Completed)
+            {
+                questRd.SetReward(curQNPC.questObject.data.rewardExp, curQNPC.questObject.data.rewardGold
+                    , curQNPC.questObject.data.rewardItems);
+            }
         }
         string sentence = sentences.Dequeue();
         StopAllCoroutines();

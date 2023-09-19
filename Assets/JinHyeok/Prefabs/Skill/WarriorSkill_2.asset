@@ -39,5 +39,6 @@ MonoBehaviour:
   AttackCount: 12
   AttackInterval: 0.2
   KnockackDist: 0
+  SkillSound: {fileID: 8300000, guid: 5fbdbeaa5ea3c6444a93c7463ebb13fb, type: 3}
   Range: 1
   Duration: 0

@@ -62,6 +62,7 @@ public class Player : PlayerBattleSystem, ICutScene
                 {
                     StopMoveAndRotate();
                     myAnim.SetBool("BaseAttack", true);
+                    GameManager.Inst.SoundManager.OnAttackSound();
                 }
 
                 //스킬 애니메이션

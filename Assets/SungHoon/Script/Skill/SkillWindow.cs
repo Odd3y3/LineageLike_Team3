@@ -49,6 +49,7 @@ public class SkillWindow : UIProperty<SkillWindowSlot>
             if (skillWindowActivated)
             {
                 OpenSkillWindow();
+                GameManager.Inst.SoundManager.OnUISound();
             }
             else
             {

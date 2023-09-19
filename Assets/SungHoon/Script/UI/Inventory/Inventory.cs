@@ -40,6 +40,7 @@ public class Inventory : UIProperty<InventorySlot>
             if (invectoryActivated)
             {
                 OpenInventory();
+                GameManager.Inst.SoundManager.OnUISound();
             }
             else
             {

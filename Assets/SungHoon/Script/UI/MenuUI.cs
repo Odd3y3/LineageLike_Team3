@@ -7,6 +7,7 @@ public class MenuUI : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuCanvas;
     public GameObject BG;
+    public GameObject Option;
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -21,6 +22,7 @@ public class MenuUI : MonoBehaviour
         if (GameIsPaused)
         {
             Pause();
+            GameManager.Inst.SoundManager.OnUISound();
         }
         else
         {
@@ -44,7 +46,7 @@ public class MenuUI : MonoBehaviour
 
     public void ToSettingMenu()
     {
-        Debug.Log("아직 미구현입니다...");
+        Option.SetActive(true);
     }
 
     public void ToMain()

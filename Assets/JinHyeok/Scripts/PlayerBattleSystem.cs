@@ -59,6 +59,8 @@ public class PlayerBattleSystem : BattleSystem
 
     protected bool IsSkillAreaSelecting { get; private set; } = false;
 
+    public GameObject levelUpEffect;
+
     SkillInfo usingSkill = null;
     Vector3 usingSkillPos = Vector3.zero;
     public SkillInfo UsingSkill
@@ -93,6 +95,8 @@ public class PlayerBattleSystem : BattleSystem
 
     public void LevelUp()
     {
+        levelUpEffect.SetActive(true);
+
         BattleStat.LV++;
         BattleStat.MaxExp *= 2;
         curExp = 0;
@@ -167,6 +171,7 @@ public class PlayerBattleSystem : BattleSystem
         {
             AnimateSkill(skillInfo, transform.position);
         }
+        GameManager.Inst.SoundManager.OnSkillEffectSound(skillInfo);
     }
     IEnumerator AreaSelecting(SkillInfo skillInfo)
     {
